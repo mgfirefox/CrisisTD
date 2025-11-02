@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ebb605b99f64d89961d8373fd2002b4, type: 3}
+  m_Name: ArcAngleAttackTestTowerConfiguration
+  m_EditorClassIdentifier: 
+  lifetimeScopePrefab: {fileID: 5460296232127619149, guid: 30e24037d4320014c8edb60d411c592a, type: 3}
+  dataConfiguration: {fileID: 11400000, guid: d53b44824d5315d469d4f274480bea44, type: 2}

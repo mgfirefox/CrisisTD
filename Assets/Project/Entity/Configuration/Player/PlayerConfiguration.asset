@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94ad2c28e8a74b8595574d6c762305c6, type: 3}
+  m_Name: PlayerConfiguration
+  m_EditorClassIdentifier: 
+  lifetimeScopePrefab: {fileID: -1509410754437881975, guid: c5cbba1e641330943a222bb18443c84e, type: 3}
+  dataConfiguration: {fileID: 11400000, guid: 124f92bc8ed1180409269c976a54ba28, type: 2}

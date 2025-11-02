@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 546d0f34c73a4d279dfedf9292dfb633, type: 3}
+  m_Name: EnemyConfiguration
+  m_EditorClassIdentifier: 
+  lifetimeScopePrefab: {fileID: 3673500092779379957, guid: 045002dbbc2a3b142bfdc99152e842de, type: 3}
+  dataConfiguration: {fileID: 11400000, guid: e89058893c48ec447bff79d268def040, type: 2}
