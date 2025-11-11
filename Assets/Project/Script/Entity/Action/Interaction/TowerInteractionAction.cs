@@ -51,24 +51,24 @@ namespace Mgfirefox.CrisisTd
             Cancel();
         }
 
-        public void UpgradeBranch1()
+        public void UpgradeFirstBranch()
         {
             if (!IsInteracting)
             {
                 return;
             }
 
-            interactingTower.UpgradeBranch1();
+            interactingTower.UpgradeFirstBranch();
         }
 
-        public void UpgradeBranch2()
+        public void UpgradeSecondBranch()
         {
             if (!IsInteracting)
             {
                 return;
             }
 
-            interactingTower.UpgradeBranch2();
+            interactingTower.UpgradeSecondBranch();
         }
 
         public void Sell()

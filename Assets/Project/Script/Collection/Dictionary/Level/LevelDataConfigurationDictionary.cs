@@ -4,7 +4,7 @@ namespace Mgfirefox.CrisisTd
 {
     [Serializable]
     public class
-        LevelDataConfigurationDictionary : SerializableDictionary<LevelIndex,
+        LevelDataConfigurationDictionary : SerializableDictionary<BranchLevel,
         LevelDataConfiguration>
     {
     }

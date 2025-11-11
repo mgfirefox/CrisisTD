@@ -43,19 +43,19 @@ namespace Mgfirefox.CrisisTd
         [SerializeField]
         [BoxGroup("Level")]
         [ReadOnly]
-        private int maxBranch0Index;
+        private int maxZeroBranchIndex;
         [SerializeField]
         [BoxGroup("Level")]
         [ReadOnly]
-        private int maxBranch1Index;
+        private int maxFirstBranchIndex;
         [SerializeField]
         [BoxGroup("Level")]
         [ReadOnly]
-        private int maxBranch2Index;
+        private int maxSecondBranchIndex;
         [SerializeField]
         [BoxGroup("Level")]
         [ReadOnly]
-        private LevelIndex index;
+        private BranchLevel level;
 
         public ITowerActionFolderView ActionViewFolder => actionViewFolder;
 
@@ -132,15 +132,15 @@ namespace Mgfirefox.CrisisTd
 
         public Effect RangeEffect { get => rangeEffect; set => rangeEffect = value; }
 
-        public int MaxBranch0Index { get => maxBranch0Index; set => maxBranch0Index = value; }
-        public int MaxBranch1Index { get => maxBranch1Index; set => maxBranch1Index = value; }
-        public int MaxBranch2Index { get => maxBranch2Index; set => maxBranch2Index = value; }
-        public LevelIndex Index { get => index; set => index = value; }
+        public int MaxZeroBranchIndex { get => maxZeroBranchIndex; set => maxZeroBranchIndex = value; }
+        public int MaxFirstBranchIndex { get => maxFirstBranchIndex; set => maxFirstBranchIndex = value; }
+        public int MaxSecondBranchIndex { get => maxSecondBranchIndex; set => maxSecondBranchIndex = value; }
+        public BranchLevel Level { get => level; set => level = value; }
 
         public event Action<Effect, ITowerView> EffectApplied;
 
-        public event Action Branch1Upgraded;
-        public event Action Branch2Upgraded;
+        public event Action FirstBranchUpgraded;
+        public event Action SecondBranchUpgraded;
 
         public event Action InteractionShown;
         public event Action InteractionHidden;
@@ -150,14 +150,14 @@ namespace Mgfirefox.CrisisTd
             EffectApplied?.Invoke(effect, source);
         }
 
-        public void UpgradeBranch1()
+        public void UpgradeFirstBranch()
         {
-            Branch1Upgraded?.Invoke();
+            FirstBranchUpgraded?.Invoke();
         }
 
-        public void UpgradeBranch2()
+        public void UpgradeSecondBranch()
         {
-            Branch2Upgraded?.Invoke();
+            SecondBranchUpgraded?.Invoke();
         }
 
         public void ShowInteraction()

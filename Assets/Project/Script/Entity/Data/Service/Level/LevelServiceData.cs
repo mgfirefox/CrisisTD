@@ -4,9 +4,9 @@ namespace Mgfirefox.CrisisTd.Level
 {
     public class LevelServiceData : AbstractServiceData
     {
-        public IDictionary<LevelIndex, LevelItem> dataDictionary =
-            new Dictionary<LevelIndex, LevelItem>();
+        public IDictionary<BranchLevel, LevelItem> Items { get; set; } =
+            new Dictionary<BranchLevel, LevelItem>();
 
-        public LevelIndex Index { get; set; } = new();
+        public BranchLevel Level { get; set; } = new();
     }
 }

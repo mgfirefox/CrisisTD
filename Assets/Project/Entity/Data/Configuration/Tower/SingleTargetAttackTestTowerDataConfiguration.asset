@@ -15,45 +15,41 @@ MonoBehaviour:
   type: 100
   levelDataConfigurations:
     m_keys:
-    - branch0: 0
-      branch1: 0
-      branch2: 0
-    - branch0: 1
-      branch1: 0
-      branch2: 0
-    - branch0: 2
-      branch1: 0
-      branch2: 0
-    - branch0: 3
-      branch1: 0
-      branch2: 0
-    - branch0: 3
-      branch1: 1
-      branch2: 0
-    - branch0: 3
-      branch1: 2
-      branch2: 0
-    - branch0: 3
-      branch1: 3
-      branch2: 0
-    - branch0: 3
-      branch1: 0
-      branch2: 1
-    - branch0: 3
-      branch1: 0
-      branch2: 2
-    - branch0: 3
-      branch1: 0
-      branch2: 3
+    - type: 100
+      index: 0
+    - type: 100
+      index: 1
+    - type: 100
+      index: 2
+    - type: 100
+      index: 3
+    - type: 200
+      index: 0
+    - type: 200
+      index: 1
+    - type: 200
+      index: 2
+    - type: 200
+      index: 3
+    - type: 300
+      index: 0
+    - type: 300
+      index: 1
+    - type: 300
+      index: 2
+    - type: 300
+      index: 3
     m_values:
     - {fileID: 11400000, guid: ae83df7aa2da1a347aa198a8352c425f, type: 2}
     - {fileID: 11400000, guid: d563d91ed7aacfe489a0ce095c75605a, type: 2}
     - {fileID: 11400000, guid: 220c7dee968862749a9b44d1f814c840, type: 2}
     - {fileID: 11400000, guid: 63b8f3a85e004af499dbd1f4292e965b, type: 2}
-    - {fileID: 11400000, guid: ccd7a63e34a4d6f42a7664e6c334156b, type: 2}
-    - {fileID: 11400000, guid: 3fbe41d717bb9ae45b9d76419017765d, type: 2}
-    - {fileID: 11400000, guid: 9c8efb98ad1021847928ae6ba5d58ac1, type: 2}
+    - {fileID: 11400000, guid: c31c07659d32aaf41aeb32c4cb371daa, type: 2}
     - {fileID: 11400000, guid: 249aa71c9f982e24b8f47d48765dfb1d, type: 2}
     - {fileID: 11400000, guid: 7fc92014df23c0340ae80dbe1290480d, type: 2}
     - {fileID: 11400000, guid: 2cfab43d54f3dea40a74f3bfa1871162, type: 2}
+    - {fileID: 11400000, guid: 3b337fb6128997c49aaf1879f002f9c8, type: 2}
+    - {fileID: 11400000, guid: ccd7a63e34a4d6f42a7664e6c334156b, type: 2}
+    - {fileID: 11400000, guid: 3fbe41d717bb9ae45b9d76419017765d, type: 2}
+    - {fileID: 11400000, guid: 9c8efb98ad1021847928ae6ba5d58ac1, type: 2}
   priority: 100

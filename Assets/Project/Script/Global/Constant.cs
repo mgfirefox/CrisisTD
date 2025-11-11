@@ -34,10 +34,6 @@ namespace Mgfirefox.CrisisTd
         public const float minDebuffEffectValue = 0.0f;
         public const float maxDebuffEffectValue = 1.0f;
 
-        public const int maxLevelBranch0Index = 3;
-        public const int maxLevelBranch1Index = 3;
-        public const int maxLevelBranch2Index = 3;
-
         public const float towerInteractionMaxDistance = 100.0f;
         public static LayerMask TowerSelectionLayerMask { get; } = LayerMask.GetMask("Tower");
     }

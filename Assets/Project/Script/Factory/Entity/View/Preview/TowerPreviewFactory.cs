@@ -38,7 +38,7 @@ namespace Mgfirefox.CrisisTd
                 view.Initialize();
 
                 foreach (AbstractTowerActionDataConfiguration actionDataConfiguration in
-                         configuration.DataConfiguration.LevelDataConfigurations[new LevelIndex()]
+                         configuration.DataConfiguration.LevelDataConfigurations[new BranchLevel()]
                              .TowerActionDataConfigurations)
                 {
                     if (rangeViewFactory.TryCreate(configuration.DataConfiguration.Type,

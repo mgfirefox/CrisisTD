@@ -2,9 +2,9 @@
 {
     public interface ILevelModel : IModel
     {
-        int MaxBranch0Index { get; }
-        int MaxBranch1Index { get; }
-        int MaxBranch2Index { get; }
-        LevelIndex Index { get; }
+        int MaxZeroBranchIndex { get; }
+        int MaxFirstBranchIndex { get; }
+        int MaxSecondBranchIndex { get; }
+        BranchLevel Level { get; }
     }
 }

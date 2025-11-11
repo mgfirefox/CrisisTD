@@ -182,10 +182,10 @@ namespace Mgfirefox.CrisisTd
                 switch (option)
                 {
                     case 0:
-                        towerInteractionAction.UpgradeBranch1();
+                        towerInteractionAction.UpgradeFirstBranch();
                     break;
                     case 1:
-                        towerInteractionAction.UpgradeBranch2();
+                        towerInteractionAction.UpgradeSecondBranch();
                     break;
                 }
             }

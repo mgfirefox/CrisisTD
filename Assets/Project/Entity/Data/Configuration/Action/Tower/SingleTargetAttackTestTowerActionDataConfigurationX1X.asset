@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd19eb6b4b16493ba6a77244932e4b10, type: 3}
-  m_Name: SingleTargetAttackTestAttackActionDataConfiguration32X
+  m_Script: {fileID: 11500000, guid: 5f43c525a9444d61a43536bd5a9093a9, type: 3}
+  m_Name: SingleTargetAttackTestTowerActionDataConfigurationX1X
   m_EditorClassIdentifier: 
-  damage: 15
-  fireRate: 0.25
+  range: 22
+  actionDataConfigurations:
+  - {fileID: 11400000, guid: 3bd3722acc4805c41babe610b2714c2a, type: 2}

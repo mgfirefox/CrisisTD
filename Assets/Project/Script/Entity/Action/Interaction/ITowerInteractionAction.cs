@@ -4,8 +4,8 @@
     {
         bool IsInteracting { get; }
 
-        void UpgradeBranch1();
-        void UpgradeBranch2();
+        void UpgradeFirstBranch();
+        void UpgradeSecondBranch();
 
         void Sell();
 

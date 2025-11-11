@@ -42,8 +42,8 @@ namespace Mgfirefox.CrisisTd
             effectService.RangeChanged += OnEffectRangeChanged;
 
             View.EffectApplied += OnEffectApplied;
-            View.Branch1Upgraded += OnBranch1Upgraded;
-            View.Branch2Upgraded += OnBranch2Upgraded;
+            View.FirstBranchUpgraded += OnFirstBranchUpgraded;
+            View.SecondBranchUpgraded += OnSecondBranchUpgraded;
             View.InteractionShown += OnInteractionShown;
             View.InteractionHidden += OnInteractionHidden;
         }
@@ -57,8 +57,8 @@ namespace Mgfirefox.CrisisTd
             effectService.RangeChanged -= OnEffectRangeChanged;
 
             View.EffectApplied -= OnEffectApplied;
-            View.Branch1Upgraded -= OnBranch1Upgraded;
-            View.Branch2Upgraded -= OnBranch2Upgraded;
+            View.FirstBranchUpgraded -= OnFirstBranchUpgraded;
+            View.SecondBranchUpgraded -= OnSecondBranchUpgraded;
             View.InteractionShown -= OnInteractionShown;
             View.InteractionHidden -= OnInteractionHidden;
         }
@@ -98,9 +98,9 @@ namespace Mgfirefox.CrisisTd
 
             levelService.Initialize(data.LevelServiceData);
 
-            View.MaxBranch0Index = levelService.MaxBranch0Index;
-            View.MaxBranch1Index = levelService.MaxBranch1Index;
-            View.MaxBranch2Index = levelService.MaxBranch2Index;
+            View.MaxZeroBranchIndex = levelService.MaxZeroBranchIndex;
+            View.MaxFirstBranchIndex = levelService.MaxFirstBranchIndex;
+            View.MaxSecondBranchIndex = levelService.MaxSecondBranchIndex;
 
             HideInteraction();
         }
@@ -154,7 +154,7 @@ namespace Mgfirefox.CrisisTd
             DestroyActions();
             InitializeActions(item.ActionDataList);
 
-            View.Index = levelService.Index;
+            View.Level = levelService.Level;
 
             effectService.Reapply();
         }
@@ -164,14 +164,14 @@ namespace Mgfirefox.CrisisTd
             effectService.Apply(effect.Clone() as Effect, source);
         }
 
-        private void OnBranch1Upgraded()
+        private void OnFirstBranchUpgraded()
         {
-            levelService.UpgradeBranch1();
+            levelService.UpgradeFirstBranch();
         }
 
-        private void OnBranch2Upgraded()
+        private void OnSecondBranchUpgraded()
         {
-            levelService.UpgradeBranch2();
+            levelService.UpgradeSecondBranch();
         }
 
         private void OnInteractionShown()

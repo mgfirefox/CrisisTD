@@ -18,23 +18,23 @@ namespace Mgfirefox.CrisisTd
 
         new Effect RangeEffect { get; set; }
 
-        new int MaxBranch0Index { get; set; }
-        new int MaxBranch1Index { get; set; }
-        new int MaxBranch2Index { get; set; }
-        new LevelIndex Index { get; set; }
+        new int MaxZeroBranchIndex { get; set; }
+        new int MaxFirstBranchIndex { get; set; }
+        new int MaxSecondBranchIndex { get; set; }
+        new BranchLevel Level { get; set; }
 
         event Action<Effect, ITowerView> EffectApplied;
 
-        event Action Branch1Upgraded;
-        event Action Branch2Upgraded;
+        event Action FirstBranchUpgraded;
+        event Action SecondBranchUpgraded;
 
         event Action InteractionShown;
         event Action InteractionHidden;
 
         void ApplyEffect(Effect effect, ITowerView source);
 
-        void UpgradeBranch1();
-        void UpgradeBranch2();
+        void UpgradeFirstBranch();
+        void UpgradeSecondBranch();
 
         void ShowInteraction();
         void HideInteraction();

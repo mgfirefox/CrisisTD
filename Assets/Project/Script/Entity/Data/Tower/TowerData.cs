@@ -33,11 +33,11 @@ namespace Mgfirefox.CrisisTd
             }
 
             public Builder FromLevelDataConfigurations(TowerType type,
-                IDictionary<LevelIndex, LevelDataConfiguration> levelDataConfigurations)
+                IDictionary<BranchLevel, LevelDataConfiguration> levelDataConfigurations)
             {
                 data.Type = type;
 
-                foreach ((LevelIndex levelIndex, LevelDataConfiguration levelDataConfiguration) in
+                foreach ((BranchLevel level, LevelDataConfiguration levelDataConfiguration) in
                          levelDataConfigurations)
                 {
                     foreach (AbstractTowerActionDataConfiguration actionDataConfiguration in
@@ -49,7 +49,7 @@ namespace Mgfirefox.CrisisTd
                             var levelData = new LevelItem();
                             levelData.ActionDataList.Add(actionData);
 
-                            data.LevelServiceData.dataDictionary[levelIndex] = levelData;
+                            data.LevelServiceData.Items[level] = levelData;
                         }
                         else
                         {
@@ -62,30 +62,6 @@ namespace Mgfirefox.CrisisTd
 
                 return this;
             }
-
-            /*public Builder FromActionDataConfigurations(TowerType type,
-                IList<AbstractTowerActionDataConfiguration> actionDataConfigurations)
-            {
-                data.Type = type;
-
-                foreach (AbstractTowerActionDataConfiguration actionDataConfiguration in
-                         actionDataConfigurations)
-                {
-                    if (actionDataFactory.TryCreate(type, actionDataConfiguration, data.Priority,
-                            out AbstractTowerActionData actionData))
-                    {
-                        data.ActionDataList.Add(actionData);
-                    }
-                    else
-                    {
-                        // TODO: Change Warning
-                        Debug.LogWarning(
-                            $"Failed to create Object of type {typeof(AbstractTowerActionData)} with ID \"${type}\"");
-                    }
-                }
-
-                return this;
-            }*/
 
             public Builder WithId(TowerId id)
             {
@@ -115,9 +91,9 @@ namespace Mgfirefox.CrisisTd
                 return this;
             }
 
-            public Builder WithLevelIndex(LevelIndex index)
+            public Builder WithLevel(BranchLevel level)
             {
-                data.LevelServiceData.Index = index;
+                data.LevelServiceData.Level = level;
 
                 return this;
             }
@@ -126,8 +102,6 @@ namespace Mgfirefox.CrisisTd
         public TowerId Id { get; set; } = TowerId.Undefined;
 
         public TowerType Type { get; set; } = TowerType.Undefined;
-        /*public IList<AbstractTowerActionData> ActionDataList { get; set; } =
-            new List<AbstractTowerActionData>();*/
 
         public TargetPriority Priority { get; set; } = TargetPriority.Undefined;
 

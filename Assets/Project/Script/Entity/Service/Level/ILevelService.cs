@@ -7,7 +7,7 @@ namespace Mgfirefox.CrisisTd
     {
         event Action<LevelItem> Changed;
 
-        void UpgradeBranch1();
-        void UpgradeBranch2();
+        void UpgradeFirstBranch();
+        void UpgradeSecondBranch();
     }
 }

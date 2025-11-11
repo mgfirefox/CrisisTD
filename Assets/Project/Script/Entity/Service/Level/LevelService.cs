@@ -7,23 +7,13 @@ namespace Mgfirefox.CrisisTd
 {
     public class LevelService : AbstractDataService<LevelServiceData>, ILevelService
     {
-        private readonly IDictionary<LevelIndex, LevelItem> dataDictionary =
-            new Dictionary<LevelIndex, LevelItem>();
+        private readonly IDictionary<BranchLevel, LevelItem> items =
+            new Dictionary<BranchLevel, LevelItem>();
 
-        public int MaxBranch0Index { get; private set; }
-        public int MaxBranch1Index { get; private set; }
-        public int MaxBranch2Index { get; private set; }
-        public LevelIndex Index { get; private set; } = new();
-
-        private bool IsBranch0 =>
-            Index.Branch0 >= 0 && Index.Branch0 <= MaxBranch0Index && Index.Branch1 == 0 &&
-            Index.Branch2 == 0;
-        private bool IsBranch1 =>
-            Index.Branch0 == MaxBranch0Index && Index.Branch1 > 0 &&
-            Index.Branch1 <= MaxBranch0Index && Index.Branch2 == 0;
-        private bool IsBranch2 =>
-            Index.Branch0 == MaxBranch0Index && Index.Branch1 == 0 && Index.Branch2 > 0 &&
-            Index.Branch2 <= MaxBranch2Index;
+        public int MaxZeroBranchIndex { get; private set; }
+        public int MaxFirstBranchIndex { get; private set; }
+        public int MaxSecondBranchIndex { get; private set; }
+        public BranchLevel Level { get; private set; } = new();
 
         public event Action<LevelItem> Changed;
 
@@ -32,80 +22,76 @@ namespace Mgfirefox.CrisisTd
         {
         }
 
-        public void UpgradeBranch1()
+        public void UpgradeFirstBranch()
         {
-            if (IsBranch0)
+            if (Level.Type == BranchType.Zero)
             {
-                if (Index.Branch0 < MaxBranch0Index)
+                if (Level.Index < MaxZeroBranchIndex)
                 {
-                    UpgradeBranch0();
+                    UpgradeBranch();
 
                     return;
                 }
 
-                Index.Branch1++;
+                Level = new BranchLevel(BranchType.First);
 
                 InvokeChanged();
 
                 return;
             }
 
-            if (!IsBranch1)
+            if (Level.Type != BranchType.First)
             {
                 return;
             }
-            if (Index.Branch1 == MaxBranch1Index)
+            if (Level.Index >= MaxFirstBranchIndex)
             {
                 return;
             }
 
-            Index.Branch1++;
-
-            InvokeChanged();
+            UpgradeBranch();
         }
 
-        public void UpgradeBranch2()
+        public void UpgradeSecondBranch()
         {
-            if (IsBranch0)
+            if (Level.Type == BranchType.Zero)
             {
-                if (Index.Branch0 < MaxBranch0Index)
+                if (Level.Index < MaxZeroBranchIndex)
                 {
-                    UpgradeBranch0();
+                    UpgradeBranch();
 
                     return;
                 }
 
-                Index.Branch2++;
+                Level = new BranchLevel(BranchType.Second);
 
                 InvokeChanged();
 
                 return;
             }
 
-            if (!IsBranch2)
+            if (Level.Type != BranchType.Second)
             {
                 return;
             }
-            if (Index.Branch2 == MaxBranch2Index)
+            if (Level.Index >= MaxSecondBranchIndex)
             {
                 return;
             }
 
-            Index.Branch2++;
-
-            InvokeChanged();
+            UpgradeBranch();
         }
 
-        private void UpgradeBranch0()
+        private void UpgradeBranch()
         {
-            Index.Branch0++;
+            Level.Index++;
 
             InvokeChanged();
         }
 
         private void InvokeChanged()
         {
-            LevelItem item = dataDictionary[Index];
+            LevelItem item = items[Level];
 
             Changed?.Invoke(item);
         }
@@ -114,71 +100,61 @@ namespace Mgfirefox.CrisisTd
         {
             base.OnInitialized(data);
 
-            InitializeDataDictionary(data.dataDictionary);
+            InitializeItems(data.Items);
 
-            Index = data.Index.Clone() as LevelIndex;
+            Level = data.Level.Clone() as BranchLevel;
 
             InvokeChanged();
         }
 
-        private void InitializeDataDictionary(IDictionary<LevelIndex, LevelItem> dataDictionary)
+        private void InitializeItems(IDictionary<BranchLevel, LevelItem> items)
         {
-            MaxBranch0Index = Constant.maxLevelBranch0Index;
-            MaxBranch1Index = Constant.maxLevelBranch1Index;
-            MaxBranch2Index = Constant.maxLevelBranch2Index;
-
-            int maxBranch0Index = 0;
-            int maxBranch1Index = 0;
-            int maxBranch2Index = 0;
-
-            foreach ((LevelIndex index, LevelItem data) in dataDictionary)
+            foreach ((BranchLevel level, LevelItem item) in items)
             {
-                Index = index.Clone() as LevelIndex;
-
-                if (IsBranch0)
-                {
-                    if (index.Branch0 > maxBranch0Index)
-                    {
-                        maxBranch0Index = index.Branch0;
-                    }
-                }
-                else if (IsBranch1)
-                {
-                    if (index.Branch1 > maxBranch1Index)
-                    {
-                        maxBranch1Index = index.Branch1;
-                    }
-                }
-                else if (IsBranch2)
-                {
-                    if (index.Branch2 > maxBranch2Index)
-                    {
-                        maxBranch2Index = index.Branch2;
-                    }
-                }
-                else
+                if (!BranchLevelValidator.TryValidate(level))
                 {
                     continue;
                 }
 
-                this.dataDictionary[index] = data;
-            }
+                switch (level.Type)
+                {
+                    case BranchType.Zero:
+                        if (level.Index > MaxZeroBranchIndex)
+                        {
+                            MaxZeroBranchIndex = level.Index;
+                        }
+                    break;
+                    case BranchType.First:
+                        if (level.Index > MaxFirstBranchIndex)
+                        {
+                            MaxFirstBranchIndex = level.Index;
+                        }
+                    break;
+                    case BranchType.Second:
+                        if (level.Index > MaxSecondBranchIndex)
+                        {
+                            MaxSecondBranchIndex = level.Index;
+                        }
+                    break;
+                    case BranchType.Undefined:
+                    default:
+                        continue;
+                }
 
-            MaxBranch0Index = maxBranch0Index;
-            MaxBranch1Index = maxBranch1Index;
-            MaxBranch2Index = maxBranch2Index;
+                this.items[level] = item;
+            }
         }
 
         protected override void OnDestroying()
         {
-            ClearDataDictionary();
+            ClearItems();
 
             base.OnDestroying();
         }
 
-        private void ClearDataDictionary()
+        private void ClearItems()
         {
-            dataDictionary.Clear();
+            items.Clear();
         }
     }
 }

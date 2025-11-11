@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a321e830a41437a852a23316d412b15, type: 3}
-  m_Name: SingeTargetAttackTestLevelDataConfiguration3X1
+  m_Name: SingeTargetAttackTestLevelDataConfigurationX3X
   m_EditorClassIdentifier: 
   towerActionDataConfigurations:
-  - {fileID: 11400000, guid: fb46016e1a949d145adf040f68c3c721, type: 2}
+  - {fileID: 11400000, guid: 2c2fc1fe220f6cd46b716cd96c390d0f, type: 2}
