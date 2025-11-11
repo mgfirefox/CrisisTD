@@ -14,7 +14,7 @@ namespace Mgfirefox.CrisisTd
         [SerializeField]
         private EffectType type;
         [SerializeField]
-        protected EffectKind kind;
+        private EffectKind kind;
         [SerializeField]
         private float value;
 
