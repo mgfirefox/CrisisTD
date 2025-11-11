@@ -14,15 +14,15 @@ namespace Mgfirefox.CrisisTd
         public static LayerMask TowerPlacementSuitableLayerMask { get; } = LayerMask.GetMask("Map");
         public static LayerMask TowerPlacementNonSuitableLayerMask { get; } =
             LayerMask.GetMask("MapObstacle");
-        public static LayerMask TowerPlacementNonSuitable1LayerMask { get; } =
-            LayerMask.GetMask("TowerObstacle");
+        public const int towerPlacementYawStepValue = 90;
 
-        public const float towerObstacleLength = 5.0f;
+        public const float towerObstacleLength = 10.0f;
         public const float towerObstacleHeight = rangeHeight;
-        public const float towerObstacleWidth = towerObstacleLength;
+        public const float towerObstacleWidth = 20.0f;
 
-        public const float waypointSegmentTowerObstacleHeight = rangeHeight;
-        public const float waypointSegmentTowerObstacleWidth = 2.0f;
+        public const float routeSegmentTowerObstacleLength = 5.0f;
+        public const float routeSegmentTowerObstacleHeight = rangeHeight;
+        public const float routeSegmentTowerObstacleWidth = routeSegmentTowerObstacleLength;
 
         public const int maxHitboxTargetCount = 64;
         public const int maxRayCastHitTargetCount = 64;

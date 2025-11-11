@@ -33,7 +33,7 @@ namespace Mgfirefox.CrisisTd
 
         private readonly IDictionary<ITowerView, ITowerObstacleView> towerObstacles =
             new Dictionary<ITowerView, ITowerObstacleView>();
-        private readonly IList<ITowerObstacleView> waypointSegmentTowerObstacles =
+        private readonly IList<ITowerObstacleView> routeSegmentTowerObstacles =
             new List<ITowerObstacleView>();
 
         public int SelectedIndex { get; private set; } = -1;
@@ -45,6 +45,29 @@ namespace Mgfirefox.CrisisTd
         public bool IsPlacementSuitable { get; private set; }
 
         public bool IsLimitReached => Count >= Limit;
+        
+        private bool HasPlacingTowerPreviewSameYawStep(float yaw)
+        {
+            int placingTowerYawStep = Math.Abs(placingTowerPreviewViewYaw / Constant.towerPlacementYawStepValue);
+            placingTowerYawStep %= 2;
+            
+            int yawStep = Mathf.RoundToInt(yaw / Constant.towerPlacementYawStepValue);
+            yawStep = Math.Abs(yawStep) % 2;
+            
+            if (placingTowerYawStep == yawStep)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool HasPlacingTowerPreviewSameYawStep(Quaternion orientation)
+        {
+            float yaw = orientation.eulerAngles.y;
+
+            return HasPlacingTowerPreviewSameYawStep(yaw);
+        }
 
         [Inject]
         public TowerPlacementAction(ITowerPlacementActionView view, ITowerService towerService,
@@ -146,7 +169,7 @@ namespace Mgfirefox.CrisisTd
             View.IsPlacementSuitable = IsPlacementSuitable;
 
             CreateTowerObstacles();
-            CreateWaypointSegmentTowerObstacles();
+            CreateRouteSegmentTowerObstacles();
         }
 
         public void Deselect()
@@ -168,7 +191,7 @@ namespace Mgfirefox.CrisisTd
             placingTowerPreviewViewYaw = 0;
 
             DestroyTowerObstacles();
-            DestroyWaypointSegmentTowerObstacles();
+            DestroyRouteSegmentTowerObstacles();
         }
 
         public void Rotate()
@@ -178,12 +201,15 @@ namespace Mgfirefox.CrisisTd
                 return;
             }
 
-            placingTowerPreviewViewYaw += 45;
+            placingTowerPreviewViewYaw += Constant.towerPlacementYawStepValue;
 
             Vector3 eulerAngles = placingTowerPreviewView.Orientation.eulerAngles;
             eulerAngles.y = placingTowerPreviewViewYaw;
 
             placingTowerPreviewView.Orientation = Quaternion.Euler(eulerAngles);
+            
+            DestroyTowerObstacles();
+            CreateTowerObstacles();
         }
 
         public void UpdatePreview()
@@ -273,10 +299,10 @@ namespace Mgfirefox.CrisisTd
 
                     return;
                 }
-                foreach (ITowerObstacleView waypointSegmentTowerObstacle in
-                         waypointSegmentTowerObstacles)
+                foreach (ITowerObstacleView routeSegmentTowerObstacle in
+                         routeSegmentTowerObstacles)
                 {
-                    if (!waypointSegmentTowerObstacle.IsPositionWithin(suitableHit.Position,
+                    if (!routeSegmentTowerObstacle.IsPositionWithin(suitableHit.Position,
                             epsilon))
                     {
                         continue;
@@ -321,12 +347,25 @@ namespace Mgfirefox.CrisisTd
             {
                 if (towerObstacleViewFactory.TryCreate(out ITowerObstacleView towerObstacle))
                 {
+                    float length;
+                    float width;
+                    if (HasPlacingTowerPreviewSameYawStep(placedTower.Orientation))
+                    {
+                        length = GetSizeParameter(Constant.towerObstacleLength,
+                            Constant.towerObstacleLength);
+                        width = GetSizeParameter(Constant.towerObstacleWidth, Constant.towerObstacleWidth);
+                    }
+                    else
+                    {
+                        length = GetSizeParameter(Constant.towerObstacleLength,
+                            Constant.towerObstacleWidth);
+                        width = GetSizeParameter(Constant.towerObstacleWidth,
+                            Constant.towerObstacleLength);
+                    }
+
                     towerObstacle.Position = placedTower.Position;
                     towerObstacle.Orientation = placedTower.Orientation;
-                    towerObstacle.SetSize(
-                        Constant.towerObstacleLength + Constant.towerObstacleLength,
-                        Constant.towerObstacleHeight,
-                        Constant.towerObstacleWidth + Constant.towerObstacleWidth);
+                    towerObstacle.SetSize(length, Constant.towerObstacleHeight, width);
 
                     towerObstacles[placedTower] = towerObstacle;
                 }
@@ -339,7 +378,7 @@ namespace Mgfirefox.CrisisTd
             }
         }
 
-        private void CreateWaypointSegmentTowerObstacles()
+        private void CreateRouteSegmentTowerObstacles()
         {
             IReadOnlyList<Vector3> waypoints = mapService.Waypoints;
             for (int i = 0; i < waypoints.Count - 1; i++)
@@ -348,10 +387,10 @@ namespace Mgfirefox.CrisisTd
                 Vector3 nextWaypoint = waypoints[i + 1];
 
                 Vector3 direction = Vector3Utility.GetTranslation(waypoint, nextWaypoint);
-                float distance = direction.magnitude;
+                float segmentWidth = direction.magnitude;
                 direction.Normalize();
 
-                Vector3 translation = direction * distance / 2;
+                Vector3 translation = direction * segmentWidth / 2;
 
                 Vector3 segmentPosition = waypoint + translation;
                 Quaternion segmentOrientation = rotationService.RotateTo(waypoint, nextWaypoint);
@@ -360,17 +399,11 @@ namespace Mgfirefox.CrisisTd
                 {
                     towerObstacle.Position = segmentPosition;
                     towerObstacle.Orientation = segmentOrientation;
-                    /*towerObstacle.SetSize(
-                        distance + Constant.waypointSegmentTowerObstacleWidth + Constant.towerObstacleLength,
-                        Constant.waypointSegmentTowerObstacleHeight,
-                        Constant.waypointSegmentTowerObstacleWidth + Constant.towerObstacleWidth);*/
-                    towerObstacle.SetSize(
-                        Constant.waypointSegmentTowerObstacleWidth + Constant.towerObstacleWidth,
-                        Constant.waypointSegmentTowerObstacleHeight,
-                        distance + Constant.waypointSegmentTowerObstacleWidth +
-                        Constant.towerObstacleLength);
+                    towerObstacle.SetSize(Constant.routeSegmentTowerObstacleLength,
+                        Constant.routeSegmentTowerObstacleHeight,
+                        Constant.routeSegmentTowerObstacleWidth + segmentWidth);
 
-                    waypointSegmentTowerObstacles.Add(towerObstacle);
+                    routeSegmentTowerObstacles.Add(towerObstacle);
                 }
                 else
                 {
@@ -390,13 +423,13 @@ namespace Mgfirefox.CrisisTd
             towerObstacles.Clear();
         }
 
-        private void DestroyWaypointSegmentTowerObstacles()
+        private void DestroyRouteSegmentTowerObstacles()
         {
-            foreach (ITowerObstacleView waypointSegmentObstacle in waypointSegmentTowerObstacles)
+            foreach (ITowerObstacleView routeSegmentObstacle in routeSegmentTowerObstacles)
             {
-                waypointSegmentObstacle.Destroy();
+                routeSegmentObstacle.Destroy();
             }
-            waypointSegmentTowerObstacles.Clear();
+            routeSegmentTowerObstacles.Clear();
         }
 
         private bool TryGetRayHit(out RayHit hit, out bool isHitSuitable)
@@ -444,6 +477,18 @@ namespace Mgfirefox.CrisisTd
             isHitSuitable = true;
 
             return true;
+        }
+        
+        private float GetSizeParameter(float initialSizeParameter, float placingTowerSizeParameter)
+        {
+            float epsilon = Scene.Settings.MathSettings.Epsilon;
+
+            if (initialSizeParameter.IsLessThanApproximately(placingTowerSizeParameter, epsilon))
+            {
+                return placingTowerSizeParameter;
+            }
+
+            return initialSizeParameter;
         }
 
         protected override void OnInitialized(TowerPlacementActionData data)
