@@ -8,7 +8,7 @@ namespace Mgfirefox.CrisisTd
         IVirtualCameraView IsometricVirtualCamera { get; }
         IVirtualCameraView TopDownVirtualCamera { get; }
 
-        IVirtualCameraFolderView VirtualCameraFolder { get; }
+        IVirtualCameraFolder VirtualCameraFolder { get; }
 
         new Vector3 Position { get; set; }
         new Quaternion Orientation { get; set; }

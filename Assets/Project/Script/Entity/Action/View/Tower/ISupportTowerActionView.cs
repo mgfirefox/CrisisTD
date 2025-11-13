@@ -2,6 +2,6 @@
 {
     public interface ISupportTowerActionView : ITowerActionView, ISupportTowerActionModel
     {
-        IBuffActionFolderView ActionViewFolder { get; }
+        IBuffActionFolder ActionFolder { get; }
     }
 }

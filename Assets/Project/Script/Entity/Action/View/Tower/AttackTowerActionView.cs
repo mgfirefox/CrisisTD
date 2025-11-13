@@ -8,15 +8,15 @@ namespace Mgfirefox.CrisisTd
         [SerializeField]
         [BoxGroup("Dependencies")]
         [Required]
-        private AttackActionFolderView actionViewFolder;
+        private AttackActionFolder actionFolder;
 
-        public IAttackActionFolderView ActionViewFolder => actionViewFolder;
+        public IAttackActionFolder ActionFolder => actionFolder;
 
         protected override IUnitySceneObject GetChildParent(IUnitySceneObject child)
         {
             if (child.Transform.TryGetComponent(out IAttackActionView _))
             {
-                return actionViewFolder;
+                return actionFolder;
             }
 
             return base.GetChildParent(child);
@@ -26,12 +26,12 @@ namespace Mgfirefox.CrisisTd
         {
             base.OnInitialized();
 
-            actionViewFolder.Initialize();
+            actionFolder.Initialize();
         }
 
         protected override void OnDestroying()
         {
-            actionViewFolder.Destroy();
+            actionFolder.Destroy();
 
             base.OnDestroying();
         }

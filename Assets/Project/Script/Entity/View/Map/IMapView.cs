@@ -6,6 +6,6 @@ namespace Mgfirefox.CrisisTd
     {
         Pose PlayerSpawnPose { get; }
 
-        IBezierSegmentFolderView BezierSegmentFolder { get; }
+        IBezierSegmentFolder BezierSegmentFolder { get; }
     }
 }

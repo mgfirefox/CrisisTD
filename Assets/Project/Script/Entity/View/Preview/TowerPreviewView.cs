@@ -8,7 +8,7 @@ namespace Mgfirefox.CrisisTd
         [SerializeField]
         [BoxGroup("Dependencies")]
         [Required]
-        private RangeFolderView rangeViewFolder;
+        private RangeFolder rangeFolder;
 
         [SerializeField]
         [BoxGroup("Transform")]
@@ -19,7 +19,7 @@ namespace Mgfirefox.CrisisTd
         [ReadOnly]
         private Quaternion orientation;
 
-        public IRangeFolderView RangeViewFolder => rangeViewFolder;
+        public IRangeFolder RangeFolder => rangeFolder;
 
         public Vector3 Position
         {
@@ -56,7 +56,7 @@ namespace Mgfirefox.CrisisTd
         {
             if (child.Transform.TryGetComponent(out IRangeView _))
             {
-                return rangeViewFolder;
+                return rangeFolder;
             }
 
             return base.GetChildParent(child);
@@ -98,19 +98,19 @@ namespace Mgfirefox.CrisisTd
             position = Transform.position;
             orientation = Transform.rotation;
 
-            rangeViewFolder.Initialize();
+            rangeFolder.Initialize();
         }
 
         protected override void OnDestroying()
         {
-            rangeViewFolder.Destroy();
+            rangeFolder.Destroy();
 
             base.OnDestroying();
         }
 
         protected override void OnShowing()
         {
-            foreach (IRangeView range in rangeViewFolder.Children)
+            foreach (IRangeView range in rangeFolder.Children)
             {
                 range.Show();
             }
@@ -120,7 +120,7 @@ namespace Mgfirefox.CrisisTd
 
         protected override void OnHiding()
         {
-            foreach (IRangeView range in rangeViewFolder.Children)
+            foreach (IRangeView range in rangeFolder.Children)
             {
                 range.Hide();
             }

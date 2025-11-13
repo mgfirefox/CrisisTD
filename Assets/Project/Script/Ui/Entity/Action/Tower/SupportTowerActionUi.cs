@@ -12,7 +12,7 @@ namespace Mgfirefox.CrisisTd
         [SerializeField]
         [BoxGroup("Dependencies")]
         [Required]
-        private BuffActionUiFolderView actionUiFolder;
+        private BuffActionUiFolder actionUiFolder;
 
         public override ISupportTowerActionView View
         {
@@ -20,11 +20,11 @@ namespace Mgfirefox.CrisisTd
             {
                 base.View = value;
 
-                SetAction(value.ActionViewFolder);
+                SetAction(value.ActionFolder);
             }
         }
 
-        private void SetAction(IBuffActionFolderView folder)
+        private void SetAction(IBuffActionFolder folder)
         {
             IReadOnlyList<IBuffActionView> folderChildren = folder.Children;
             if (folderChildren.Count == 0)

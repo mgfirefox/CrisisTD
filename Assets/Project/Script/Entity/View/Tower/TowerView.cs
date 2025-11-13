@@ -9,7 +9,7 @@ namespace Mgfirefox.CrisisTd
         [SerializeField]
         [BoxGroup("Dependencies")]
         [Required]
-        private TowerActionFolderView actionViewFolder;
+        private TowerActionFolder actionFolder;
 
         [SerializeField]
         [BoxGroup("Tower")]
@@ -57,7 +57,7 @@ namespace Mgfirefox.CrisisTd
         [ReadOnly]
         private BranchLevel level;
 
-        public ITowerActionFolderView ActionViewFolder => actionViewFolder;
+        public ITowerActionFolder ActionFolder => actionFolder;
 
         public TowerId Id { get => id; set => id = value; }
 
@@ -124,7 +124,7 @@ namespace Mgfirefox.CrisisTd
         {
             if (child.Transform.TryGetComponent(out ITowerActionView _))
             {
-                return actionViewFolder;
+                return actionFolder;
             }
 
             return base.GetChildParent(child);
@@ -186,12 +186,12 @@ namespace Mgfirefox.CrisisTd
         {
             base.OnInitialized();
 
-            actionViewFolder.Initialize();
+            actionFolder.Initialize();
         }
 
         protected override void OnDestroying()
         {
-            actionViewFolder.Destroy();
+            actionFolder.Destroy();
 
             base.OnDestroying();
         }

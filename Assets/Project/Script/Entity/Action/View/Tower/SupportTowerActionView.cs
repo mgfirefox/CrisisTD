@@ -1,22 +1,24 @@
 ﻿using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Mgfirefox.CrisisTd
 {
     public class SupportTowerActionView : AbstractTowerActionView, ISupportTowerActionView
     {
+        [FormerlySerializedAs("actionViewFolder")]
         [SerializeField]
         [BoxGroup("Dependencies")]
         [Required]
-        private BuffActionFolderView actionViewFolder;
+        private BuffActionFolder actionFolder;
 
-        public IBuffActionFolderView ActionViewFolder => actionViewFolder;
+        public IBuffActionFolder ActionFolder => actionFolder;
 
         protected override IUnitySceneObject GetChildParent(IUnitySceneObject child)
         {
             if (child.Transform.TryGetComponent(out IBuffActionView _))
             {
-                return actionViewFolder;
+                return actionFolder;
             }
 
             return base.GetChildParent(child);
@@ -26,12 +28,12 @@ namespace Mgfirefox.CrisisTd
         {
             base.OnInitialized();
 
-            actionViewFolder.Initialize();
+            actionFolder.Initialize();
         }
 
         protected override void OnDestroying()
         {
-            actionViewFolder.Destroy();
+            actionFolder.Destroy();
 
             base.OnDestroying();
         }

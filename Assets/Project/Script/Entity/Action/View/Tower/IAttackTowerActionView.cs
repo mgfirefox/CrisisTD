@@ -2,6 +2,6 @@
 {
     public interface IAttackTowerActionView : ITowerActionView, IAttackTowerActionModel
     {
-        IAttackActionFolderView ActionViewFolder { get; }
+        IAttackActionFolder ActionFolder { get; }
     }
 }

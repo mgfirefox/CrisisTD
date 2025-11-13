@@ -12,7 +12,7 @@ namespace Mgfirefox.CrisisTd
         [SerializeField]
         [BoxGroup("Dependencies")]
         [Required]
-        private AttackActionUiFolderView actionUiFolder;
+        private AttackActionUiFolder actionUiFolder;
 
         public override IAttackTowerActionView View
         {
@@ -20,11 +20,11 @@ namespace Mgfirefox.CrisisTd
             {
                 base.View = value;
 
-                SetAction(value.ActionViewFolder);
+                SetAction(value.ActionFolder);
             }
         }
 
-        private void SetAction(IAttackActionFolderView folder)
+        private void SetAction(IAttackActionFolder folder)
         {
             IReadOnlyList<IAttackActionView> folderChildren = folder.Children;
             if (folderChildren.Count == 0)

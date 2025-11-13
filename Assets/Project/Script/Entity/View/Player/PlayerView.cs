@@ -10,7 +10,7 @@ namespace Mgfirefox.CrisisTd
         [SerializeField]
         [BoxGroup("Dependencies")]
         [Required]
-        private VirtualCameraFolderView virtualCameraFolder;
+        private VirtualCameraFolder virtualCameraFolder;
         [SerializeField]
         [BoxGroup("Dependencies")]
         [Required]
@@ -46,7 +46,7 @@ namespace Mgfirefox.CrisisTd
         public IVirtualCameraView IsometricVirtualCamera => isometricVirtualCamera;
         public IVirtualCameraView TopDownVirtualCamera => topDownVirtualCamera;
 
-        public IVirtualCameraFolderView VirtualCameraFolder => virtualCameraFolder;
+        public IVirtualCameraFolder VirtualCameraFolder => virtualCameraFolder;
 
         public Vector3 Position
         {

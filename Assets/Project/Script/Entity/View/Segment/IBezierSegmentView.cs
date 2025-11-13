@@ -9,7 +9,7 @@ namespace Mgfirefox.CrisisTd
         Vector3 StartPointPosition { get; }
         Vector3 EndPointPosition { get; }
 
-        IBasicFolderView ControlPointFolder { get; }
+        IBasicFolder ControlPointFolder { get; }
 
         int SegmentCount { get; }
     }

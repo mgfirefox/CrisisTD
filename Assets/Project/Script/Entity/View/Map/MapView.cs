@@ -15,12 +15,12 @@ namespace Mgfirefox.CrisisTd
         [SerializeField]
         [BoxGroup("Dependencies")]
         [Required]
-        private BezierSegmentFolderView bezierSegmentFolder;
+        private BezierSegmentFolder bezierSegmentFolder;
 
         public Pose PlayerSpawnPose =>
             new(playerSpawn.transform.position, playerSpawn.transform.rotation);
 
-        public IBezierSegmentFolderView BezierSegmentFolder => bezierSegmentFolder;
+        public IBezierSegmentFolder BezierSegmentFolder => bezierSegmentFolder;
 
 #if UNITY_EDITOR
         public void OnDrawGizmos()

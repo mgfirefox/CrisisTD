@@ -12,7 +12,7 @@ namespace Mgfirefox.CrisisTd
         [SerializeField]
         [BoxGroup("Dependencies")]
         [Required]
-        private TowerActionUiFolderView towerActionUiFolder;
+        private TowerActionUiFolder towerActionUiFolder;
 
         [SerializeField]
         [BoxGroup("Dependencies")]
@@ -70,14 +70,14 @@ namespace Mgfirefox.CrisisTd
                     return;
                 }
 
-                SetTowerAction(value.ActionViewFolder);
+                SetTowerAction(value.ActionFolder);
 
                 SetLevel(value.Level, value.MaxZeroBranchIndex);
                 SetUpgradePanel(value);
             }
         }
 
-        private void SetTowerAction(ITowerActionFolderView folder)
+        private void SetTowerAction(ITowerActionFolder folder)
         {
             IReadOnlyList<ITowerActionView> folderChildren = folder.Children;
             if (folderChildren.Count == 0)

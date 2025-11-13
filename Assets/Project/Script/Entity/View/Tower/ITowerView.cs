@@ -5,7 +5,7 @@ namespace Mgfirefox.CrisisTd
 {
     public interface ITowerView : IVisualView, ITowerModel
     {
-        ITowerActionFolderView ActionViewFolder { get; }
+        ITowerActionFolder ActionFolder { get; }
 
         new TowerId Id { get; set; }
 

@@ -17,7 +17,7 @@ namespace Mgfirefox.CrisisTd
         [SerializeField]
         [BoxGroup("Dependencies")]
         [Required]
-        private BasicFolderView controlPointFolder;
+        private BasicFolder controlPointFolder;
 
         [SerializeField]
         [BoxGroup("BezierSegment")]
@@ -30,7 +30,7 @@ namespace Mgfirefox.CrisisTd
         public Vector3 StartPointPosition => startPoint.position;
         public Vector3 EndPointPosition => endPoint.position;
 
-        public IBasicFolderView ControlPointFolder => controlPointFolder;
+        public IBasicFolder ControlPointFolder => controlPointFolder;
 
         public int SegmentCount => segmentCount;
 
