@@ -56,13 +56,12 @@ namespace Mgfirefox.CrisisTd
         }
     }
 
-    public abstract class AbstractFolderView<TIItemView> : AbstractFolderView,
-        IFolderView<TIItemView>
-        where TIItemView : class, IView
+    public abstract class AbstractFolderView<TIItem> : AbstractFolderView, IFolderView<TIItem>
+        where TIItem : class, IUnitySceneObject
     {
-        private readonly IList<TIItemView> children = new List<TIItemView>();
+        private readonly IList<TIItem> children = new List<TIItem>();
 
-        public IReadOnlyList<TIItemView> Children => children.AsReadOnly();
+        public IReadOnlyList<TIItem> Children => children.AsReadOnly();
 
         protected override void OnInitialized()
         {
@@ -70,7 +69,7 @@ namespace Mgfirefox.CrisisTd
 
             foreach (Transform childTransform in ChildTransforms)
             {
-                if (childTransform.TryGetComponent(out TIItemView item))
+                if (childTransform.TryGetComponent(out TIItem item))
                 {
                     item.Initialize();
 
@@ -81,7 +80,7 @@ namespace Mgfirefox.CrisisTd
 
                 // TODO: Change Warning
                 Debug.LogWarning(
-                    $"Object {childTransform.gameObject} is missing Component of type {typeof(TIItemView)}.",
+                    $"Object {childTransform.gameObject} is missing Component of type {typeof(TIItem)}.",
                     childTransform.gameObject);
             }
         }
@@ -97,7 +96,7 @@ namespace Mgfirefox.CrisisTd
         {
             base.OnChildAdded(child);
 
-            if (child.Transform.TryGetComponent(out TIItemView item))
+            if (child.Transform.TryGetComponent(out TIItem item))
             {
                 if (children.Contains(item))
                 {
@@ -111,7 +110,7 @@ namespace Mgfirefox.CrisisTd
 
             // TODO: Change Warning
             Debug.LogWarning(
-                $"Object {child.Transform.gameObject} is missing Component of type {typeof(TIItemView)}.",
+                $"Object {child.Transform.gameObject} is missing Component of type {typeof(TIItem)}.",
                 child.Transform.gameObject);
         }
 
@@ -119,7 +118,7 @@ namespace Mgfirefox.CrisisTd
         {
             base.OnChildRemoved(child);
 
-            if (child.Transform.TryGetComponent(out TIItemView item))
+            if (child.Transform.TryGetComponent(out TIItem item))
             {
                 children.Remove(item);
 
@@ -128,7 +127,7 @@ namespace Mgfirefox.CrisisTd
 
             // TODO: Change Warning
             Debug.LogWarning(
-                $"Object {child.Transform.gameObject} is missing Component of type {typeof(TIItemView)}.",
+                $"Object {child.Transform.gameObject} is missing Component of type {typeof(TIItem)}.",
                 child.Transform.gameObject);
         }
     }
