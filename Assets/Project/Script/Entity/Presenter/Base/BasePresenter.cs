@@ -3,13 +3,13 @@ using VContainer;
 
 namespace Mgfirefox.CrisisTd
 {
-    public class BasePresenter : AbstractPresenter<BaseData, IBaseView>, IBasePresenter
+    public class BasePresenter : AbstractUiPresenter<BaseData, IBaseView, IBaseUi>, IBasePresenter
     {
         private readonly IHealthService healthService;
 
         [Inject]
-        public BasePresenter(IBaseView view, IHealthService healthService, Scene scene) : base(view,
-            scene)
+        public BasePresenter(IBaseView view, IBaseUi ui, IHealthService healthService, Scene scene)
+            : base(view, ui, scene)
         {
             this.healthService = healthService;
         }
@@ -42,6 +42,8 @@ namespace Mgfirefox.CrisisTd
 
             View.MaxHealth = healthService.MaxHealth;
             View.Health = healthService.Health;
+
+            Ui.SetHealth(healthService.Health, healthService.MaxHealth);
         }
 
         protected override void OnDestroying()
@@ -58,6 +60,8 @@ namespace Mgfirefox.CrisisTd
             View.Health = healthService.Health;
             View.IsDied = healthService.IsDied;
 
+            Ui.SetHealth(healthService.Health, healthService.MaxHealth);
+
             Destroy();
         }
 
@@ -66,6 +70,8 @@ namespace Mgfirefox.CrisisTd
             healthService.TakeDamage(enemy.Health);
 
             View.Health = healthService.Health;
+
+            Ui.SetHealth(healthService.Health, healthService.MaxHealth);
 
             enemy.Die();
         }

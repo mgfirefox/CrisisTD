@@ -344,6 +344,15 @@ namespace Mgfirefox.CrisisTd
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""d8567447-085e-4ef4-8a84-4ce3ee32381c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -390,6 +399,17 @@ namespace Mgfirefox.CrisisTd
                     ""action"": ""Sell"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f93ce4e2-7974-4917-84c4-2330eef69c6a"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -411,6 +431,7 @@ namespace Mgfirefox.CrisisTd
             m_TowerInteraction_Interact = m_TowerInteraction.FindAction("Interact", throwIfNotFound: true);
             m_TowerInteraction_Upgrade = m_TowerInteraction.FindAction("Upgrade", throwIfNotFound: true);
             m_TowerInteraction_Sell = m_TowerInteraction.FindAction("Sell", throwIfNotFound: true);
+            m_TowerInteraction_Cancel = m_TowerInteraction.FindAction("Cancel", throwIfNotFound: true);
         }
 
         ~@InputActions()
@@ -732,6 +753,7 @@ namespace Mgfirefox.CrisisTd
         private readonly InputAction m_TowerInteraction_Interact;
         private readonly InputAction m_TowerInteraction_Upgrade;
         private readonly InputAction m_TowerInteraction_Sell;
+        private readonly InputAction m_TowerInteraction_Cancel;
         /// <summary>
         /// Provides access to input actions defined in input action map "TowerInteraction".
         /// </summary>
@@ -755,6 +777,10 @@ namespace Mgfirefox.CrisisTd
             /// Provides access to the underlying input action "TowerInteraction/Sell".
             /// </summary>
             public InputAction @Sell => m_Wrapper.m_TowerInteraction_Sell;
+            /// <summary>
+            /// Provides access to the underlying input action "TowerInteraction/Cancel".
+            /// </summary>
+            public InputAction @Cancel => m_Wrapper.m_TowerInteraction_Cancel;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -790,6 +816,9 @@ namespace Mgfirefox.CrisisTd
                 @Sell.started += instance.OnSell;
                 @Sell.performed += instance.OnSell;
                 @Sell.canceled += instance.OnSell;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
             }
 
             /// <summary>
@@ -810,6 +839,9 @@ namespace Mgfirefox.CrisisTd
                 @Sell.started -= instance.OnSell;
                 @Sell.performed -= instance.OnSell;
                 @Sell.canceled -= instance.OnSell;
+                @Cancel.started -= instance.OnCancel;
+                @Cancel.performed -= instance.OnCancel;
+                @Cancel.canceled -= instance.OnCancel;
             }
 
             /// <summary>
@@ -929,6 +961,13 @@ namespace Mgfirefox.CrisisTd
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnSell(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Cancel" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnCancel(InputAction.CallbackContext context);
         }
     }
 }

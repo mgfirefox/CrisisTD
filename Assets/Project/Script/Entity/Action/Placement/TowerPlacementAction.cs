@@ -7,7 +7,8 @@ using VContainer;
 namespace Mgfirefox.CrisisTd
 {
     public class TowerPlacementAction :
-        AbstractAction<TowerPlacementActionData, ITowerPlacementActionView>, ITowerPlacementAction
+        AbstractUiAction<TowerPlacementActionData, ITowerPlacementActionView,
+            ITowerPlacementActionUi>, ITowerPlacementAction
     {
         private readonly ITowerPreviewFactory towerPreviewFactory;
         private readonly ITowerObstacleViewFactory towerObstacleViewFactory;
@@ -45,15 +46,16 @@ namespace Mgfirefox.CrisisTd
         public bool IsPlacementSuitable { get; private set; }
 
         public bool IsLimitReached => Count >= Limit;
-        
+
         private bool HasPlacingTowerPreviewSameYawStep(float yaw)
         {
-            int placingTowerYawStep = Math.Abs(placingTowerPreviewViewYaw / Constant.towerPlacementYawStepValue);
+            int placingTowerYawStep =
+                Math.Abs(placingTowerPreviewViewYaw / Constant.towerPlacementYawStepValue);
             placingTowerYawStep %= 2;
-            
+
             int yawStep = Mathf.RoundToInt(yaw / Constant.towerPlacementYawStepValue);
             yawStep = Math.Abs(yawStep) % 2;
-            
+
             if (placingTowerYawStep == yawStep)
             {
                 return true;
@@ -70,11 +72,12 @@ namespace Mgfirefox.CrisisTd
         }
 
         [Inject]
-        public TowerPlacementAction(ITowerPlacementActionView view, ITowerService towerService,
-            IMapService mapService, ILoadoutService loadoutService, IBasicRayView rayView,
-            ICameraService cameraService, ITowerPreviewFactory towerPreviewFactory,
+        public TowerPlacementAction(ITowerPlacementActionView view, ITowerPlacementActionUi ui,
+            ITowerService towerService, IMapService mapService, ILoadoutService loadoutService,
+            IBasicRayView rayView, ICameraService cameraService,
+            ITowerPreviewFactory towerPreviewFactory,
             ITowerObstacleViewFactory towerObstacleViewFactory, IRotationService rotationService,
-            Scene scene) : base(view, scene)
+            Scene scene) : base(view, ui, scene)
         {
             this.towerService = towerService;
             this.mapService = mapService;
@@ -117,6 +120,8 @@ namespace Mgfirefox.CrisisTd
                     View.Count = Count;
                     View.IsLimitReached = IsLimitReached;
 
+                    Ui.Count = Count;
+
                     Deselect();
 
                     return;
@@ -124,11 +129,7 @@ namespace Mgfirefox.CrisisTd
 
                 // TODO: Change Error
                 Debug.LogError("Failed to spawn tower.");
-
-                return;
             }
-
-            Debug.Log($"Tower Placement Limit ({Count}) reached.");
         }
 
         public void Select(int index)
@@ -207,7 +208,7 @@ namespace Mgfirefox.CrisisTd
             eulerAngles.y = placingTowerPreviewViewYaw;
 
             placingTowerPreviewView.Orientation = Quaternion.Euler(eulerAngles);
-            
+
             DestroyTowerObstacles();
             CreateTowerObstacles();
         }
@@ -299,11 +300,9 @@ namespace Mgfirefox.CrisisTd
 
                     return;
                 }
-                foreach (ITowerObstacleView routeSegmentTowerObstacle in
-                         routeSegmentTowerObstacles)
+                foreach (ITowerObstacleView routeSegmentTowerObstacle in routeSegmentTowerObstacles)
                 {
-                    if (!routeSegmentTowerObstacle.IsPositionWithin(suitableHit.Position,
-                            epsilon))
+                    if (!routeSegmentTowerObstacle.IsPositionWithin(suitableHit.Position, epsilon))
                     {
                         continue;
                     }
@@ -353,7 +352,8 @@ namespace Mgfirefox.CrisisTd
                     {
                         length = GetSizeParameter(Constant.towerObstacleLength,
                             Constant.towerObstacleLength);
-                        width = GetSizeParameter(Constant.towerObstacleWidth, Constant.towerObstacleWidth);
+                        width = GetSizeParameter(Constant.towerObstacleWidth,
+                            Constant.towerObstacleWidth);
                     }
                     else
                     {
@@ -478,7 +478,7 @@ namespace Mgfirefox.CrisisTd
 
             return true;
         }
-        
+
         private float GetSizeParameter(float initialSizeParameter, float placingTowerSizeParameter)
         {
             float epsilon = Scene.Settings.MathSettings.Epsilon;
@@ -509,6 +509,9 @@ namespace Mgfirefox.CrisisTd
             View.IsPlacementSuitable = IsPlacementSuitable;
             View.IsLimitReached = IsLimitReached;
 
+            Ui.Limit = Limit;
+            Ui.Count = Count;
+
             rayView.Initialize();
 
             rayView.MaxDistance = Constant.towerPlacementMaxDistance;
@@ -530,6 +533,10 @@ namespace Mgfirefox.CrisisTd
             placedTower.Destroying -= placedTowerDestroyingActions[placedTower];
 
             Count--;
+
+            View.Count = Count;
+
+            Ui.Count = Count;
 
             placedTowers.Remove(placedTower);
             placedTowerDestroyingActions.Remove(placedTower);

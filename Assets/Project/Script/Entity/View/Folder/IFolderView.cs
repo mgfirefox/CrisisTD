@@ -8,9 +8,9 @@ namespace Mgfirefox.CrisisTd
         IReadOnlyList<Transform> ChildTransforms { get; }
     }
 
-    public interface IFolderView<out TIItemView> : IFolderView
-        where TIItemView : class, IView
+    public interface IFolderView<out TIItem> : IFolderView
+        where TIItem : class, IUnitySceneObject
     {
-        IReadOnlyList<TIItemView> Children { get; }
+        IReadOnlyList<TIItem> Children { get; }
     }
 }

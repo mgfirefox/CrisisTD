@@ -1,6 +1,6 @@
 ﻿namespace Mgfirefox.CrisisTd
 {
-    public interface ITowerPlacementAction : IAction<TowerPlacementActionData>
+    public interface ITowerPlacementAction : IUiAction<TowerPlacementActionData>
     {
         int SelectedIndex { get; }
 

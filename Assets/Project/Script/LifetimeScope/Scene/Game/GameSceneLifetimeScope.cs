@@ -19,6 +19,19 @@ namespace Mgfirefox.CrisisTd
         private CameraView cameraView;
 
         [SerializeField]
+        [BoxGroup("Ui")]
+        [Required]
+        private BaseUi baseUi;
+        [SerializeField]
+        [BoxGroup("Ui")]
+        [Required]
+        private TowerPlacementActionUi towerPlacementActionUi;
+        [SerializeField]
+        [BoxGroup("Ui")]
+        [Required]
+        private TowerInteractionActionUi towerInteractionActionUi;
+
+        [SerializeField]
         [BoxGroup("Views")]
         private RangeViewDictionary rangeViewPrefabs = new();
         [SerializeField]
@@ -78,6 +91,8 @@ namespace Mgfirefox.CrisisTd
 
             RegisterScene(builder);
 
+            RegisterUi(builder);
+
             RegisterServices(builder);
             RegisterViews(builder);
             RegisterActions(builder);
@@ -101,6 +116,13 @@ namespace Mgfirefox.CrisisTd
 
             builder.Register<Scene>(Lifetime.Singleton);
             builder.Register<SceneLoop>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
+        }
+
+        private void RegisterUi(IContainerBuilder builder)
+        {
+            builder.RegisterComponent(baseUi).AsImplementedInterfaces();
+            builder.RegisterComponent(towerPlacementActionUi).AsImplementedInterfaces();
+            builder.RegisterComponent(towerInteractionActionUi).AsImplementedInterfaces();
         }
 
         private void RegisterServices(IContainerBuilder builder)
