@@ -1,6 +1,6 @@
 namespace Mgfirefox.CrisisTd
 {
-    public interface IBasePresenter : IPresenter<BaseData>
+    public interface IBasePresenter : IUiPresenter<BaseData>
     {
     }
 }

@@ -5,8 +5,8 @@ using VContainer;
 namespace Mgfirefox.CrisisTd
 {
     public class TowerInteractionAction :
-        AbstractAction<TowerInteractionActionData, ITowerInteractionActionView>,
-        ITowerInteractionAction
+        AbstractUiAction<TowerInteractionActionData, ITowerInteractionActionView,
+            ITowerInteractionActionUi>, ITowerInteractionAction
     {
         private readonly ICameraView camera;
 
@@ -17,11 +17,32 @@ namespace Mgfirefox.CrisisTd
         public bool IsInteracting => interactingTower != null;
 
         [Inject]
-        public TowerInteractionAction(ITowerInteractionActionView view, ITowerTargetRayView rayView,
-            ICameraService cameraService, Scene scene) : base(view, scene)
+        public TowerInteractionAction(ITowerInteractionActionView view,
+            ITowerInteractionActionUi ui, ITowerTargetRayView rayView, ICameraService cameraService,
+            Scene scene) : base(view, ui, scene)
         {
             this.rayView = rayView;
             camera = cameraService.MainCamera;
+        }
+
+        public override void OnSceneStarted()
+        {
+            base.OnSceneStarted();
+
+            Ui.SingleBranchUpgradeButtonClicked += UpgradeBranch;
+
+            Ui.FirstBranchUpgradeButtonClicked += UpgradeFirstBranch;
+            Ui.SecondBranchUpgradeButtonClicked += UpgradeSecondBranch;
+        }
+
+        public override void OnSceneFinished()
+        {
+            base.OnSceneFinished();
+
+            Ui.SingleBranchUpgradeButtonClicked -= UpgradeBranch;
+
+            Ui.FirstBranchUpgradeButtonClicked -= UpgradeFirstBranch;
+            Ui.SecondBranchUpgradeButtonClicked -= UpgradeSecondBranch;
         }
 
         public override void Perform()
@@ -45,10 +66,9 @@ namespace Mgfirefox.CrisisTd
 
                 View.IsInteracting = IsInteracting;
 
-                return;
+                Ui.InteractingTower = interactingTower;
+                Ui.Show();
             }
-
-            Cancel();
         }
 
         public void UpgradeFirstBranch()
@@ -59,6 +79,8 @@ namespace Mgfirefox.CrisisTd
             }
 
             interactingTower.UpgradeFirstBranch();
+
+            Ui.InteractingTower = interactingTower;
         }
 
         public void UpgradeSecondBranch()
@@ -69,6 +91,8 @@ namespace Mgfirefox.CrisisTd
             }
 
             interactingTower.UpgradeSecondBranch();
+
+            Ui.InteractingTower = interactingTower;
         }
 
         public void Sell()
@@ -82,6 +106,8 @@ namespace Mgfirefox.CrisisTd
             interactingTower = null;
 
             View.IsInteracting = IsInteracting;
+
+            Ui.Hide();
         }
 
         public void Cancel()
@@ -95,6 +121,37 @@ namespace Mgfirefox.CrisisTd
             interactingTower = null;
 
             View.IsInteracting = IsInteracting;
+
+            Ui.Hide();
+        }
+
+        private void UpgradeBranch()
+        {
+            if (!BranchLevelValidator.TryValidate(interactingTower.Level))
+            {
+                throw new InvalidArgumentException();
+            }
+
+            switch (interactingTower.Level.Type)
+            {
+                case BranchType.Zero:
+                    if (interactingTower.Level.Index == interactingTower.MaxZeroBranchIndex)
+                    {
+                        return;
+                    }
+
+                    UpgradeFirstBranch();
+                break;
+                case BranchType.First:
+                    UpgradeFirstBranch();
+                break;
+                case BranchType.Second:
+                    UpgradeSecondBranch();
+                break;
+                case BranchType.Undefined:
+                default:
+                    throw new InvalidArgumentException();
+            }
         }
 
         protected override void OnInitialized(TowerInteractionActionData data)
@@ -102,6 +159,8 @@ namespace Mgfirefox.CrisisTd
             base.OnInitialized(data);
 
             View.IsInteracting = IsInteracting;
+
+            Ui.Hide();
 
             rayView.Initialize();
 

@@ -21,9 +21,12 @@ namespace Mgfirefox.CrisisTd
 
         private readonly InputActions inputActions;
 
+        private readonly ITowerPlacementActionUi towerPlacementActionUi;
+
         [Inject]
         public PlayerPresenter(IPlayerView view, IPlayerTransformService transformService,
             ILoadoutService loadoutService, ICameraService cameraService, InputActions inputActions,
+            ITowerPlacementActionUi towerPlacementActionUi,
             ITowerPlacementActionFactory towerPlacementActionFactory,
             ITowerInteractionActionFactory towerInteractionActionFactory, Scene scene) : base(view,
             scene)
@@ -34,6 +37,7 @@ namespace Mgfirefox.CrisisTd
             this.towerPlacementActionFactory = towerPlacementActionFactory;
             this.towerInteractionActionFactory = towerInteractionActionFactory;
             this.inputActions = inputActions;
+            this.towerPlacementActionUi = towerPlacementActionUi;
         }
 
         public override void OnSceneStarted()
@@ -49,6 +53,8 @@ namespace Mgfirefox.CrisisTd
             inputActions.Player.Enable();
             inputActions.TowerPlacement.Enable();
             inputActions.TowerInteraction.Enable();
+
+            towerPlacementActionUi.TowerButtonClicked += OnTowerButtonClicked;
         }
 
         public override void OnSceneFinished()
@@ -61,6 +67,8 @@ namespace Mgfirefox.CrisisTd
             inputActions.Player.Disable();
             inputActions.TowerPlacement.Disable();
             inputActions.TowerInteraction.Disable();
+
+            towerPlacementActionUi.TowerButtonClicked -= OnTowerButtonClicked;
         }
 
         public void OnSceneTicked()
@@ -159,6 +167,11 @@ namespace Mgfirefox.CrisisTd
 
         private void InteractWithTower()
         {
+            if (towerPlacementAction?.IsPlacing ?? false)
+            {
+                return;
+            }
+
             if (towerInteractionAction == null)
             {
                 return;
@@ -172,6 +185,14 @@ namespace Mgfirefox.CrisisTd
 
             if (!towerInteractionAction.IsInteracting)
             {
+                return;
+            }
+
+            InputAction cancelInputAction = inputActions.TowerInteraction.Cancel;
+            if (cancelInputAction.WasReleasedThisFrame())
+            {
+                towerInteractionAction.Cancel();
+
                 return;
             }
 
@@ -262,6 +283,16 @@ namespace Mgfirefox.CrisisTd
         private void DestroyTowerPlacementAction()
         {
             towerPlacementAction?.Destroy();
+        }
+
+        private void OnTowerButtonClicked(int index)
+        {
+            if (towerInteractionAction != null && towerInteractionAction.IsInteracting)
+            {
+                towerInteractionAction.Cancel();
+            }
+
+            towerPlacementAction?.Select(index);
         }
     }
 }
