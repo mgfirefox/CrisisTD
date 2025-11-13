@@ -7,7 +7,9 @@ namespace Mgfirefox.CrisisTd
     {
         public static IReadOnlySet<BranchType> ValidTypes { get; } = new HashSet<BranchType>
         {
-            BranchType.Zero, BranchType.First, BranchType.Second,
+            BranchType.Zero,
+            BranchType.First,
+            BranchType.Second,
         };
 
         public static void Validate(BranchType type)

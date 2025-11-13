@@ -26,7 +26,7 @@ namespace Mgfirefox.CrisisTd
             TargetPriorityValidator.ValidPriorities.ToArray();
 
         public TowerType Type => type;
-        
+
         public IDictionary<BranchLevel, LevelDataConfiguration> LevelDataConfigurations =>
             levelDataConfigurations;
 

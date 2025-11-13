@@ -132,9 +132,21 @@ namespace Mgfirefox.CrisisTd
 
         public Effect RangeEffect { get => rangeEffect; set => rangeEffect = value; }
 
-        public int MaxZeroBranchIndex { get => maxZeroBranchIndex; set => maxZeroBranchIndex = value; }
-        public int MaxFirstBranchIndex { get => maxFirstBranchIndex; set => maxFirstBranchIndex = value; }
-        public int MaxSecondBranchIndex { get => maxSecondBranchIndex; set => maxSecondBranchIndex = value; }
+        public int MaxZeroBranchIndex
+        {
+            get => maxZeroBranchIndex;
+            set => maxZeroBranchIndex = value;
+        }
+        public int MaxFirstBranchIndex
+        {
+            get => maxFirstBranchIndex;
+            set => maxFirstBranchIndex = value;
+        }
+        public int MaxSecondBranchIndex
+        {
+            get => maxSecondBranchIndex;
+            set => maxSecondBranchIndex = value;
+        }
         public BranchLevel Level { get => level; set => level = value; }
 
         public event Action<Effect, ITowerView> EffectApplied;
