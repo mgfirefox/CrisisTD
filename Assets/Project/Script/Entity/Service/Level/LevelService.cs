@@ -30,7 +30,7 @@ namespace Mgfirefox.CrisisTd
                 {
                     return;
                 }
-                
+
                 if (Level.Index < MaxZeroBranchIndex)
                 {
                     UpgradeBranch();
@@ -70,14 +70,14 @@ namespace Mgfirefox.CrisisTd
                 {
                     return;
                 }
-                
+
                 if (Level.Index < MaxZeroBranchIndex)
                 {
                     UpgradeBranch();
 
                     return;
                 }
-                
+
                 if (MaxSecondBranchIndex == -1)
                 {
                     return;
@@ -101,7 +101,7 @@ namespace Mgfirefox.CrisisTd
 
             UpgradeBranch();
         }
-        
+
         public LevelItem Get(BranchLevel level)
         {
             if (items.TryGetValue(level, out LevelItem item))
@@ -133,7 +133,7 @@ namespace Mgfirefox.CrisisTd
             MaxZeroBranchIndex = 0;
             MaxFirstBranchIndex = 0;
             MaxSecondBranchIndex = 0;
-            
+
             InitializeItems(data.Items);
 
             Level = (BranchLevel)data.Level.Clone();
@@ -193,8 +193,10 @@ namespace Mgfirefox.CrisisTd
 
                 break;
             }
-            
-            for (var level = new BranchLevel(BranchType.First); level.Index <= MaxFirstBranchIndex; level.Index++)
+
+            for (var level = new BranchLevel(BranchType.First);
+                 level.Index <= MaxFirstBranchIndex;
+                 level.Index++)
             {
                 if (items.ContainsKey(level))
                 {
@@ -205,8 +207,10 @@ namespace Mgfirefox.CrisisTd
 
                 break;
             }
-            
-            for (var level = new BranchLevel(BranchType.Second); level.Index <= MaxSecondBranchIndex; level.Index++)
+
+            for (var level = new BranchLevel(BranchType.Second);
+                 level.Index <= MaxSecondBranchIndex;
+                 level.Index++)
             {
                 if (items.ContainsKey(level))
                 {

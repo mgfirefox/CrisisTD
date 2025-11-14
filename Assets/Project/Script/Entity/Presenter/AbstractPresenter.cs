@@ -2,8 +2,8 @@ namespace Mgfirefox.CrisisTd
 {
     public abstract class AbstractPresenter<TData, TIView> : AbstractSceneObject<TData>,
         IPresenter<TData>, ISceneStartedListener, ISceneFinishedListener
-        where TIView : class, IView
         where TData : AbstractData
+        where TIView : class, IView
     {
         protected TIView View { get; }
 
