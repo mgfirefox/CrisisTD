@@ -274,6 +274,6 @@ MonoBehaviour:
   visual: {fileID: 417747497038880074}
   pivotPoint: {x: 0, y: 0, z: 0}
   isHidden: 0
-  rangeViewFolder: {fileID: 4714070003521356069}
+  rangeFolder: {fileID: 4714070003521356069}
   position: {x: 0, y: 0, z: 0}
   orientation: {x: 0, y: 0, z: 0, w: 0}

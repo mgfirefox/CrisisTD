@@ -159,11 +159,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8676ea68b314f9c817b6eb22385f29a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHidden: 0
+  isInitialized: 0
   isDestroyed: 0
   rangeRadius: 0
   targetPriority: 0
-  actionViewFolder: {fileID: 4417371658316067798}
+  actionFolder: {fileID: 4417371658316067798}
 --- !u!114 &-7008423069884335839
 MonoBehaviour:
   m_ObjectHideFlags: 0

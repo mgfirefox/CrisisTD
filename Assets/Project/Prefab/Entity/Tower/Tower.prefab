@@ -254,14 +254,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f2c90dbe2364ac2a0f2727a40662133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHidden: 0
+  isInitialized: 0
   isDestroyed: 0
   collision: {fileID: 764031286601587242}
+  layer: 0
   collisionLayerMask:
     serializedVersion: 2
     m_Bits: 0
   visual: {fileID: 4517730996386641494}
-  actionViewFolder: {fileID: 4178271913701320348}
+  pivotPoint: {x: 0, y: 0, z: 0}
+  isHidden: 0
+  actionFolder: {fileID: 4178271913701320348}
   id: 0
   type: 0
   priority: 0
@@ -271,6 +274,12 @@ MonoBehaviour:
     type: 0
     kind: 100
     value: 1
+  maxZeroBranchIndex: 0
+  maxFirstBranchIndex: 0
+  maxSecondBranchIndex: 0
+  level:
+    type: 100
+    index: 0
 --- !u!114 &3985478285951204055
 MonoBehaviour:
   m_ObjectHideFlags: 0
