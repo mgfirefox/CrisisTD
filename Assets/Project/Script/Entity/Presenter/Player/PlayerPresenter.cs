@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using VContainer;
 
@@ -180,7 +181,10 @@ namespace Mgfirefox.CrisisTd
             InputAction interactInputAction = inputActions.TowerInteraction.Interact;
             if (interactInputAction.WasReleasedThisFrame())
             {
-                towerInteractionAction.Perform();
+                if (!EventSystem.current.IsPointerOverGameObject())
+                {
+                    towerInteractionAction.Perform();
+                }
             }
 
             if (!towerInteractionAction.IsInteracting)
