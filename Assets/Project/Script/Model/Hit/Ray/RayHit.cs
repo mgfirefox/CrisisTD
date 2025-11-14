@@ -20,6 +20,34 @@ namespace Mgfirefox.CrisisTd
         public float Distance { get => distance; set => distance = value; }
         public Collider Collider { get => collider; set => collider = value; }
 
+        protected bool Equals(RayHit other)
+        {
+            return position.Equals(other.position) && normal.Equals(other.normal) &&
+                   distance.Equals(other.distance) && Equals(collider, other.collider);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is null)
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+            return Equals((RayHit)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(position, normal, distance, collider);
+        }
+
         public virtual object Clone()
         {
             var rayHit = new RayHit
