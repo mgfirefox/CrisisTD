@@ -93,7 +93,7 @@ namespace Mgfirefox.CrisisTd
         {
             LevelItem item = items[Level];
 
-            Changed?.Invoke(item);
+            Changed?.Invoke(item.Clone() as LevelItem);
         }
 
         protected override void OnInitialized(LevelServiceData data)
@@ -141,7 +141,7 @@ namespace Mgfirefox.CrisisTd
                         continue;
                 }
 
-                this.items[level] = item;
+                this.items[(BranchLevel)level.Clone()] = item.Clone() as LevelItem;
             }
         }
 
