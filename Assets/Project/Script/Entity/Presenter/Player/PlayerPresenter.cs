@@ -231,7 +231,7 @@ namespace Mgfirefox.CrisisTd
 
             loadoutService.Initialize(data.LoadoutServiceData);
 
-            View.Loadout = loadoutService.Loadout;
+            View.Items = loadoutService.Items;
 
             InitializeTowerPlacementAction(data.TowerPlacementActionData);
             InitializeTowerInteractionAction(data.TowerInteractionActionData);

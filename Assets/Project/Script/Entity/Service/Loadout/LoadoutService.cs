@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
-using Unity.VisualScripting;
 using VContainer;
 
 namespace Mgfirefox.CrisisTd
 {
     public class LoadoutService : AbstractDataService<LoadoutServiceData>, ILoadoutService
     {
-        private readonly IList<LoadoutItem> loadout = new List<LoadoutItem>();
+        private readonly IList<LoadoutItem> items = new List<LoadoutItem>();
 
-        public IReadOnlyList<LoadoutItem> Loadout => loadout.AsReadOnly();
+        public IReadOnlyList<LoadoutItem> Items => items.AsReadOnly();
 
         public int Count { get; private set; }
 
@@ -19,28 +18,36 @@ namespace Mgfirefox.CrisisTd
 
         public LoadoutItem GetItem(int index)
         {
-            return loadout[index];
+            return items[index];
         }
 
         protected override void OnInitialized(LoadoutServiceData data)
         {
             base.OnInitialized(data);
 
-            loadout.Clear();
-            loadout.AddRange(data.Loadout);
+            InitializeItems(data.Items);
+        }
 
-            Count = loadout.Count;
-            for (int i = 0; i < loadout.Count; i++)
+        private void InitializeItems(IList<LoadoutItem> items)
+        {
+            foreach (LoadoutItem item in items)
             {
-                LoadoutItem loadoutItem = loadout[i];
-
-                if (loadoutItem.TowerId == TowerId.Undefined)
-                {
-                    Count = i;
-
-                    break;
-                }
+                this.items.Add(item.Clone() as LoadoutItem);
             }
+
+            Count = this.items.Count;
+        }
+
+        protected override void OnDestroying()
+        {
+            ClearItems();
+
+            base.OnDestroying();
+        }
+
+        private void ClearItems()
+        {
+            items.Clear();
         }
     }
 }

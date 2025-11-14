@@ -16,6 +16,6 @@ namespace Mgfirefox.CrisisTd
         new float MaxMovementSpeed { get; set; }
         new float MovementSpeed { get; set; }
 
-        new IReadOnlyList<LoadoutItem> Loadout { get; set; }
+        new IReadOnlyList<LoadoutItem> Items { get; set; }
     }
 }

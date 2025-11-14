@@ -41,7 +41,7 @@ namespace Mgfirefox.CrisisTd
         [SerializeField]
         [BoxGroup("Loadout")]
         [ReadOnly]
-        private List<LoadoutItem> loadout;
+        private List<LoadoutItem> items;
 
         public IVirtualCameraView IsometricVirtualCamera => isometricVirtualCamera;
         public IVirtualCameraView TopDownVirtualCamera => topDownVirtualCamera;
@@ -82,10 +82,10 @@ namespace Mgfirefox.CrisisTd
         public float MaxMovementSpeed { get => maxMovementSpeed; set => maxMovementSpeed = value; }
         public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
 
-        public IReadOnlyList<LoadoutItem> Loadout
+        public IReadOnlyList<LoadoutItem> Items
         {
-            get => loadout.AsReadOnly();
-            set => loadout = value.ToList();
+            get => items.AsReadOnly();
+            set => items = value.ToList();
         }
 
         protected override void OnInitialized()
