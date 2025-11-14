@@ -16,7 +16,7 @@ namespace Mgfirefox.CrisisTd
 
             public Builder FromConfiguration(PlayerDataConfiguration configuration)
             {
-                data.LoadoutServiceData.Loadout = new List<LoadoutItem>(configuration.TowerLoadout);
+                data.LoadoutServiceData.Items = new List<LoadoutItem>(configuration.TowerLoadout);
 
                 return WithMaxMovementSpeed(configuration.MovementSpeed)
                     .WithLimit(configuration.Limit);

@@ -2,7 +2,7 @@ using System;
 
 namespace Mgfirefox.CrisisTd
 {
-    public interface IBaseView : IView, IHealthModel
+    public interface IBaseView : IView, IBaseModel
     {
         new float MaxHealth { get; set; }
         new float Health { get; set; }

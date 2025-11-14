@@ -191,8 +191,8 @@ Shader "TextMeshPro/Distance Field"
                 scale *= abs(input.texcoord1.y) * _GradientScale * (_Sharpness + 1);
                 if (UNITY_MATRIX_P[3][3] == 0)
                     scale = lerp(abs(scale) * (1 - _PerspectiveFilter),
-                        scale, abs(dot(UnityObjectToWorldNormal(input.normal.xyz),
-                                                       normalize(WorldSpaceViewDir(vert)))));
+                                 scale, abs(dot(UnityObjectToWorldNormal(input.normal.xyz),
+                                                normalize(WorldSpaceViewDir(vert)))));
 
                 float weight = lerp(_WeightNormal, _WeightBold, bold) / 4.0;
                 weight = (weight + _FaceDilate) * _ScaleRatioA * 0.5;
@@ -204,8 +204,8 @@ Shader "TextMeshPro/Distance Field"
 
                 #if GLOW_ON
                 alphaClip = min(alphaClip,
-                                         1.0 - _GlowOffset * _ScaleRatioB - _GlowOuter *
-                                         _ScaleRatioB);
+                                  1.0 - _GlowOffset * _ScaleRatioB - _GlowOuter *
+                                  _ScaleRatioB);
                 #endif
 
                 alphaClip = alphaClip / 2.0 - (.5 / scale) - weight;
@@ -239,9 +239,9 @@ Shader "TextMeshPro/Distance Field"
                 output.atlas = input.texcoord0;
                 output.param = float4(alphaClip, scale, bias, weight);
                 output.mask = half4(vert.xy * 2 - clampedRect.xy - clampedRect.zw,
-            0.25 / (0.25 * half2(_MaskSoftnessX, _MaskSoftnessY) + pixelSize.xy));
+                        0.25 / (0.25 * half2(_MaskSoftnessX, _MaskSoftnessY) + pixelSize.xy));
                 output.viewDir = mul((float3x3)_EnvMatrix,
-                             _WorldSpaceCameraPos.xyz - mul(unity_ObjectToWorld, vert).xyz);
+                                     _WorldSpaceCameraPos.xyz - mul(unity_ObjectToWorld, vert).xyz);
                 #if (UNDERLAY_ON || UNDERLAY_INNER)
                 output.texcoord2 = float4(input.texcoord0 + bOffset, bScale, bBias);
                 output.underlayColor = underlayColor;
@@ -278,8 +278,8 @@ Shader "TextMeshPro/Distance Field"
                 faceColor *= tex2D(
                     _FaceTex, input.textures.xy + float2(_FaceUVSpeedX, _FaceUVSpeedY) * _Time.y);
                 outlineColor *= tex2D(_OutlineTex,
-                                            input.textures.zw + float2(
-                                                _OutlineUVSpeedX, _OutlineUVSpeedY) * _Time.y);
+                                              input.textures.zw + float2(
+                                                  _OutlineUVSpeedX, _OutlineUVSpeedY) * _Time.y);
 
                 faceColor = GetColor(sd, faceColor, outlineColor, outline, softness);
 
@@ -303,7 +303,8 @@ Shader "TextMeshPro/Distance Field"
 
                 fixed4 reflcol = texCUBE(_Cube, reflect(input.viewDir, -n));
                 faceColor.rgb += reflcol.rgb * lerp(_ReflectFaceColor.rgb, _ReflectOutlineColor.rgb,
-                    saturate(sd + outline * 0.5)) * faceColor.a;
+                                                                saturate(sd + outline * 0.5)) *
+                    faceColor.a;
                 #endif
 
                 #if UNDERLAY_ON

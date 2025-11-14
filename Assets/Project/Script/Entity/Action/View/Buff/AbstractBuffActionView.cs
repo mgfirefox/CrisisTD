@@ -9,6 +9,7 @@ namespace Mgfirefox.CrisisTd
         [BoxGroup("Buff")]
         [ReadOnly]
         private EffectType type;
+
         [SerializeField]
         [BoxGroup("Buff")]
         [ReadOnly]
@@ -19,6 +20,7 @@ namespace Mgfirefox.CrisisTd
         private float value;
 
         public EffectType Type { get => type; set => type = value; }
+
         public float MaxValue { get => maxValue; set => maxValue = value; }
         public float Value { get => value; set => this.value = value; }
     }

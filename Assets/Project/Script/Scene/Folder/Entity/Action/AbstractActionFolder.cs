@@ -4,7 +4,8 @@
     {
     }
 
-    public abstract class AbstractActionFolder<TIItem> : AbstractFolder<TIItem>, IActionFolder<TIItem>
+    public abstract class AbstractActionFolder<TIItem> : AbstractFolder<TIItem>,
+        IActionFolder<TIItem>
         where TIItem : class, IActionView
     {
     }

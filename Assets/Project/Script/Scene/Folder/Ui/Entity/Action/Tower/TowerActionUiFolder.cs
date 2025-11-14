@@ -1,7 +1,6 @@
 ﻿namespace Mgfirefox.CrisisTd
 {
-    public class TowerActionUiFolder : AbstractActionUiFolder<ITowerActionUi>,
-        ITowerActionUiFolder
+    public class TowerActionUiFolder : AbstractActionUiFolder<ITowerActionUi>, ITowerActionUiFolder
     {
     }
 }

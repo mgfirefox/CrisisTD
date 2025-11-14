@@ -177,7 +177,7 @@
             {
                 pixel_t output;
 
-                    UNITY_INITIALIZE_OUTPUT(pixel_t, output);
+                UNITY_INITIALIZE_OUTPUT(pixel_t, output);
                 UNITY_SETUP_INSTANCE_ID(input);
                 UNITY_TRANSFER_INSTANCE_ID(input, output);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
@@ -221,7 +221,7 @@
                 output.weight = weight;
                 output.mask = half2(vert.xy * 2 - clampedRect.xy - clampedRect.zw);
                 output.viewDir = mul((float3x3)_EnvMatrix,
-           _WorldSpaceCameraPos.xyz - mul(unity_ObjectToWorld, vert).xyz);
+                                 _WorldSpaceCameraPos.xyz - mul(unity_ObjectToWorld, vert).xyz);
                 #if (UNDERLAY_ON || UNDERLAY_INNER)
                 output.texcoord2 = input.texcoord0 + bOffset;
                 output.underlayColor = underlayColor;
@@ -257,7 +257,7 @@
                 faceColor *= tex2D(
                     _FaceTex, input.textures.xy + float2(_FaceUVSpeedX, _FaceUVSpeedY) * _Time.y);
                 outlineColor *= tex2D(_OutlineTex,
-           input.textures.zw + float2(_OutlineUVSpeedX, _OutlineUVSpeedY) * _Time.y);
+     input.textures.zw + float2(_OutlineUVSpeedX, _OutlineUVSpeedY) * _Time.y);
 
                 faceColor = GetColor(sd, faceColor, outlineColor, outline, softness);
 
@@ -281,7 +281,8 @@
 
                 fixed4 reflcol = texCUBE(_Cube, reflect(input.viewDir, -n));
                 faceColor.rgb += reflcol.rgb * lerp(_ReflectFaceColor.rgb, _ReflectOutlineColor.rgb,
-                    saturate(sd + outline * 0.5)) * faceColor.a;
+                                                                saturate(sd + outline * 0.5)) *
+                    faceColor.a;
                 #endif
 
                 #if (UNDERLAY_ON || UNDERLAY_INNER)

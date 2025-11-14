@@ -2,8 +2,8 @@
 {
     public abstract class AbstractAction<TData, TIView> : AbstractPresenter<TData, TIView>,
         IAction<TData>
-        where TIView : class, IActionView
         where TData : AbstractActionData
+        where TIView : class, IActionView
     {
         protected AbstractAction(TIView view, Scene scene) : base(view, scene)
         {
