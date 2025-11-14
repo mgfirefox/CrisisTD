@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Mgfirefox.CrisisTd
 {
-    public interface IMapView : IVisualView
+    public interface IMapView : IView
     {
         Pose PlayerSpawnPose { get; }
 

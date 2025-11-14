@@ -74,14 +74,7 @@ namespace Mgfirefox.CrisisTd
                     item.Initialize();
 
                     children.Add(item);
-
-                    continue;
                 }
-
-                // TODO: Change Warning
-                Debug.LogWarning(
-                    $"Object {childTransform.gameObject} is missing Component of type {typeof(TIItem)}.",
-                    childTransform.gameObject);
             }
         }
 
@@ -104,14 +97,7 @@ namespace Mgfirefox.CrisisTd
                 }
 
                 children.Add(item);
-
-                return;
             }
-
-            // TODO: Change Warning
-            Debug.LogWarning(
-                $"Object {child.Transform.gameObject} is missing Component of type {typeof(TIItem)}.",
-                child.Transform.gameObject);
         }
 
         protected override void OnChildRemoved(IUnitySceneObject child)
@@ -121,14 +107,7 @@ namespace Mgfirefox.CrisisTd
             if (child.Transform.TryGetComponent(out TIItem item))
             {
                 children.Remove(item);
-
-                return;
             }
-
-            // TODO: Change Warning
-            Debug.LogWarning(
-                $"Object {child.Transform.gameObject} is missing Component of type {typeof(TIItem)}.",
-                child.Transform.gameObject);
         }
     }
 }

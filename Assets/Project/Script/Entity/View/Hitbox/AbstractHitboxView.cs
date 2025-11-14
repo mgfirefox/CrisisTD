@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Mgfirefox.CrisisTd
 {
-    public abstract class AbstractHitboxView : AbstractCollisionView, IHitboxView
+    public abstract class AbstractHitboxView : AbstractView, IHitboxView
     {
         [SerializeField]
         [BoxGroup("Transform")]

@@ -58,14 +58,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6000187568068012643, guid: 90f04d6bff8d7cd49952ce3f76f982c8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 695001480437448792}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4505555696596609001, guid: 90f04d6bff8d7cd49952ce3f76f982c8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4202820012905856744}
-    - targetCorrespondingSourceObject: {fileID: 5247981127245365775, guid: 90f04d6bff8d7cd49952ce3f76f982c8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 488238869469679363}
   m_SourcePrefab: {fileID: 100100000, guid: 90f04d6bff8d7cd49952ce3f76f982c8, type: 3}
 --- !u!1 &4531213197695230511 stripped
 GameObject:
@@ -86,46 +86,96 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInitialized: 0
   isDestroyed: 0
-  collision: {fileID: 5237820963326085065}
-  layer: 0
-  collisionLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  visual: {fileID: 8977974672577326005}
-  pivotPoint: {x: 0, y: 0, z: 0}
-  isHidden: 0
-  collider: {fileID: 488238869469679363}
+  model: {fileID: 5327753516509236908}
+  collider: {fileID: 7720804100113020010}
   position: {x: 0, y: 0, z: 0}
   orientation: {x: 0, y: 0, z: 0, w: 0}
-  size: {x: 0, y: 0, z: 0}
---- !u!1 &5237820963326085065 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5247981127245365775, guid: 90f04d6bff8d7cd49952ce3f76f982c8, type: 3}
+--- !u!4 &5989817878497980325 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6000187568068012643, guid: 90f04d6bff8d7cd49952ce3f76f982c8, type: 3}
   m_PrefabInstance: {fileID: 28404154201228742}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &488238869469679363
-BoxCollider:
+--- !u!1001 &2519699759756413335
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5989817878497980325}
+    m_Modifications:
+    - target: {fileID: 2261401074565143809, guid: 2220c8ca7e25d344eaf15da89878d975, type: 3}
+      propertyPath: m_Name
+      value: TowerObstacleModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121805701760109007, guid: 2220c8ca7e25d344eaf15da89878d975, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121805701760109007, guid: 2220c8ca7e25d344eaf15da89878d975, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121805701760109007, guid: 2220c8ca7e25d344eaf15da89878d975, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121805701760109007, guid: 2220c8ca7e25d344eaf15da89878d975, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121805701760109007, guid: 2220c8ca7e25d344eaf15da89878d975, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121805701760109007, guid: 2220c8ca7e25d344eaf15da89878d975, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121805701760109007, guid: 2220c8ca7e25d344eaf15da89878d975, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121805701760109007, guid: 2220c8ca7e25d344eaf15da89878d975, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121805701760109007, guid: 2220c8ca7e25d344eaf15da89878d975, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121805701760109007, guid: 2220c8ca7e25d344eaf15da89878d975, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2220c8ca7e25d344eaf15da89878d975, type: 3}
+--- !u!4 &695001480437448792 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3121805701760109007, guid: 2220c8ca7e25d344eaf15da89878d975, type: 3}
+  m_PrefabInstance: {fileID: 2519699759756413335}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5237820963326085065}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
+--- !u!114 &5327753516509236908 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7716986185355364155, guid: 2220c8ca7e25d344eaf15da89878d975, type: 3}
+  m_PrefabInstance: {fileID: 2519699759756413335}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0, y: 0, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &8977974672577326005 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9006289993926422131, guid: 90f04d6bff8d7cd49952ce3f76f982c8, type: 3}
-  m_PrefabInstance: {fileID: 28404154201228742}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07cb129614146f9a27219678a73fa1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7720804100113020010 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5319327273004219901, guid: 2220c8ca7e25d344eaf15da89878d975, type: 3}
+  m_PrefabInstance: {fileID: 2519699759756413335}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b498f7d92666461db60aac7b376035ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,6 +1,6 @@
 ﻿namespace Mgfirefox.CrisisTd
 {
-    public interface ITowerObstacleView : IVisualView, IBoxPhysicalHitboxView
+    public interface ITowerObstacleView : IView, IBoxPhysicalHitboxView
     {
     }
 }

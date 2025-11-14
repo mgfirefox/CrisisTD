@@ -127,6 +127,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4366225917109092646, guid: 9ae508f43cd5b924d8fd85cfd1a56846, type: 3}
+    - {fileID: 2708044634515766680, guid: 9ae508f43cd5b924d8fd85cfd1a56846, type: 3}
+    - {fileID: 8359650419122658422, guid: 9ae508f43cd5b924d8fd85cfd1a56846, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2545840072759738824, guid: 9ae508f43cd5b924d8fd85cfd1a56846, type: 3}
     - {fileID: 1692493647209377204, guid: 9ae508f43cd5b924d8fd85cfd1a56846, type: 3}
@@ -161,10 +163,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInitialized: 0
   isDestroyed: 0
+  colliderFolder: {fileID: 0}
+  meshFolder: {fileID: 0}
+  layer: 0
+  collisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  pivotPoint: {x: 0, y: 0, z: 0}
+  isHidden: 0
   selectedIndex: 0
   limit: 0
   count: 0
-  isSelected: 0
+  isPlacing: 0
   isPlacementSuitable: 0
   isLimitReached: 0
 --- !u!114 &7647198501675545221

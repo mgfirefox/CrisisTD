@@ -2,7 +2,7 @@
 
 namespace Mgfirefox.CrisisTd
 {
-    public interface ITowerPreviewView : IVisualView, ITransformModel
+    public interface ITowerPreviewView : IView, ITransformModel
     {
         IRangeFolder RangeFolder { get; }
 

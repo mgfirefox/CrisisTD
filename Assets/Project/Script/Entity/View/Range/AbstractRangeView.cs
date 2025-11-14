@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Mgfirefox.CrisisTd
 {
-    public abstract class AbstractRangeView : AbstractVisualView, IRangeView
+    public abstract class AbstractRangeView : AbstractView, IRangeView
     {
         [SerializeField]
         [BoxGroup("Dependencies")]
@@ -30,7 +30,7 @@ namespace Mgfirefox.CrisisTd
 
                 float diameter = 2 * radius;
 
-                collider.size = new Vector3(diameter, collider.size.y, diameter);
+                collider.Size = new Vector3(diameter, collider.Height, diameter);
             }
         }
 
@@ -64,10 +64,7 @@ namespace Mgfirefox.CrisisTd
         {
             base.OnInitialized();
 
-            Vector3 colliderSize = collider.size;
-            colliderSize.y = Constant.rangeHeight;
-
-            collider.size = colliderSize;
+            collider.Height = Constant.rangeHeight;
         }
     }
 

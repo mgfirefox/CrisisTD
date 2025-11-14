@@ -2,7 +2,7 @@ using System;
 
 namespace Mgfirefox.CrisisTd
 {
-    public interface IRangeView : IVisualView, IRangeModel
+    public interface IRangeView : IView, IRangeModel
     {
         new float Radius { get; set; }
     }

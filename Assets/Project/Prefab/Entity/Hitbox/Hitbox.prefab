@@ -52,7 +52,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hitbox
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8359650419122658422, guid: 9ae508f43cd5b924d8fd85cfd1a56846, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2545840072759738824, guid: 9ae508f43cd5b924d8fd85cfd1a56846, type: 3}
     m_AddedGameObjects: []

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Mgfirefox.CrisisTd
 {
-    public interface ITowerView : IVisualView, ITowerModel
+    public interface ITowerView : IView, ITowerModel
     {
         ITowerActionFolder ActionFolder { get; }
 

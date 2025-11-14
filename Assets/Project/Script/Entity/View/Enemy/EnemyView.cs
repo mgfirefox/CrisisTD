@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Mgfirefox.CrisisTd
 {
-    public class EnemyView : AbstractVisualView, IEnemyView
+    public class EnemyView : AbstractView, IEnemyView
     {
         [SerializeField]
         [BoxGroup("Dependencies")]

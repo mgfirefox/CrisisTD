@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4632105775438007307, guid: 76e014656ca4b9c469b0c09ecf178462, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7936096707743793792, guid: 76e014656ca4b9c469b0c09ecf178462, type: 3}
       propertyPath: m_Name
       value: EnemyTargetSphereLogicalHitbox
@@ -64,11 +68,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6011406260316214123}
   m_SourcePrefab: {fileID: 100100000, guid: 76e014656ca4b9c469b0c09ecf178462, type: 3}
---- !u!1 &3287430346684622703 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1761133850454239078, guid: 76e014656ca4b9c469b0c09ecf178462, type: 3}
+--- !u!114 &134308034289636920 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3761255480380675633, guid: 76e014656ca4b9c469b0c09ecf178462, type: 3}
   m_PrefabInstance: {fileID: 3886467512132714505}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07cb129614146f9a27219678a73fa1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6614992308497744521 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7936096707743793792, guid: 76e014656ca4b9c469b0c09ecf178462, type: 3}
@@ -88,11 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInitialized: 0
   isDestroyed: 0
-  collision: {fileID: 3287430346684622703}
-  layer: 0
-  collisionLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
+  model: {fileID: 134308034289636920}
   position: {x: 0, y: 0, z: 0}
   orientation: {x: 0, y: 0, z: 0, w: 0}
   radius: 0

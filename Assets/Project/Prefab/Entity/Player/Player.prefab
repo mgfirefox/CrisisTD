@@ -129,7 +129,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2708044634515766680, guid: 9ae508f43cd5b924d8fd85cfd1a56846, type: 3}
+    - {fileID: 8359650419122658422, guid: 9ae508f43cd5b924d8fd85cfd1a56846, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2545840072759738824, guid: 9ae508f43cd5b924d8fd85cfd1a56846, type: 3}
     - {fileID: 1692493647209377204, guid: 9ae508f43cd5b924d8fd85cfd1a56846, type: 3}
@@ -167,8 +169,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af2d63ceaa0d7043a80256db6346104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHidden: 0
+  isInitialized: 0
   isDestroyed: 0
+  colliderFolder: {fileID: 0}
+  meshFolder: {fileID: 0}
+  layer: 0
+  collisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  pivotPoint: {x: 0, y: 0, z: 0}
+  isHidden: 0
   virtualCameraFolder: {fileID: 1078504485777590089}
   isometricVirtualCamera: {fileID: 7683177184296368976}
   topDownVirtualCamera: {fileID: 2258845368598958471}
@@ -176,7 +186,7 @@ MonoBehaviour:
   orientation: {x: 0, y: 0, z: 0, w: 0}
   maxMovementSpeed: 0
   movementSpeed: 0
-  loadout: []
+  items: []
 --- !u!114 &-1509410754437881975
 MonoBehaviour:
   m_ObjectHideFlags: 0

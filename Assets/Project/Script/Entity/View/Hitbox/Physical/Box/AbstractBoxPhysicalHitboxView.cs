@@ -1,32 +1,14 @@
-﻿using NaughtyAttributes;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Mgfirefox.CrisisTd
 {
-    public abstract class AbstractBoxPhysicalHitboxView : AbstractPhysicalHitboxView<BoxCollider>,
+    public abstract class AbstractBoxPhysicalHitboxView : AbstractPhysicalHitboxView<IBoxCollider, BoxCollider>,
         IBoxPhysicalHitboxView
     {
-        [SerializeField]
-        [BoxGroup("BoxHitbox")]
-        [ReadOnly]
-        private Vector3 size;
-
-        public Vector3 Size { get => size; set => SetSize(value.x, value.y, value.z); }
-        public float Length { get => size.x; set => SetSize(value, size.y, size.z); }
-        public float Height { get => size.y; set => SetSize(size.x, value, size.z); }
-        public float Width { get => size.z; set => SetSize(size.x, size.y, value); }
-
-        public void SetSize(float length, float height, float width)
-        {
-            size = new Vector3(length, height, width);
-
-            if (IsDestroyed)
-            {
-                return;
-            }
-
-            Collider.size = size;
-        }
+        public Vector3 Size { get => Collider.Size; set => Collider.Size = value; }
+        public float Length { get => Collider.Length; set => Collider.Length = value; }
+        public float Height { get => Collider.Height; set => Collider.Height = value; }
+        public float Width { get => Collider.Width; set => Collider.Width = value; }
 
         public void OnDrawGizmos()
         {
@@ -47,13 +29,6 @@ namespace Mgfirefox.CrisisTd
 
             Gizmos.color = oldColor;
             Gizmos.matrix = oldMatrix;
-        }
-
-        protected override void OnInitialized()
-        {
-            base.OnInitialized();
-
-            Size = Collider.size;
         }
     }
 }

@@ -247,6 +247,7 @@
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Centity_005Cview_005Chitbox_005Cphysical_005Cbox/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Centity_005Cview_005Chitbox_005Cphysical_005Cbox_005Cbasic/@EntryIndexedValue">True</s:Boolean>
     <s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Centity_005Cview_005Cmap/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Centity_005Cview_005Cmesh/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Centity_005Cview_005Cobstacle/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Centity_005Cview_005Cobstacle_005Ctower/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Centity_005Cview_005Cpivotpoint/@EntryIndexedValue">True</s:Boolean>
@@ -450,9 +451,13 @@
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cpoco_005Cvalidator_005Centity_005Cservice_005Ceffect/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cpoco_005Cvalidator_005Centity_005Cservice/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cpoco_005Cvalidator_005Centity/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Ccollider/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Ccollider_005Cbox/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Ccollision/@EntryIndexedValue">True</s:Boolean>
     <s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Centrypoint/@EntryIndexedValue">True</s:Boolean>
     <s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Centrypoint_005Csample/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Cfolder/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Cfolder_005Ccollider/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Cfolder_005Centity/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Cfolder_005Centity_005Caction/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Cfolder_005Centity_005Caction_005Cattack/@EntryIndexedValue">True</s:Boolean>
@@ -468,6 +473,7 @@
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Cfolder_005Centity_005Cvirtualcamera/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Cfolder_005Centity_005Cvirtualcamera_005Ccamera/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Cfolder_005Centity_005Cvirtualcamera_005Cvirtual/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Cfolder_005Cmesh/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Cfolder_005Cui_005Centity/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Cfolder_005Cui/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Cfolder_005Cui_005Centity_005Caction/@EntryIndexedValue">True</s:Boolean>
@@ -476,6 +482,8 @@
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Cfolder_005Cui_005Centity_005Caction_005Ctower/@EntryIndexedValue">True</s:Boolean>
     <s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Clistener/@EntryIndexedValue">True</s:Boolean>
     <s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Cloop/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Cmesh/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Cmodel/@EntryIndexedValue">True</s:Boolean>
     <s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Cobject/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Cobject_005Cunity/@EntryIndexedValue">True</s:Boolean>
     <s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Cproject_005Cscript_005Cscene_005Csettings_005Cmath/@EntryIndexedValue">True</s:Boolean>

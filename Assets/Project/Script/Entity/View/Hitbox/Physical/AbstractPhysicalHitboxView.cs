@@ -11,31 +11,33 @@ namespace Mgfirefox.CrisisTd
         public abstract bool IsPositionWithin(Vector3 position, float epsilon);
     }
 
-    public abstract class AbstractPhysicalHitboxView<TCollider> : AbstractPhysicalHitboxView
-        where TCollider : Collider
+    public abstract class AbstractPhysicalHitboxView<TICollider, TCollider> : AbstractPhysicalHitboxView
+        where TICollider : class, ICollider
+        where TCollider : AbstractCollider, TICollider
     {
         [SerializeField]
         [BoxGroup("Dependencies")]
         [Required]
         private new TCollider collider;
 
-        protected TCollider Collider => collider;
+        protected TICollider Collider => collider;
 
         public override Vector3 GetClosestPosition(Vector3 position)
         {
-            return collider.ClosestPoint(position);
+            return collider.GetClosestPosition(position);
         }
 
         public override bool IsPositionWithin(Vector3 position, float epsilon)
         {
-            return GetClosestPosition(position).EqualsApproximately(position, epsilon);
+            return collider.IsPositionWithin(position, epsilon);
         }
     }
 
     public abstract class
-        AbstractPhysicalHitboxView<TCollider, TITargetView> : AbstractPhysicalHitboxView<TCollider>,
+        AbstractPhysicalHitboxView<TICollider, TCollider, TITargetView> : AbstractPhysicalHitboxView<TICollider, TCollider>,
         IPhysicalHitboxView<TITargetView>
-        where TCollider : Collider
+        where TICollider : class, ICollider
+        where TCollider : AbstractCollider, TICollider
         where TITargetView : class, IView
     {
         public event Action<TITargetView> TargetEntered;

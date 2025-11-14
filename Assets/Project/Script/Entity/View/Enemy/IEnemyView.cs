@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Mgfirefox.CrisisTd
 {
-    public interface IEnemyView : IVisualView, IEnemyModel
+    public interface IEnemyView : IView, IEnemyModel
     {
         new Vector3 Position { get; set; }
         new Quaternion Orientation { get; set; }

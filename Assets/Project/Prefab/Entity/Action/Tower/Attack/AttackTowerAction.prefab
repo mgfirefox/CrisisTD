@@ -161,6 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInitialized: 0
   isDestroyed: 0
+  model: {fileID: 0}
   rangeRadius: 0
   targetPriority: 0
   actionFolder: {fileID: 4417371658316067798}
@@ -181,7 +182,7 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects: []
   view: {fileID: -9003568316508611692}
-  rangeView: {fileID: 3524408743024426211}
+  rangeView: {fileID: 6968349626860118600}
 --- !u!4 &8284144911070189142 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5445076624034202344, guid: 676c8e8bd7c12154cae2d5aa2ccf747e, type: 3}
@@ -244,9 +245,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5bb4dd58f03ee443842d7c1f5632916, type: 3}
---- !u!114 &3524408743024426211 stripped
+--- !u!4 &4941457898501968838 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 722199615147002577, guid: a5bb4dd58f03ee443842d7c1f5632916, type: 3}
+  m_PrefabInstance: {fileID: 5662803183693519127}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6968349626860118600 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9115116776378639860, guid: a5bb4dd58f03ee443842d7c1f5632916, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3324461844096744287, guid: a5bb4dd58f03ee443842d7c1f5632916, type: 3}
   m_PrefabInstance: {fileID: 5662803183693519127}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -255,8 +261,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7c028c6f68490c93ba39fe17449899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &4941457898501968838 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 722199615147002577, guid: a5bb4dd58f03ee443842d7c1f5632916, type: 3}
-  m_PrefabInstance: {fileID: 5662803183693519127}
-  m_PrefabAsset: {fileID: 0}

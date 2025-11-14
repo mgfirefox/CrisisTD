@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Mgfirefox.CrisisTd
 {
-    public class TowerView : AbstractVisualView, ITowerView
+    public class TowerView : AbstractView, ITowerView
     {
         [SerializeField]
         [BoxGroup("Dependencies")]

@@ -5,8 +5,13 @@ using UnityEngine;
 
 namespace Mgfirefox.CrisisTd
 {
-    public class MapView : AbstractVisualView, IMapView
+    public class MapView : AbstractView, IMapView
     {
+        [SerializeField]
+        [BoxGroup("Dependencies")]
+        [Required]
+        private Model obstacleModel;
+        
         [SerializeField]
         [BoxGroup("Dependencies")]
         [Required]
@@ -16,6 +21,8 @@ namespace Mgfirefox.CrisisTd
         [BoxGroup("Dependencies")]
         [Required]
         private BezierSegmentFolder bezierSegmentFolder;
+        
+        protected IModelObject ObstacleModel => obstacleModel;
 
         public Pose PlayerSpawnPose =>
             new(playerSpawn.transform.position, playerSpawn.transform.rotation);
@@ -114,6 +121,8 @@ namespace Mgfirefox.CrisisTd
         protected override void OnInitialized()
         {
             base.OnInitialized();
+            
+            obstacleModel.Initialize();
 
             bezierSegmentFolder.Initialize();
         }
@@ -121,6 +130,8 @@ namespace Mgfirefox.CrisisTd
         protected override void OnDestroying()
         {
             bezierSegmentFolder.Destroy();
+            
+            obstacleModel.Destroy();
 
             base.OnDestroying();
         }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Mgfirefox.CrisisTd
 {
-    public interface IRayView : ICollisionView, IRayModel
+    public interface IRayView : IView, IRayModel
     {
         new Vector3 StartPosition { get; set; }
         new Vector3 EndPosition { get; set; }

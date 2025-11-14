@@ -83,27 +83,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInitialized: 0
   isDestroyed: 0
-  collision: {fileID: 7118220059989531722}
-  collisionLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  visual: {fileID: 6260189719241814070}
-  pivotPoint: {x: 0, y: 0, z: 0}
-  isHidden: 0
-  collider: {fileID: 3459829190143233312}
+  model: {fileID: 9009763799145239425}
+  collider: {fileID: 7512322220870390835}
   radius: 0
---- !u!65 &3459829190143233312 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 6404717881466650357, guid: 2de330895b3898c479be688a0e27dadc, type: 3}
+--- !u!114 &7512322220870390835 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 45258000988530662, guid: 2de330895b3898c479be688a0e27dadc, type: 3}
   m_PrefabInstance: {fileID: 7557577473079817173}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6260189719241814070 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4467924642184512483, guid: 2de330895b3898c479be688a0e27dadc, type: 3}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b498f7d92666461db60aac7b376035ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9009763799145239425 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1578780890884169812, guid: 2de330895b3898c479be688a0e27dadc, type: 3}
   m_PrefabInstance: {fileID: 7557577473079817173}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7118220059989531722 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 732142552418283423, guid: 2de330895b3898c479be688a0e27dadc, type: 3}
-  m_PrefabInstance: {fileID: 7557577473079817173}
-  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07cb129614146f9a27219678a73fa1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Mgfirefox.CrisisTd
 {
-    public class TowerObstacleView : AbstractVisualView, ITowerObstacleView
+    public class TowerObstacleView : AbstractView, ITowerObstacleView
     {
         [SerializeField]
         [BoxGroup("Dependencies")]
@@ -18,11 +18,6 @@ namespace Mgfirefox.CrisisTd
         [BoxGroup("Transform")]
         [ReadOnly]
         private Quaternion orientation;
-
-        [SerializeField]
-        [BoxGroup("BoxHitbox")]
-        [ReadOnly]
-        private Vector3 size;
 
         public Vector3 Position
         {
@@ -55,31 +50,19 @@ namespace Mgfirefox.CrisisTd
             }
         }
 
-        public Vector3 Size { get => size; set => SetSize(value.x, value.y, value.z); }
-        public float Length { get => size.x; set => SetSize(value, size.y, size.z); }
-        public float Height { get => size.y; set => SetSize(size.x, value, size.z); }
-        public float Width { get => size.z; set => SetSize(size.x, size.y, value); }
-
-        public void SetSize(float length, float height, float width)
-        {
-            size = new Vector3(length, height, width);
-
-            if (IsDestroyed)
-            {
-                return;
-            }
-
-            collider.size = size;
-        }
+        public Vector3 Size { get => collider.Size; set => collider.Size = value; }
+        public float Length { get => collider.Length; set => collider.Length = value; }
+        public float Height { get => collider.Height; set => collider.Height = value; }
+        public float Width { get => collider.Width; set => collider.Width = value; }
 
         public Vector3 GetClosestPosition(Vector3 position)
         {
-            return collider.ClosestPoint(position);
+            return collider.GetClosestPosition(position);
         }
 
         public bool IsPositionWithin(Vector3 position, float epsilon)
         {
-            return GetClosestPosition(position).EqualsApproximately(position, epsilon);
+            return collider.IsPositionWithin(position, epsilon);
         }
 
         public void OnDrawGizmos()
@@ -101,13 +84,6 @@ namespace Mgfirefox.CrisisTd
 
             Gizmos.color = oldColor;
             Gizmos.matrix = oldMatrix;
-        }
-
-        protected override void OnInitialized()
-        {
-            base.OnInitialized();
-
-            Size = collider.size;
         }
     }
 }

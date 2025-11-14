@@ -365,7 +365,7 @@ namespace Mgfirefox.CrisisTd
 
                     towerObstacle.Position = placedTower.Position;
                     towerObstacle.Orientation = placedTower.Orientation;
-                    towerObstacle.SetSize(length, Constant.towerObstacleHeight, width);
+                    towerObstacle.Size = new Vector3(length, Constant.towerObstacleHeight, width);
 
                     towerObstacles[placedTower] = towerObstacle;
                 }
@@ -399,7 +399,7 @@ namespace Mgfirefox.CrisisTd
                 {
                     towerObstacle.Position = segmentPosition;
                     towerObstacle.Orientation = segmentOrientation;
-                    towerObstacle.SetSize(Constant.routeSegmentTowerObstacleLength,
+                    towerObstacle.Size = new Vector3(Constant.routeSegmentTowerObstacleLength,
                         Constant.routeSegmentTowerObstacleHeight,
                         Constant.routeSegmentTowerObstacleWidth + segmentWidth);
 

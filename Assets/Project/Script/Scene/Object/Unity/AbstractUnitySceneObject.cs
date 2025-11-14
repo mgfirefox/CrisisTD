@@ -66,16 +66,6 @@ namespace Mgfirefox.CrisisTd
 
             OnDestroying();
 
-            if (Parent == null)
-            {
-            }
-            else if (Parent.TryGetComponent(out IUnitySceneObject sceneObject))
-            {
-                sceneObject.TryRemoveChild(this);
-            }
-
-            Destroy(gameObject);
-
             IsDestroyed = true;
         }
 
@@ -152,6 +142,15 @@ namespace Mgfirefox.CrisisTd
 
         protected virtual void OnDestroying()
         {
+            if (Parent == null)
+            {
+            }
+            else if (Parent.TryGetComponent(out IUnitySceneObject sceneObject))
+            {
+                sceneObject.TryRemoveChild(this);
+            }
+
+            Destroy(gameObject);
         }
 
         protected virtual void OnChildAdded(IUnitySceneObject child)

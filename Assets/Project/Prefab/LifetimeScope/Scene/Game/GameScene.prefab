@@ -58,7 +58,7 @@ MonoBehaviour:
   rangeViewPrefabs:
     m_keys: 64000000c8000000
     m_values:
-    - {fileID: 9115116776378639860, guid: a5bb4dd58f03ee443842d7c1f5632916, type: 3}
+    - {fileID: 3324461844096744287, guid: a5bb4dd58f03ee443842d7c1f5632916, type: 3}
     - {fileID: 2447814023615473597, guid: 3b0f55865e47ffc4da16b1f2d2190c58, type: 3}
   towerObstacleViewPrefab: {fileID: 4202820012905856744, guid: fe746cf2a54754946ba7304b34b57b7a, type: 3}
   attackActionLifetimeScopePrefabs:
