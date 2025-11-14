@@ -26,10 +26,20 @@ namespace Mgfirefox.CrisisTd
         {
             if (Level.Type == BranchType.Zero)
             {
+                if (MaxZeroBranchIndex == -1)
+                {
+                    return;
+                }
+                
                 if (Level.Index < MaxZeroBranchIndex)
                 {
                     UpgradeBranch();
 
+                    return;
+                }
+
+                if (MaxFirstBranchIndex == -1)
+                {
                     return;
                 }
 
@@ -56,10 +66,20 @@ namespace Mgfirefox.CrisisTd
         {
             if (Level.Type == BranchType.Zero)
             {
+                if (MaxZeroBranchIndex == -1)
+                {
+                    return;
+                }
+                
                 if (Level.Index < MaxZeroBranchIndex)
                 {
                     UpgradeBranch();
 
+                    return;
+                }
+                
+                if (MaxSecondBranchIndex == -1)
+                {
                     return;
                 }
 
@@ -81,6 +101,16 @@ namespace Mgfirefox.CrisisTd
 
             UpgradeBranch();
         }
+        
+        public LevelItem Get(BranchLevel level)
+        {
+            if (items.TryGetValue(level, out LevelItem item))
+            {
+                return item;
+            }
+
+            return new LevelItem();
+        }
 
         private void UpgradeBranch()
         {
@@ -91,7 +121,7 @@ namespace Mgfirefox.CrisisTd
 
         private void InvokeChanged()
         {
-            LevelItem item = items[Level];
+            LevelItem item = Get(Level);
 
             Changed?.Invoke(item.Clone() as LevelItem);
         }
@@ -100,9 +130,17 @@ namespace Mgfirefox.CrisisTd
         {
             base.OnInitialized(data);
 
+            MaxZeroBranchIndex = 0;
+            MaxFirstBranchIndex = 0;
+            MaxSecondBranchIndex = 0;
+            
             InitializeItems(data.Items);
 
-            Level = data.Level.Clone() as BranchLevel;
+            Level = (BranchLevel)data.Level.Clone();
+            if (!items.ContainsKey(Level))
+            {
+                Level = new BranchLevel();
+            }
 
             InvokeChanged();
         }
@@ -142,6 +180,42 @@ namespace Mgfirefox.CrisisTd
                 }
 
                 this.items[(BranchLevel)level.Clone()] = item.Clone() as LevelItem;
+            }
+
+            for (var level = new BranchLevel(); level.Index <= MaxZeroBranchIndex; level.Index++)
+            {
+                if (items.ContainsKey(level))
+                {
+                    continue;
+                }
+
+                MaxZeroBranchIndex = level.Index - 1;
+
+                break;
+            }
+            
+            for (var level = new BranchLevel(BranchType.First); level.Index <= MaxFirstBranchIndex; level.Index++)
+            {
+                if (items.ContainsKey(level))
+                {
+                    continue;
+                }
+
+                MaxZeroBranchIndex = level.Index - 1;
+
+                break;
+            }
+            
+            for (var level = new BranchLevel(BranchType.Second); level.Index <= MaxSecondBranchIndex; level.Index++)
+            {
+                if (items.ContainsKey(level))
+                {
+                    continue;
+                }
+
+                MaxZeroBranchIndex = level.Index - 1;
+
+                break;
             }
         }
 

@@ -9,5 +9,7 @@ namespace Mgfirefox.CrisisTd
 
         void UpgradeFirstBranch();
         void UpgradeSecondBranch();
+
+        LevelItem Get(BranchLevel level);
     }
 }
