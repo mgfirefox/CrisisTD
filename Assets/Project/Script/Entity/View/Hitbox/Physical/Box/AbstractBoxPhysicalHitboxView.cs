@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Mgfirefox.CrisisTd
 {
-    public class BasicBoxPhysicalHitboxView : AbstractPhysicalHitboxView<BoxCollider>,
-        IBasicBoxPhysicalHitboxView
+    public abstract class AbstractBoxPhysicalHitboxView : AbstractPhysicalHitboxView<BoxCollider>,
+        IBoxPhysicalHitboxView
     {
         [SerializeField]
         [BoxGroup("BoxHitbox")]
@@ -26,16 +26,6 @@ namespace Mgfirefox.CrisisTd
             }
 
             Collider.size = size;
-        }
-
-        public override Vector3 GetClosestPosition(Vector3 position)
-        {
-            return Collider.ClosestPoint(position);
-        }
-
-        public override bool IsPositionWithin(Vector3 position, float epsilon)
-        {
-            return GetClosestPosition(position).EqualsApproximately(position, epsilon);
         }
 
         public void OnDrawGizmos()

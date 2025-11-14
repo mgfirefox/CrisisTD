@@ -20,6 +20,16 @@ namespace Mgfirefox.CrisisTd
         private new TCollider collider;
 
         protected TCollider Collider => collider;
+
+        public override Vector3 GetClosestPosition(Vector3 position)
+        {
+            return collider.ClosestPoint(position);
+        }
+
+        public override bool IsPositionWithin(Vector3 position, float epsilon)
+        {
+            return GetClosestPosition(position).EqualsApproximately(position, epsilon);
+        }
     }
 
     public abstract class
