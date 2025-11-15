@@ -67,6 +67,11 @@ namespace Mgfirefox.CrisisTd
         {
             base.OnInitialized();
 
+            InitializeChildren();
+        }
+
+        private void InitializeChildren()
+        {
             foreach (Transform childTransform in ChildTransforms)
             {
                 if (childTransform.TryGetComponent(out TIItem item))
@@ -80,9 +85,14 @@ namespace Mgfirefox.CrisisTd
 
         protected override void OnDestroying()
         {
-            children.Clear();
+            ClearChildren();
 
             base.OnDestroying();
+        }
+
+        private void ClearChildren()
+        {
+            children.Clear();
         }
 
         protected override void OnChildAdded(IUnitySceneObject child)
