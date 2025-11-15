@@ -203,7 +203,7 @@ namespace Mgfirefox.CrisisTd
                     continue;
                 }
 
-                MaxZeroBranchIndex = level.Index - 1;
+                MaxFirstBranchIndex = level.Index - 1;
 
                 break;
             }
@@ -217,7 +217,7 @@ namespace Mgfirefox.CrisisTd
                     continue;
                 }
 
-                MaxZeroBranchIndex = level.Index - 1;
+                MaxSecondBranchIndex = level.Index - 1;
 
                 break;
             }
