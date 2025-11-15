@@ -79,6 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInitialized: 0
   isDestroyed: 0
+  modelFolder: {fileID: 3084987142290914557}
   startPoint: {fileID: 1653715563998774813}
   endPoint: {fileID: 3192109647572781845}
   controlPointFolder: {fileID: 6332797368030180442}
@@ -88,6 +89,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3878924207288586600, guid: 1d99699785421e044be3b64b60ef8e4c, type: 3}
   m_PrefabInstance: {fileID: 2533161029357475701}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3084987142290914557 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 718196592675564424, guid: 1d99699785421e044be3b64b60ef8e4c, type: 3}
+  m_PrefabInstance: {fileID: 2533161029357475701}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190678484614655276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8201054da6f4bf290235fabccb03d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3192109647572781845 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1111050208446995552, guid: 1d99699785421e044be3b64b60ef8e4c, type: 3}

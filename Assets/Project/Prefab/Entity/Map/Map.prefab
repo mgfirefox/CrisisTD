@@ -399,10 +399,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInitialized: 0
   isDestroyed: 0
-  model: {fileID: 4776178905404950002}
+  modelFolder: {fileID: 3821158924364475987}
   obstacleModel: {fileID: 5631685970446121624}
   playerSpawn: {fileID: 8258162077174998620}
   bezierSegmentFolder: {fileID: 5683443508832182700}
+--- !u!114 &3821158924364475987 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6591196990800025987, guid: 9ae508f43cd5b924d8fd85cfd1a56846, type: 3}
+  m_PrefabInstance: {fileID: 7962321767250048976}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103746363134541698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8201054da6f4bf290235fabccb03d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7103103214912483848 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 931281725118973400, guid: 9ae508f43cd5b924d8fd85cfd1a56846, type: 3}
@@ -470,14 +481,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8466478438858942966, guid: 6bff7511f1684254296b46ffc279fda1, type: 3}
   m_PrefabInstance: {fileID: 8609830885649801968}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4776178905404950002 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3833732038439446274, guid: 6bff7511f1684254296b46ffc279fda1, type: 3}
-  m_PrefabInstance: {fileID: 8609830885649801968}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a07cb129614146f9a27219678a73fa1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

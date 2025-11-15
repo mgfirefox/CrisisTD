@@ -68,17 +68,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7216418723138718651}
   m_SourcePrefab: {fileID: 100100000, guid: 90a0e1a406084e046b55ef4554b07813, type: 3}
---- !u!114 &1606598420582717683 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1601286974845389168, guid: 90a0e1a406084e046b55ef4554b07813, type: 3}
-  m_PrefabInstance: {fileID: 32407853379080579}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a07cb129614146f9a27219678a73fa1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5045809086467781819 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5077089928883365176, guid: 90a0e1a406084e046b55ef4554b07813, type: 3}
@@ -98,9 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInitialized: 0
   isDestroyed: 0
-  model: {fileID: 1606598420582717683}
-  pivotPoint: {x: 0, y: 0, z: 0}
-  isHidden: 0
+  modelFolder: {fileID: 8957765292194538858}
   startPosition: {x: 0, y: 0, z: 0}
   endPosition: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
@@ -108,3 +95,14 @@ MonoBehaviour:
   rayCollisionLayerMask:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &8957765292194538858 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8945066780133684457, guid: 90a0e1a406084e046b55ef4554b07813, type: 3}
+  m_PrefabInstance: {fileID: 32407853379080579}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5045809086467781819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8201054da6f4bf290235fabccb03d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

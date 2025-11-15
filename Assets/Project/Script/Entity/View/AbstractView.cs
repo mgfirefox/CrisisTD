@@ -8,7 +8,10 @@ namespace Mgfirefox.CrisisTd
     {
         [SerializeField]
         [BoxGroup("Dependencies")]
-        private ModelComponent model;
+        [Required]
+        private ModelFolder modelFolder;
+        
+        public IModelFolder ModelFolder => modelFolder;
 
         public IModelComponent Model { get; set; }
 
@@ -19,6 +22,16 @@ namespace Mgfirefox.CrisisTd
         public Vector3 PivotPoint => Model?.PivotPoint ?? Vector3.zero;
 
         public bool IsHidden => Model?.IsHidden ?? false;
+
+        protected override IUnitySceneObject GetChildParent(IUnitySceneObject child)
+        {
+            if (child.Transform.TryGetComponent(out IModelComponent _))
+            {
+                return modelFolder;
+            }
+            
+            return base.GetChildParent(child);
+        }
 
         public event Action Showing;
         public event Action Hiding;
@@ -50,14 +63,20 @@ namespace Mgfirefox.CrisisTd
         protected override void OnInitialized()
         {
             base.OnInitialized();
+            
+            modelFolder.Initialize();
 
-            Model = model;
-            Model?.Initialize();
+            if (modelFolder.Children.Count > 0)
+            {
+                Model = modelFolder.Children[0];
+            }
         }
 
         protected override void OnDestroying()
         {
-            Model?.Destroy();
+            modelFolder.Destroy();
+            
+            Model = null;
 
             base.OnDestroying();
         }

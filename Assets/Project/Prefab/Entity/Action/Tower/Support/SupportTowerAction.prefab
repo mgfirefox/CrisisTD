@@ -237,11 +237,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cdf3d8af9b04d40af0825bfd3c6a0d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHidden: 0
+  isInitialized: 0
   isDestroyed: 0
+  modelFolder: {fileID: 7122864674092912219}
   rangeRadius: 0
   targetPriority: 0
-  actionViewFolder: {fileID: 6630498059855205414}
+  actionFolder: {fileID: 6630498059855205414}
 --- !u!114 &9101966572592640938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,3 +261,14 @@ MonoBehaviour:
   autoInjectGameObjects: []
   view: {fileID: 1227706929480522424}
   rangeView: {fileID: 8664196779127819521}
+--- !u!114 &7122864674092912219 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2019016854174064307, guid: 676c8e8bd7c12154cae2d5aa2ccf747e, type: 3}
+  m_PrefabInstance: {fileID: 9141606369574441192}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6381406184316936074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8201054da6f4bf290235fabccb03d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

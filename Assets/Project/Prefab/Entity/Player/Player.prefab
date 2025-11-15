@@ -171,14 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInitialized: 0
   isDestroyed: 0
-  colliderFolder: {fileID: 0}
-  meshFolder: {fileID: 0}
-  layer: 0
-  collisionLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  pivotPoint: {x: 0, y: 0, z: 0}
-  isHidden: 0
+  modelFolder: {fileID: 8830012758175274276}
   virtualCameraFolder: {fileID: 1078504485777590089}
   isometricVirtualCamera: {fileID: 7683177184296368976}
   topDownVirtualCamera: {fileID: 2258845368598958471}
@@ -204,6 +197,17 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects: []
   view: {fileID: 9003362370295121792}
+--- !u!114 &8830012758175274276 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6591196990800025987, guid: 9ae508f43cd5b924d8fd85cfd1a56846, type: 3}
+  m_PrefabInstance: {fileID: 2446056494990757031}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4673805547785012469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8201054da6f4bf290235fabccb03d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7952890591205739120
 PrefabInstance:
   m_ObjectHideFlags: 0

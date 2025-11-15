@@ -149,6 +149,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 931281725118973400, guid: 9ae508f43cd5b924d8fd85cfd1a56846, type: 3}
   m_PrefabInstance: {fileID: 2022360420544770052}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5145499651291687303 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6591196990800025987, guid: 9ae508f43cd5b924d8fd85cfd1a56846, type: 3}
+  m_PrefabInstance: {fileID: 2022360420544770052}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9024734370584246358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8201054da6f4bf290235fabccb03d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9024734370584246358 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7002695060048300114, guid: 9ae508f43cd5b924d8fd85cfd1a56846, type: 3}
@@ -168,14 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInitialized: 0
   isDestroyed: 0
-  colliderFolder: {fileID: 0}
-  meshFolder: {fileID: 0}
-  layer: 0
-  collisionLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  pivotPoint: {x: 0, y: 0, z: 0}
-  isHidden: 0
+  modelFolder: {fileID: 5145499651291687303}
   isInteracting: 0
 --- !u!114 &6376855194227444595
 MonoBehaviour:

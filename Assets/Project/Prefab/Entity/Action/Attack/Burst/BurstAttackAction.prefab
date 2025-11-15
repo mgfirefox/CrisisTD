@@ -63,6 +63,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7075277419202231588}
   m_SourcePrefab: {fileID: 100100000, guid: 073da2d599deb5042953bd70948cf935, type: 3}
+--- !u!114 &6206616764309678155 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7727407031562919139, guid: 073da2d599deb5042953bd70948cf935, type: 3}
+  m_PrefabInstance: {fileID: 4404264046598059176}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7814983007644957082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8201054da6f4bf290235fabccb03d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7814983007644957082 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5866909877789805874, guid: 073da2d599deb5042953bd70948cf935, type: 3}
@@ -80,6 +91,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 894182b36daf4c2e9c59a7cd3ca2f046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInitialized: 0
+  isDestroyed: 0
+  modelFolder: {fileID: 6206616764309678155}
   damage: 0
   maxCooldown: 0
   cooldown: 0

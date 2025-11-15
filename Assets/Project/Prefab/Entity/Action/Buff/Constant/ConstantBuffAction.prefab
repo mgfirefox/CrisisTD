@@ -80,6 +80,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62fba0a820ab4e0d970f051c2d6644b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInitialized: 0
+  isDestroyed: 0
+  modelFolder: {fileID: 4488641348614444081}
   type: 0
   maxValue: 0
   value: 0
@@ -100,3 +103,14 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects: []
   view: {fileID: 1494746188254278085}
+--- !u!114 &4488641348614444081 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4291592340527887015, guid: e62692803b2ee0748acf16b1232e4262, type: 3}
+  m_PrefabInstance: {fileID: 415483422324614806}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296370291075368416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8201054da6f4bf290235fabccb03d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

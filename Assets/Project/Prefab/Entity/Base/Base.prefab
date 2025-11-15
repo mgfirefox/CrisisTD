@@ -87,14 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInitialized: 0
   isDestroyed: 0
-  colliderFolder: {fileID: 0}
-  meshFolder: {fileID: 0}
-  layer: 0
-  collisionLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  pivotPoint: {x: 0, y: 0, z: 0}
-  isHidden: 0
+  modelFolder: {fileID: 2675009906843933482}
   maxHealth: 0
   health: 0
   isDied: 0
@@ -115,3 +108,14 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects: []
   view: {fileID: 4621845577932439847}
+--- !u!114 &2675009906843933482 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6591196990800025987, guid: 9ae508f43cd5b924d8fd85cfd1a56846, type: 3}
+  m_PrefabInstance: {fileID: 9108294863716549289}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2254539683144452859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8201054da6f4bf290235fabccb03d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

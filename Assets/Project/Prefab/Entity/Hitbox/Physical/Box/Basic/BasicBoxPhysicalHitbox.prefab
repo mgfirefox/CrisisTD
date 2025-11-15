@@ -60,6 +60,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6690502317879619309}
   m_SourcePrefab: {fileID: 100100000, guid: 5c7a92f2a78abfd4a96cae953d515b33, type: 3}
+--- !u!114 &2130499016050858522 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7718693899246884567, guid: 5c7a92f2a78abfd4a96cae953d515b33, type: 3}
+  m_PrefabInstance: {fileID: 8543120296940539085}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2866326907367607243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8201054da6f4bf290235fabccb03d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2866326907367607243 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5857071534523827974, guid: 5c7a92f2a78abfd4a96cae953d515b33, type: 3}
@@ -79,7 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInitialized: 0
   isDestroyed: 0
-  model: {fileID: 8369248878572755715}
+  modelFolder: {fileID: 2130499016050858522}
   position: {x: 0, y: 0, z: 0}
   orientation: {x: 0, y: 0, z: 0, w: 0}
   collider: {fileID: 7457331317579789238}
@@ -92,16 +103,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b498f7d92666461db60aac7b376035ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8369248878572755715 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 192187102395914190, guid: 5c7a92f2a78abfd4a96cae953d515b33, type: 3}
-  m_PrefabInstance: {fileID: 8543120296940539085}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a07cb129614146f9a27219678a73fa1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

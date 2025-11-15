@@ -77,12 +77,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a953e847c0a4c4187e56cbb79a30afe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHidden: 0
+  isInitialized: 0
   isDestroyed: 0
-  collision: {fileID: 7907585614967350875}
-  collisionLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
+  modelFolder: {fileID: 2430030119878349420}
   startPosition: {x: 0, y: 0, z: 0}
   endPosition: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
@@ -90,8 +87,14 @@ MonoBehaviour:
   rayCollisionLayerMask:
     serializedVersion: 2
     m_Bits: 0
---- !u!1 &7907585614967350875 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3469762290323325150, guid: 90a0e1a406084e046b55ef4554b07813, type: 3}
+--- !u!114 &2430030119878349420 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8945066780133684457, guid: 90a0e1a406084e046b55ef4554b07813, type: 3}
   m_PrefabInstance: {fileID: 6744827993687500421}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012831093703885757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8201054da6f4bf290235fabccb03d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -122,16 +122,12 @@ namespace Mgfirefox.CrisisTd
         {
             base.OnInitialized();
 
-            obstacleModel.Initialize();
-
             bezierSegmentFolder.Initialize();
         }
 
         protected override void OnDestroying()
         {
             bezierSegmentFolder.Destroy();
-
-            obstacleModel.Destroy();
 
             base.OnDestroying();
         }

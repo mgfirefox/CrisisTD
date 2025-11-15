@@ -97,14 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInitialized: 0
   isDestroyed: 0
-  colliderFolder: {fileID: 0}
-  meshFolder: {fileID: 0}
-  layer: 0
-  collisionLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  pivotPoint: {x: 0, y: 0, z: 0}
-  isHidden: 0
+  modelFolder: {fileID: 3224415738481611244}
   camera: {fileID: -4094193957897675241}
   position: {x: 0, y: 0, z: 0}
   orientation: {x: 0, y: 0, z: 0, w: 0}
@@ -201,3 +194,14 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3224415738481611244 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6591196990800025987, guid: 9ae508f43cd5b924d8fd85cfd1a56846, type: 3}
+  m_PrefabInstance: {fileID: 8631095609138497647}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650953767051165757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8201054da6f4bf290235fabccb03d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
