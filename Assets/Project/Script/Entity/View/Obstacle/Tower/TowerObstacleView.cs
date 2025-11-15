@@ -8,7 +8,7 @@ namespace Mgfirefox.CrisisTd
         [SerializeField]
         [BoxGroup("Dependencies")]
         [Required]
-        private new BoxCollider collider;
+        private BasicBoxPhysicalHitboxView boxPhysicalHitbox;
 
         [SerializeField]
         [BoxGroup("Transform")]
@@ -50,19 +50,19 @@ namespace Mgfirefox.CrisisTd
             }
         }
 
-        public Vector3 Size { get => collider.Size; set => collider.Size = value; }
-        public float Length { get => collider.Length; set => collider.Length = value; }
-        public float Height { get => collider.Height; set => collider.Height = value; }
-        public float Width { get => collider.Width; set => collider.Width = value; }
+        public Vector3 Size { get => boxPhysicalHitbox.Size; set => boxPhysicalHitbox.Size = value; }
+        public float Length { get => boxPhysicalHitbox.Length; set => boxPhysicalHitbox.Length = value; }
+        public float Height { get => boxPhysicalHitbox.Height; set => boxPhysicalHitbox.Height = value; }
+        public float Width { get => boxPhysicalHitbox.Width; set => boxPhysicalHitbox.Width = value; }
 
         public Vector3 GetClosestPosition(Vector3 position)
         {
-            return collider.GetClosestPosition(position);
+            return boxPhysicalHitbox.GetClosestPosition(position);
         }
 
         public bool IsPositionWithin(Vector3 position, float epsilon)
         {
-            return collider.IsPositionWithin(position, epsilon);
+            return boxPhysicalHitbox.IsPositionWithin(position, epsilon);
         }
 
         public void OnDrawGizmos()
@@ -84,6 +84,20 @@ namespace Mgfirefox.CrisisTd
 
             Gizmos.color = oldColor;
             Gizmos.matrix = oldMatrix;
+        }
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+            
+            boxPhysicalHitbox.Initialize();
+        }
+
+        protected override void OnDestroying()
+        {
+            boxPhysicalHitbox.Destroy();
+            
+            base.OnDestroying();
         }
     }
 }
