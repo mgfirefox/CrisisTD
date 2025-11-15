@@ -13,8 +13,8 @@ namespace Mgfirefox.CrisisTd
 
     public abstract class
         AbstractPhysicalHitboxView<TICollider, TCollider> : AbstractPhysicalHitboxView
-        where TICollider : class, ICollider
-        where TCollider : AbstractCollider, TICollider
+        where TICollider : class, IColliderComponent
+        where TCollider : AbstractColliderComponent, TICollider
     {
         [SerializeField]
         [BoxGroup("Dependencies")]
@@ -36,8 +36,8 @@ namespace Mgfirefox.CrisisTd
 
     public abstract class AbstractPhysicalHitboxView<TICollider, TCollider, TITargetView> :
         AbstractPhysicalHitboxView<TICollider, TCollider>, IPhysicalHitboxView<TITargetView>
-        where TICollider : class, ICollider
-        where TCollider : AbstractCollider, TICollider
+        where TICollider : class, IColliderComponent
+        where TCollider : AbstractColliderComponent, TICollider
         where TITargetView : class, IView
     {
         public event Action<TITargetView> TargetEntered;

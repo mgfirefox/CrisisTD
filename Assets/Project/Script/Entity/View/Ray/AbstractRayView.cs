@@ -137,7 +137,7 @@ namespace Mgfirefox.CrisisTd
             if (Physics.Raycast(startPosition, direction, out RaycastHit hitInfo, maxDistance,
                     rayCollisionLayerMask))
             {
-                if (hitInfo.collider.TryGetComponentInParent(out ICollider collider))
+                if (hitInfo.collider.TryGetComponentInParent(out IColliderComponent collider))
                 {
                     hit = new RayHit
                     {
@@ -152,7 +152,7 @@ namespace Mgfirefox.CrisisTd
 
                 // TODO: Change Warning
                 Debug.LogWarning(
-                    $"Object {hitInfo.collider.gameObject} is missing Component of type {typeof(ICollider)}.",
+                    $"Object {hitInfo.collider.gameObject} is missing Component of type {typeof(IColliderComponent)}.",
                     hitInfo.collider.gameObject);
             }
 
@@ -171,7 +171,7 @@ namespace Mgfirefox.CrisisTd
             {
                 RaycastHit hitInfo = RayCastHitBuffer[i];
 
-                if (hitInfo.collider.TryGetComponentInParent(out ICollider collider))
+                if (hitInfo.collider.TryGetComponentInParent(out IColliderComponent collider))
                 {
                     var hit = new RayHit
                     {
@@ -188,7 +188,7 @@ namespace Mgfirefox.CrisisTd
 
                 // TODO: Change Warning
                 Debug.LogWarning(
-                    $"Object {hitInfo.collider.gameObject} is missing Component of type {typeof(ICollider)}.",
+                    $"Object {hitInfo.collider.gameObject} is missing Component of type {typeof(IColliderComponent)}.",
                     hitInfo.collider.gameObject);
             }
 
@@ -217,7 +217,7 @@ namespace Mgfirefox.CrisisTd
             {
                 if (hitInfo.collider.TryGetComponentInParent(out TITargetView target))
                 {
-                    if (hitInfo.collider.TryGetComponentInParent(out ICollider collider))
+                    if (hitInfo.collider.TryGetComponentInParent(out IColliderComponent collider))
                     {
                         hit = new RayHit<TITargetView>
                         {
@@ -233,7 +233,7 @@ namespace Mgfirefox.CrisisTd
 
                     // TODO: Change Warning
                     Debug.LogWarning(
-                        $"Object {hitInfo.collider.gameObject} is missing Component of type {typeof(ICollider)}.",
+                        $"Object {hitInfo.collider.gameObject} is missing Component of type {typeof(IColliderComponent)}.",
                         hitInfo.collider.gameObject);
                 }
                 else
@@ -262,7 +262,7 @@ namespace Mgfirefox.CrisisTd
 
                 if (hitInfo.collider.TryGetComponentInParent(out TITargetView target))
                 {
-                    if (hitInfo.collider.TryGetComponentInParent(out ICollider collider))
+                    if (hitInfo.collider.TryGetComponentInParent(out IColliderComponent collider))
                     {
                         var hit = new RayHit<TITargetView>
                         {
@@ -280,7 +280,7 @@ namespace Mgfirefox.CrisisTd
 
                     // TODO: Change Warning
                     Debug.LogWarning(
-                        $"Object {hitInfo.collider.gameObject} is missing Component of type {typeof(ICollider)}.",
+                        $"Object {hitInfo.collider.gameObject} is missing Component of type {typeof(IColliderComponent)}.",
                         hitInfo.collider.gameObject);
                 }
                 else

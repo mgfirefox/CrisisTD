@@ -2,7 +2,7 @@
 
 namespace Mgfirefox.CrisisTd
 {
-    public interface IBoxCollider : ICollider
+    public interface IBoxColliderComponent : IColliderComponent
     {
         Vector3 Size { get; set; }
         float Length { get; set; }

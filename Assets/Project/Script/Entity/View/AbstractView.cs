@@ -8,9 +8,9 @@ namespace Mgfirefox.CrisisTd
     {
         [SerializeField]
         [BoxGroup("Dependencies")]
-        private Model model;
+        private ModelComponent model;
 
-        protected IModelObject Model => model;
+        protected IModelComponent Model => model;
 
         public int Layer => model?.Layer ?? gameObject.layer;
         public LayerMask CollisionLayerMask =>

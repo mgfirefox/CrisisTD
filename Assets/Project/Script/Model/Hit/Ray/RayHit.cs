@@ -12,12 +12,12 @@ namespace Mgfirefox.CrisisTd
         private Vector3 normal;
         [SerializeField]
         private float distance;
-        private ICollider collider;
+        private IColliderComponent collider;
 
         public Vector3 Position { get => position; set => position = value; }
         public Vector3 Normal { get => normal; set => normal = value; }
         public float Distance { get => distance; set => distance = value; }
-        public ICollider Collider { get => collider; set => collider = value; }
+        public IColliderComponent Collider { get => collider; set => collider = value; }
 
         protected bool Equals(RayHit other)
         {

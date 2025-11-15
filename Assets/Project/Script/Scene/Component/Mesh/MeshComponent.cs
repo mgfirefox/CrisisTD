@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Mgfirefox.CrisisTd
 {
-    public class Mesh : AbstractUnitySceneObject, IMesh
+    public class MeshComponent : AbstractComponent, IMeshComponent
     {
         [SerializeField]
         [BoxGroup("Dependencies")]

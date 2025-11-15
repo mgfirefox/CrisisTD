@@ -10,7 +10,7 @@ namespace Mgfirefox.CrisisTd
         [SerializeField]
         [BoxGroup("Dependencies")]
         [Required]
-        private Model obstacleModel;
+        private ModelComponent obstacleModel;
 
         [SerializeField]
         [BoxGroup("Dependencies")]
@@ -22,7 +22,7 @@ namespace Mgfirefox.CrisisTd
         [Required]
         private BezierSegmentFolder bezierSegmentFolder;
 
-        protected IModelObject ObstacleModel => obstacleModel;
+        protected IModelComponent ObstacleModel => obstacleModel;
 
         public Pose PlayerSpawnPose =>
             new(playerSpawn.transform.position, playerSpawn.transform.rotation);

@@ -2,7 +2,7 @@
 
 namespace Mgfirefox.CrisisTd
 {
-    public interface IModelObject : IUnitySceneObject
+    public interface IModelComponent : IComponent
     {
         int Layer { get; }
         LayerMask CollisionLayerMask { get; }

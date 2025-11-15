@@ -1,6 +1,6 @@
 ﻿namespace Mgfirefox.CrisisTd
 {
-    public interface IColliderFolder : ISceneFolder<ICollider>
+    public interface IColliderFolder : ISceneFolder<IColliderComponent>
     {
     }
 }

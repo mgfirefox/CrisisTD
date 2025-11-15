@@ -2,7 +2,7 @@
 
 namespace Mgfirefox.CrisisTd
 {
-    public interface ICollider : IUnitySceneObject
+    public interface IColliderComponent : IComponent
     {
         int Layer { get; set; }
 

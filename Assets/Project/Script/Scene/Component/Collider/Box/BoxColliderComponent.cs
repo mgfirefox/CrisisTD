@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Mgfirefox.CrisisTd
 {
-    public class BoxCollider : AbstractCollider<UnityEngine.BoxCollider>, IBoxCollider
+    public class BoxColliderComponent : AbstractColliderComponent<UnityEngine.BoxCollider>, IBoxColliderComponent
     {
         [SerializeField]
         [BoxGroup("BoxCollider")]

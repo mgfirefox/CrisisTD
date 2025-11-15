@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Mgfirefox.CrisisTd
 {
-    public abstract class AbstractCollider : AbstractUnitySceneObject, ICollider
+    public abstract class AbstractColliderComponent : AbstractComponent, IColliderComponent
     {
         public abstract int Layer { get; set; }
 
@@ -12,7 +12,7 @@ namespace Mgfirefox.CrisisTd
         public abstract bool IsPositionWithin(Vector3 position, float epsilon);
     }
 
-    public abstract class AbstractCollider<TCollider> : AbstractCollider
+    public abstract class AbstractColliderComponent<TCollider> : AbstractColliderComponent
         where TCollider : Collider
     {
         [SerializeField]

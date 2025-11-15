@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Mgfirefox.CrisisTd
 {
-    public class Model : AbstractUnitySceneObject, IModelObject
+    public class ModelComponent : AbstractComponent, IModelComponent
     {
         [SerializeField]
         [BoxGroup("Dependencies")]
@@ -42,7 +42,7 @@ namespace Mgfirefox.CrisisTd
 
         public void Show()
         {
-            foreach (IMesh mesh in meshFolder.Children)
+            foreach (IMeshComponent mesh in meshFolder.Children)
             {
                 mesh.Show();
             }
@@ -52,7 +52,7 @@ namespace Mgfirefox.CrisisTd
 
         public void Hide()
         {
-            foreach (IMesh mesh in meshFolder.Children)
+            foreach (IMeshComponent mesh in meshFolder.Children)
             {
                 mesh.Hide();
             }
@@ -71,7 +71,7 @@ namespace Mgfirefox.CrisisTd
 
             colliderFolder.Initialize();
 
-            foreach (ICollider collider in colliderFolder.Children)
+            foreach (IColliderComponent collider in colliderFolder.Children)
             {
                 collider.Layer = layer;
             }

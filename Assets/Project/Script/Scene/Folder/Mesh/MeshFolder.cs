@@ -1,6 +1,6 @@
 ﻿namespace Mgfirefox.CrisisTd
 {
-    public class MeshFolder : AbstractSceneFolder<IMesh>, IMeshFolder
+    public class MeshFolder : AbstractSceneFolder<IMeshComponent>, IMeshFolder
     {
     }
 }

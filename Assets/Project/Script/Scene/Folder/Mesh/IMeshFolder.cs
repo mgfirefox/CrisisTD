@@ -1,6 +1,6 @@
 ﻿namespace Mgfirefox.CrisisTd
 {
-    public interface IMeshFolder : ISceneFolder<IMesh>
+    public interface IMeshFolder : ISceneFolder<IMeshComponent>
     {
     }
 }
