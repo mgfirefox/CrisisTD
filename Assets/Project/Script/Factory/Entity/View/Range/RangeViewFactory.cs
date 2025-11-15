@@ -73,6 +73,7 @@ namespace Mgfirefox.CrisisTd
                 IEnemyTargetRangeView view =
                     ParentLifetimeScope.Container.Instantiate(enemyTargetViewPrefab);
                 view.Initialize();
+                
                 view.Radius = attackTowerActionDataConfiguration.Range;
 
                 parent.AddChild(view);
@@ -95,6 +96,7 @@ namespace Mgfirefox.CrisisTd
                 ITowerTargetRangeView view =
                     ParentLifetimeScope.Container.Instantiate(towerTargetViewPrefab);
                 view.Initialize();
+                
                 view.Radius = supportTowerActionDataConfiguration.Range;
 
                 parent.AddChild(view);
