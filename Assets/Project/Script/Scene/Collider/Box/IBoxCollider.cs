@@ -8,7 +8,7 @@ namespace Mgfirefox.CrisisTd
         float Length { get; set; }
         float Height { get; set; }
         float Width { get; set; }
-        
+
         void SetSize(float length, float height, float width);
     }
 }

@@ -11,11 +11,7 @@ namespace Mgfirefox.CrisisTd
         [ReadOnly]
         private float radius;
 
-        public virtual float Radius
-        {
-            get => radius;
-            set => radius = value;
-        }
+        public virtual float Radius { get => radius; set => radius = value; }
 
         public void OnDrawGizmos()
         {
@@ -60,7 +56,7 @@ namespace Mgfirefox.CrisisTd
             set
             {
                 base.Radius = value;
-                
+
                 if (IsDestroyed)
                 {
                     return;
@@ -74,11 +70,11 @@ namespace Mgfirefox.CrisisTd
 
         public event Action<TITargetView> TargetEntered;
         public event Action<TITargetView> TargetExited;
-        
+
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            
+
             hitbox.Initialize();
 
             hitbox.Height = Constant.rangeHeight;
@@ -91,9 +87,9 @@ namespace Mgfirefox.CrisisTd
         {
             hitbox.TargetEntered -= OnHitboxTargetEntered;
             hitbox.TargetExited -= OnHitboxTargetExited;
-            
+
             hitbox.Destroy();
-            
+
             base.OnDestroying();
         }
 

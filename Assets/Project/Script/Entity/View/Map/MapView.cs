@@ -11,7 +11,7 @@ namespace Mgfirefox.CrisisTd
         [BoxGroup("Dependencies")]
         [Required]
         private Model obstacleModel;
-        
+
         [SerializeField]
         [BoxGroup("Dependencies")]
         [Required]
@@ -21,7 +21,7 @@ namespace Mgfirefox.CrisisTd
         [BoxGroup("Dependencies")]
         [Required]
         private BezierSegmentFolder bezierSegmentFolder;
-        
+
         protected IModelObject ObstacleModel => obstacleModel;
 
         public Pose PlayerSpawnPose =>
@@ -121,7 +121,7 @@ namespace Mgfirefox.CrisisTd
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            
+
             obstacleModel.Initialize();
 
             bezierSegmentFolder.Initialize();
@@ -130,7 +130,7 @@ namespace Mgfirefox.CrisisTd
         protected override void OnDestroying()
         {
             bezierSegmentFolder.Destroy();
-            
+
             obstacleModel.Destroy();
 
             base.OnDestroying();

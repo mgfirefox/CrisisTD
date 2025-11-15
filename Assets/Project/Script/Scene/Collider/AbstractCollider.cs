@@ -19,12 +19,12 @@ namespace Mgfirefox.CrisisTd
         [BoxGroup("Dependencies")]
         [Required]
         private new TCollider collider;
-        
+
         [SerializeField]
         [BoxGroup("Collider")]
         [ReadOnly]
         private int layer;
-        
+
         protected TCollider Collider => collider;
 
         public override int Layer
@@ -42,7 +42,7 @@ namespace Mgfirefox.CrisisTd
                 collider.gameObject.layer = layer;
             }
         }
-        
+
         public override Vector3 GetClosestPosition(Vector3 position)
         {
             return collider.ClosestPoint(position);

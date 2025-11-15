@@ -2,7 +2,8 @@
 
 namespace Mgfirefox.CrisisTd
 {
-    public abstract class AbstractBoxPhysicalHitboxView : AbstractPhysicalHitboxView<IBoxCollider, BoxCollider>,
+    public abstract class
+        AbstractBoxPhysicalHitboxView : AbstractPhysicalHitboxView<IBoxCollider, BoxCollider>,
         IBoxPhysicalHitboxView
     {
         public Vector3 Size { get => Collider.Size; set => Collider.Size = value; }
@@ -11,8 +12,9 @@ namespace Mgfirefox.CrisisTd
         public float Width { get => Collider.Width; set => Collider.Width = value; }
     }
 
-    public abstract class
-        AbstractBoxPhysicalHitboxView<TITargetView> : AbstractPhysicalHitboxView<IBoxCollider, BoxCollider, TITargetView>, IBoxPhysicalHitboxView<TITargetView>
+    public abstract class AbstractBoxPhysicalHitboxView<TITargetView> :
+        AbstractPhysicalHitboxView<IBoxCollider, BoxCollider, TITargetView>,
+        IBoxPhysicalHitboxView<TITargetView>
         where TITargetView : class, IView
     {
         public Vector3 Size { get => Collider.Size; set => Collider.Size = value; }

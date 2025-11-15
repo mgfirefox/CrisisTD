@@ -9,11 +9,12 @@ namespace Mgfirefox.CrisisTd
         [SerializeField]
         [BoxGroup("Dependencies")]
         private Model model;
-        
+
         protected IModelObject Model => model;
-        
+
         public int Layer => model?.Layer ?? gameObject.layer;
-        public LayerMask CollisionLayerMask => model?.CollisionLayerMask ?? LayerMaskUtility.GetCollisionLayerMask(gameObject.layer);
+        public LayerMask CollisionLayerMask =>
+            model?.CollisionLayerMask ?? LayerMaskUtility.GetCollisionLayerMask(gameObject.layer);
 
         public Vector3 PivotPoint => model?.PivotPoint ?? Vector3.zero;
 
@@ -45,18 +46,18 @@ namespace Mgfirefox.CrisisTd
 
             OnHiding();
         }
-        
+
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            
+
             model?.Initialize();
         }
 
         protected override void OnDestroying()
         {
             model?.Destroy();
-            
+
             base.OnDestroying();
         }
 

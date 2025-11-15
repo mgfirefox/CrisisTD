@@ -50,10 +50,26 @@ namespace Mgfirefox.CrisisTd
             }
         }
 
-        public Vector3 Size { get => boxPhysicalHitbox.Size; set => boxPhysicalHitbox.Size = value; }
-        public float Length { get => boxPhysicalHitbox.Length; set => boxPhysicalHitbox.Length = value; }
-        public float Height { get => boxPhysicalHitbox.Height; set => boxPhysicalHitbox.Height = value; }
-        public float Width { get => boxPhysicalHitbox.Width; set => boxPhysicalHitbox.Width = value; }
+        public Vector3 Size
+        {
+            get => boxPhysicalHitbox.Size;
+            set => boxPhysicalHitbox.Size = value;
+        }
+        public float Length
+        {
+            get => boxPhysicalHitbox.Length;
+            set => boxPhysicalHitbox.Length = value;
+        }
+        public float Height
+        {
+            get => boxPhysicalHitbox.Height;
+            set => boxPhysicalHitbox.Height = value;
+        }
+        public float Width
+        {
+            get => boxPhysicalHitbox.Width;
+            set => boxPhysicalHitbox.Width = value;
+        }
 
         public Vector3 GetClosestPosition(Vector3 position)
         {
@@ -89,14 +105,14 @@ namespace Mgfirefox.CrisisTd
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            
+
             boxPhysicalHitbox.Initialize();
         }
 
         protected override void OnDestroying()
         {
             boxPhysicalHitbox.Destroy();
-            
+
             base.OnDestroying();
         }
     }

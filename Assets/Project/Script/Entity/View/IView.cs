@@ -7,7 +7,7 @@ namespace Mgfirefox.CrisisTd
     {
         int Layer { get; }
         LayerMask CollisionLayerMask { get; }
-        
+
         Vector3 PivotPoint { get; }
 
         bool IsHidden { get; }

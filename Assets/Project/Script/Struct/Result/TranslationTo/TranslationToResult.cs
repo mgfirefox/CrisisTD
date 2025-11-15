@@ -8,7 +8,7 @@ namespace Mgfirefox.CrisisTd
         {
             position = Vector3.zero,
         };
-        
+
         public Vector3 position;
         public float travelledDistance;
 

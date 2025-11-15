@@ -16,7 +16,7 @@ namespace Mgfirefox.CrisisTd
             set
             {
                 size = value;
-            
+
                 if (IsDestroyed)
                 {
                     return;

@@ -1,6 +1,7 @@
 namespace Mgfirefox.CrisisTd
 {
-    public class TowerTargetRangeView : AbstractRangeView<ITowerView, TowerTargetBoxPhysicalHitboxView>, ITowerTargetRangeView
+    public class TowerTargetRangeView :
+        AbstractRangeView<ITowerView, TowerTargetBoxPhysicalHitboxView>, ITowerTargetRangeView
     {
     }
 }

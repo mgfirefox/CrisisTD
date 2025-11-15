@@ -11,7 +11,8 @@ namespace Mgfirefox.CrisisTd
         public abstract bool IsPositionWithin(Vector3 position, float epsilon);
     }
 
-    public abstract class AbstractPhysicalHitboxView<TICollider, TCollider> : AbstractPhysicalHitboxView
+    public abstract class
+        AbstractPhysicalHitboxView<TICollider, TCollider> : AbstractPhysicalHitboxView
         where TICollider : class, ICollider
         where TCollider : AbstractCollider, TICollider
     {
@@ -33,9 +34,8 @@ namespace Mgfirefox.CrisisTd
         }
     }
 
-    public abstract class
-        AbstractPhysicalHitboxView<TICollider, TCollider, TITargetView> : AbstractPhysicalHitboxView<TICollider, TCollider>,
-        IPhysicalHitboxView<TITargetView>
+    public abstract class AbstractPhysicalHitboxView<TICollider, TCollider, TITargetView> :
+        AbstractPhysicalHitboxView<TICollider, TCollider>, IPhysicalHitboxView<TITargetView>
         where TICollider : class, ICollider
         where TCollider : AbstractCollider, TICollider
         where TITargetView : class, IView
