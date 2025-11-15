@@ -21,7 +21,8 @@ namespace Mgfirefox.CrisisTd
         private void InitializeChildTransforms()
         {
             childTransforms.AddRange(Transform.GetComponentsInChildren<Transform>()
-                .Where(childTransform => childTransform.parent == Transform));
+                .Where(childTransform => childTransform.parent == Transform &&
+                                         !childTransforms.Contains(childTransform)));
         }
 
         protected override void OnDestroying()
@@ -77,6 +78,11 @@ namespace Mgfirefox.CrisisTd
                 if (childTransform.TryGetComponent(out TIItem item))
                 {
                     item.Initialize();
+
+                    if (children.Contains(item))
+                    {
+                        continue;
+                    }
 
                     children.Add(item);
                 }
