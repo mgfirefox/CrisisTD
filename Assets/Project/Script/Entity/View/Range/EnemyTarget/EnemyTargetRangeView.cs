@@ -1,6 +1,6 @@
 namespace Mgfirefox.CrisisTd
 {
-    public class EnemyTargetRangeView : AbstractRangeView<IEnemyView>, IEnemyTargetRangeView
+    public class EnemyTargetRangeView : AbstractRangeView<IEnemyView, EnemyTargetBoxPhysicalHitboxView>, IEnemyTargetRangeView
     {
     }
 }

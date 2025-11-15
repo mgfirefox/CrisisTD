@@ -7,31 +7,14 @@ namespace Mgfirefox.CrisisTd
     public abstract class AbstractRangeView : AbstractView, IRangeView
     {
         [SerializeField]
-        [BoxGroup("Dependencies")]
-        [Required]
-        private new BoxCollider collider;
-
-        [SerializeField]
         [BoxGroup("Range")]
         [ReadOnly]
         private float radius;
 
-        public float Radius
+        public virtual float Radius
         {
             get => radius;
-            set
-            {
-                radius = value;
-
-                if (IsDestroyed)
-                {
-                    return;
-                }
-
-                float diameter = 2 * radius;
-
-                collider.Size = new Vector3(diameter, collider.Height, diameter);
-            }
+            set => radius = value;
         }
 
         public void OnDrawGizmos()
@@ -59,50 +42,69 @@ namespace Mgfirefox.CrisisTd
             Gizmos.color = oldColor;
             Gizmos.matrix = oldMatrix;
         }
+    }
 
+    public abstract class AbstractRangeView<TITargetView, THitboxView> : AbstractRangeView,
+        IRangeView<TITargetView>
+        where TITargetView : class, IView
+        where THitboxView : AbstractBoxPhysicalHitboxView<TITargetView>
+    {
+        [SerializeField]
+        [BoxGroup("Dependencies")]
+        [Required]
+        private THitboxView hitbox;
+
+        public override float Radius
+        {
+            get => base.Radius;
+            set
+            {
+                base.Radius = value;
+                
+                if (IsDestroyed)
+                {
+                    return;
+                }
+
+                float diameter = 2 * value;
+
+                hitbox.Size = new Vector3(diameter, hitbox.Height, diameter);
+            }
+        }
+
+        public event Action<TITargetView> TargetEntered;
+        public event Action<TITargetView> TargetExited;
+        
         protected override void OnInitialized()
         {
             base.OnInitialized();
+            
+            hitbox.Initialize();
 
-            collider.Height = Constant.rangeHeight;
-        }
-    }
+            hitbox.Height = Constant.rangeHeight;
 
-    public abstract class AbstractRangeView<TITargetView> : AbstractRangeView,
-        IRangeView<TITargetView>
-        where TITargetView : class, IView
-    {
-        public event Action<TITargetView> TargetEntered;
-        public event Action<TITargetView> TargetExited;
-
-        public void OnTriggerEnter(Collider other)
-        {
-            if (other.TryGetComponentInParent(out TITargetView target))
-            {
-                TargetEntered?.Invoke(target);
-
-                return;
-            }
-
-            // TODO: Change Warning
-            Debug.LogWarning(
-                $"Object {other.gameObject} is missing Component of type {typeof(TITargetView)}.",
-                other.gameObject);
+            hitbox.TargetEntered += OnHitboxTargetEntered;
+            hitbox.TargetExited += OnHitboxTargetExited;
         }
 
-        public void OnTriggerExit(Collider other)
+        protected override void OnDestroying()
         {
-            if (other.TryGetComponentInParent(out TITargetView target))
-            {
-                TargetExited?.Invoke(target);
+            hitbox.TargetEntered -= OnHitboxTargetEntered;
+            hitbox.TargetExited -= OnHitboxTargetExited;
+            
+            hitbox.Destroy();
+            
+            base.OnDestroying();
+        }
 
-                return;
-            }
+        private void OnHitboxTargetEntered(TITargetView target)
+        {
+            TargetEntered?.Invoke(target);
+        }
 
-            // TODO: Change Warning
-            Debug.LogWarning(
-                $"Object {other.gameObject} is missing Component of type {typeof(TITargetView)}.",
-                other.gameObject);
+        private void OnHitboxTargetExited(TITargetView target)
+        {
+            TargetExited?.Invoke(target);
         }
     }
 }
