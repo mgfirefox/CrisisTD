@@ -78,7 +78,7 @@ namespace Mgfirefox.CrisisTd
             var scale = new Vector3(1.0f, Constant.epsilon, 1.0f);
 
             Gizmos.color = Color.red;
-            Gizmos.matrix = Matrix4x4.TRS(position, orientation, scale);
+            Gizmos.matrix = Matrix4x4.TRS(position, orientation.normalized, scale);
 
             Gizmos.DrawCube(Vector3.zero, Size);
 
