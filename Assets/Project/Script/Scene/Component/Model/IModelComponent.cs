@@ -4,7 +4,7 @@ namespace Mgfirefox.CrisisTd
 {
     public interface IModelComponent : IComponent
     {
-        int Layer { get; }
+        int Layer { get; set; }
         LayerMask CollisionLayerMask { get; }
 
         Vector3 PivotPoint { get; }

@@ -17,7 +17,7 @@ namespace Mgfirefox.CrisisTd
         [SerializeField]
         [BoxGroup("Tower")]
         private LevelDataConfigurationDictionary levelDataConfigurations = new();
-
+        
         [SerializeField]
         [BoxGroup("Tower")]
         [Dropdown("validPriorities")]

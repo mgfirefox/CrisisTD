@@ -12,6 +12,8 @@ namespace Mgfirefox.CrisisTd
         private readonly ITowerTransformService transformService;
 
         private readonly ITowerAllEffectService effectService;
+        
+        private readonly ITowerModelService modelService;
 
         private readonly ILevelService levelService;
 
@@ -24,11 +26,12 @@ namespace Mgfirefox.CrisisTd
 
         [Inject]
         public TowerPresenter(ITowerView view, ITowerTransformService transformService,
-            ITowerAllEffectService effectService, ILevelService levelService,
+            ITowerAllEffectService effectService, ITowerModelService modelService, ILevelService levelService,
             ITowerActionFactory actionFactory, Scene scene) : base(view, scene)
         {
             this.transformService = transformService;
             this.effectService = effectService;
+            this.modelService = modelService;
             this.levelService = levelService;
             this.actionFactory = actionFactory;
         }
@@ -36,6 +39,8 @@ namespace Mgfirefox.CrisisTd
         public override void OnSceneStarted()
         {
             base.OnSceneStarted();
+            
+            modelService.Changed += OnModelChanged;
 
             levelService.Changed += OnLevelChanged;
 
@@ -51,6 +56,8 @@ namespace Mgfirefox.CrisisTd
         public override void OnSceneFinished()
         {
             base.OnSceneFinished();
+            
+            modelService.Changed -= OnModelChanged;
 
             levelService.Changed -= OnLevelChanged;
 
@@ -95,6 +102,8 @@ namespace Mgfirefox.CrisisTd
             effectService.Initialize(data.AllEffectServiceData);
 
             View.RangeEffect = effectService.RangeEffect;
+            
+            modelService.Initialize(data.ModelServiceData);
 
             levelService.Initialize(data.LevelServiceData);
 
@@ -127,6 +136,8 @@ namespace Mgfirefox.CrisisTd
             DestroyActions();
 
             levelService.Destroy();
+            
+            modelService.Destroy();
 
             effectService.Destroy();
 
@@ -147,6 +158,11 @@ namespace Mgfirefox.CrisisTd
         private void OnEffectRangeChanged(Effect effect)
         {
             View.RangeEffect = effect.Clone() as Effect;
+        }
+
+        private void OnModelChanged(IModelComponent model)
+        {
+            View.Model = model;
         }
 
         private void OnLevelChanged(LevelItem item)

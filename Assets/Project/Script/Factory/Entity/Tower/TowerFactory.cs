@@ -33,9 +33,12 @@ namespace Mgfirefox.CrisisTd
 
                 var view = lifetimeScopeContainer.Resolve<ITowerView>();
 
+                IDictionary<BranchLevel, IModelComponent> models =
+                    CreateModels(lifetimeScopeContainer, view, configuration.ModelPrefabs);
+
                 TowerData data = TowerData.CreateBuilder()
                     .FromConfiguration(configuration.DataConfiguration).WithId(id)
-                    .WithPosition(position).WithOrientation(orientation).Build();
+                    .WithPosition(position).WithOrientation(orientation).WithModels(models).Build();
 
                 var presenter = lifetimeScopeContainer.Resolve<ITowerPresenter>();
                 presenter.Initialize(data);
@@ -67,6 +70,24 @@ namespace Mgfirefox.CrisisTd
             view = null;
 
             return false;
+        }
+
+        private IDictionary<BranchLevel, IModelComponent> CreateModels(IObjectResolver lifetimeScopeContainer, ITowerView view,
+            IDictionary<BranchLevel, ModelComponent> prefabs)
+        {
+            IDictionary<BranchLevel, IModelComponent> models = new Dictionary<BranchLevel, IModelComponent>();
+            
+            foreach ((BranchLevel level, ModelComponent prefab) in prefabs)
+            {
+                IModelComponent model = lifetimeScopeContainer.Instantiate(prefab);
+                model.Initialize();
+                
+                view.AddChild(model);
+                
+                models[level] = model;
+            }
+            
+            return models;
         }
     }
 }

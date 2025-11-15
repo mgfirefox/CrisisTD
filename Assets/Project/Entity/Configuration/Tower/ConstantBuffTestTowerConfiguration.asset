@@ -14,3 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifetimeScopePrefab: {fileID: 6818799203605293115, guid: 87ba8e40cfdc830409dd4cafd483f123, type: 3}
   dataConfiguration: {fileID: 11400000, guid: ab8d9ffe871d8404b8524af913892f26, type: 2}
+  modelPrefabs:
+    m_keys:
+    - type: 100
+      index: 0
+    m_values:
+    - {fileID: 1967437810007754031, guid: c0f17cca43388264596cd9de6f92708a, type: 3}

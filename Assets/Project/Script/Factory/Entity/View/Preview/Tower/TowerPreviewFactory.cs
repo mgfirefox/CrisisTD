@@ -37,21 +37,38 @@ namespace Mgfirefox.CrisisTd
                     ParentLifetimeScope.Container.Instantiate(previewViewPrefab);
                 view.Initialize();
 
-                foreach (AbstractTowerActionDataConfiguration actionDataConfiguration in
-                         configuration.DataConfiguration.LevelDataConfigurations[new BranchLevel()]
-                             .TowerActionDataConfigurations)
+                var level = new BranchLevel();
+                
+                if (configuration.DataConfiguration.LevelDataConfigurations.TryGetValue(
+                        level, out LevelDataConfiguration levelDataConfiguration))
                 {
-                    if (rangeViewFactory.TryCreate(configuration.DataConfiguration.Type,
-                            actionDataConfiguration, view, out IRangeView rangeView))
+                    foreach (AbstractTowerActionDataConfiguration actionDataConfiguration in
+                             levelDataConfiguration.TowerActionDataConfigurations)
                     {
-                        view.AddChild(rangeView);
+                        if (rangeViewFactory.TryCreate(configuration.DataConfiguration.Type,
+                                actionDataConfiguration, view, out IRangeView rangeView))
+                        {
+                            view.AddChild(rangeView);
+                        }
+                        else
+                        {
+                            // TODO: Change Warning
+                            Debug.LogWarning(
+                                $"Failed to create Object of type {typeof(IRangeView)} with ID \"${configuration.DataConfiguration.Type}\"");
+                        }
                     }
-                    else
-                    {
-                        // TODO: Change Warning
-                        Debug.LogWarning(
-                            $"Failed to create Object of type {typeof(IRangeView)} with ID \"${configuration.DataConfiguration.Type}\"");
-                    }
+                }
+
+                if (configuration.ModelPrefabs.TryGetValue(level, out ModelComponent modelPrefab))
+                {
+                    IModelComponent model = ParentLifetimeScope.Container.Instantiate(modelPrefab);
+                    model.Initialize();
+                    
+                    model.Layer = 0;
+                    
+                    view.AddChild(model);
+
+                    view.Model = model;
                 }
 
                 return view;

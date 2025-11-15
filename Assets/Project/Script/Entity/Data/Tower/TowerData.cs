@@ -40,16 +40,18 @@ namespace Mgfirefox.CrisisTd
                 foreach ((BranchLevel level, LevelDataConfiguration levelDataConfiguration) in
                          levelDataConfigurations)
                 {
+                    var levelData = new LevelItem
+                    {
+                        Level = level,
+                    };
+                    
                     foreach (AbstractTowerActionDataConfiguration actionDataConfiguration in
                              levelDataConfiguration.TowerActionDataConfigurations)
                     {
                         if (actionDataFactory.TryCreate(type, actionDataConfiguration,
                                 data.Priority, out AbstractTowerActionData actionData))
                         {
-                            var levelData = new LevelItem();
                             levelData.ActionDataList.Add(actionData);
-
-                            data.LevelServiceData.Items[level] = levelData;
                         }
                         else
                         {
@@ -58,6 +60,8 @@ namespace Mgfirefox.CrisisTd
                                 $"Failed to create Object of type {typeof(AbstractTowerActionData)} with ID \"${type}\"");
                         }
                     }
+                    
+                    data.LevelServiceData.Items[level] = levelData;
                 }
 
                 return this;
@@ -97,6 +101,13 @@ namespace Mgfirefox.CrisisTd
 
                 return this;
             }
+
+            public Builder WithModels(IDictionary<BranchLevel, IModelComponent> models)
+            {
+                data.ModelServiceData.Models = models;
+                
+                return this;
+            }
         }
 
         public TowerId Id { get; set; } = TowerId.Undefined;
@@ -110,6 +121,8 @@ namespace Mgfirefox.CrisisTd
         public TowerAllEffectServiceData AllEffectServiceData { get; set; } = new();
 
         public LevelServiceData LevelServiceData { get; set; } = new();
+        
+        public TowerModelServiceData ModelServiceData { get; set; } = new();
 
         public static Builder CreateBuilder()
         {

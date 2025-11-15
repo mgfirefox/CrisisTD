@@ -33,7 +33,36 @@ namespace Mgfirefox.CrisisTd
         [ReadOnly]
         private bool isHidden;
 
-        public int Layer => layer;
+        private int ColliderLayer
+        {
+            set
+            {
+                foreach (IColliderComponent collider in colliderFolder.Children)
+                {
+                    collider.Layer = value;
+                }
+            }
+        }
+
+        public int Layer
+        {
+            get => layer;
+            set
+            {
+                layer = value;
+                
+                collisionLayerMask = LayerMaskUtility.GetCollisionLayerMask(layer);
+
+                if (IsDestroyed)
+                {
+                    return;
+                }
+                
+                gameObject.layer = layer;
+                
+                ColliderLayer = layer;
+            }
+        }
         public LayerMask CollisionLayerMask => collisionLayerMask;
 
         public Vector3 PivotPoint => pivotPoint;
@@ -64,19 +93,13 @@ namespace Mgfirefox.CrisisTd
         {
             base.OnInitialized();
 
-            layer = gameObject.layer;
-            collisionLayerMask = LayerMaskUtility.GetCollisionLayerMask(gameObject.layer);
+            colliderFolder.Initialize();
+            
+            Layer = gameObject.layer;
+            
+            meshFolder.Initialize();
 
             pivotPoint = Transform.localPosition;
-
-            colliderFolder.Initialize();
-
-            foreach (IColliderComponent collider in colliderFolder.Children)
-            {
-                collider.Layer = layer;
-            }
-
-            meshFolder.Initialize();
         }
 
         protected override void OnDestroying()

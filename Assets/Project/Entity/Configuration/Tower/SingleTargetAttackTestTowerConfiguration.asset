@@ -14,3 +14,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifetimeScopePrefab: {fileID: 5460296232127619149, guid: bd416807f4151104f976f10df46e2a34, type: 3}
   dataConfiguration: {fileID: 11400000, guid: 3b25c188b1294f143be8474ece1cf571, type: 2}
+  modelPrefabs:
+    m_keys:
+    - type: 100
+      index: 0
+    - type: 100
+      index: 1
+    - type: 100
+      index: 2
+    - type: 100
+      index: 3
+    - type: 200
+      index: 0
+    - type: 200
+      index: 1
+    - type: 200
+      index: 2
+    - type: 200
+      index: 3
+    - type: 300
+      index: 0
+    - type: 300
+      index: 1
+    - type: 300
+      index: 2
+    - type: 300
+      index: 3
+    m_values:
+    - {fileID: 1967437810007754031, guid: c0f17cca43388264596cd9de6f92708a, type: 3}
+    - {fileID: 1967437810007754031, guid: c0f17cca43388264596cd9de6f92708a, type: 3}
+    - {fileID: 1967437810007754031, guid: c0f17cca43388264596cd9de6f92708a, type: 3}
+    - {fileID: 1967437810007754031, guid: c0f17cca43388264596cd9de6f92708a, type: 3}
+    - {fileID: 1967437810007754031, guid: c0f17cca43388264596cd9de6f92708a, type: 3}
+    - {fileID: 1967437810007754031, guid: c0f17cca43388264596cd9de6f92708a, type: 3}
+    - {fileID: 1967437810007754031, guid: c0f17cca43388264596cd9de6f92708a, type: 3}
+    - {fileID: 1967437810007754031, guid: c0f17cca43388264596cd9de6f92708a, type: 3}
+    - {fileID: 1967437810007754031, guid: c0f17cca43388264596cd9de6f92708a, type: 3}
+    - {fileID: 1967437810007754031, guid: c0f17cca43388264596cd9de6f92708a, type: 3}
+    - {fileID: 1967437810007754031, guid: c0f17cca43388264596cd9de6f92708a, type: 3}
+    - {fileID: 1967437810007754031, guid: c0f17cca43388264596cd9de6f92708a, type: 3}
