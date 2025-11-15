@@ -7,6 +7,7 @@ namespace Mgfirefox.CrisisTd
         Transform Transform { get; }
         Transform Parent { get; }
 
+        bool IsInitialized { get; }
         bool IsDestroying { get; }
 
         void Initialize();
