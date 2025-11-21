@@ -9,10 +9,6 @@ namespace Mgfirefox.CrisisTd
         AbstractAttackAction<ArcAngleAttackActionData, IArcAngleAttackActionView>,
         IArcAngleAttackAction
     {
-        private readonly ITowerTransformService transformService;
-
-        private readonly ITowerView towerView;
-
         private readonly IEnemyTargetRayView rayView;
 
         public float ArcAngle { get; private set; }
@@ -23,19 +19,19 @@ namespace Mgfirefox.CrisisTd
         [Inject]
         public ArcAngleAttackAction(IArcAngleAttackActionView view,
             IEnemyTargetService targetService, ICooldownService cooldownService,
-            ITowerTransformService transformService, IEnemyTargetRayView rayView,
-            ITowerView towerView, Scene scene) : base(view, targetService, cooldownService, scene)
+            ITowerTransformService transformService, ITowerAnimationService animationService, IEnemyTargetRayView rayView,
+            Scene scene) : base(view, targetService, cooldownService, transformService, animationService, scene)
         {
-            this.transformService = transformService;
             this.rayView = rayView;
-            this.towerView = towerView;
         }
 
         protected override void PerformAttack(IReadOnlyList<IEnemyView> targets)
         {
+            base.PerformAttack(targets);
+            
             IEnemyView target = targets[0];
 
-            Vector3 shotPosition = transformService.Position + towerView.PivotPoint;
+            Vector3 shotPosition = TransformService.PivotPointPosition;
 
             Vector3 targetPosition = target.Position + target.PivotPoint;
 

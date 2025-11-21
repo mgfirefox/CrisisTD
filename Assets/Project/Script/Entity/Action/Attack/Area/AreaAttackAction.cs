@@ -17,14 +17,16 @@ namespace Mgfirefox.CrisisTd
 
         [Inject]
         public AreaAttackAction(IAreaAttackActionView view, IEnemyTargetService targetService,
-            ICooldownService cooldownService, IEnemyTargetSphereLogicalHitboxView sphereHitboxView,
-            Scene scene) : base(view, targetService, cooldownService, scene)
+            ICooldownService cooldownService, ITowerTransformService transformService, ITowerAnimationService animationService, IEnemyTargetSphereLogicalHitboxView sphereHitboxView,
+            Scene scene) : base(view, targetService, cooldownService, transformService, animationService, scene)
         {
             this.sphereHitboxView = sphereHitboxView;
         }
 
         protected override void PerformAttack(IReadOnlyList<IEnemyView> targets)
         {
+            base.PerformAttack(targets);
+            
             float epsilon = Scene.Settings.MathSettings.Epsilon;
 
             IEnemyView target = targets[0];

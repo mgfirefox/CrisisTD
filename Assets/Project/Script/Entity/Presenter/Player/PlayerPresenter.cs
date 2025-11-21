@@ -227,6 +227,7 @@ namespace Mgfirefox.CrisisTd
             base.OnInitialized(data);
 
             transformService.Initialize(data.TransformServiceData);
+            transformService.PivotPoint = View.PivotPoint;
 
             View.Position = transformService.Position;
             View.Orientation = transformService.Orientation;

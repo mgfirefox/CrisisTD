@@ -16,11 +16,11 @@ namespace Mgfirefox.CrisisTd
             LayerMask.GetMask("MapObstacle");
         public const int towerPlacementYawStepValue = 90;
 
-        public const float towerObstacleLength = 10.0f;
+        public const float towerObstacleLength = 3.0f;
         public const float towerObstacleHeight = rangeHeight;
-        public const float towerObstacleWidth = 20.0f;
+        public const float towerObstacleWidth = towerObstacleLength;
 
-        public const float routeSegmentTowerObstacleLength = 5.0f;
+        public const float routeSegmentTowerObstacleLength = 3.0f;
         public const float routeSegmentTowerObstacleHeight = rangeHeight;
         public const float routeSegmentTowerObstacleWidth = routeSegmentTowerObstacleLength;
 

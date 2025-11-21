@@ -14,8 +14,8 @@ namespace Mgfirefox.CrisisTd
 
         [Inject]
         public BurstAttackAction(IBurstAttackActionView view, IEnemyTargetService targetService,
-            [Key("Burst")] ICooldownService burstCooldownService, ICooldownService cooldownService,
-            Scene scene) : base(view, targetService, cooldownService, scene)
+            [Key("Burst")] ICooldownService burstCooldownService, ICooldownService cooldownService, ITowerTransformService transformService, ITowerAnimationService animationService,
+            Scene scene) : base(view, targetService, cooldownService, transformService, animationService, scene)
         {
             this.burstCooldownService = burstCooldownService;
         }
@@ -62,6 +62,8 @@ namespace Mgfirefox.CrisisTd
 
         protected override void PerformAttack(IReadOnlyList<IEnemyView> targets)
         {
+            base.PerformAttack(targets);
+            
             CooldownService.Update();
 
             View.Cooldown = CooldownService.Cooldown;

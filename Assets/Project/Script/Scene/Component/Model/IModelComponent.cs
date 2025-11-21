@@ -4,6 +4,8 @@ namespace Mgfirefox.CrisisTd
 {
     public interface IModelComponent : IComponent
     {
+        IAnimatorFolder AnimatorFolder { get; }
+
         int Layer { get; set; }
         LayerMask CollisionLayerMask { get; }
 

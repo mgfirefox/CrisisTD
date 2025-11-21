@@ -14,6 +14,7 @@ namespace Mgfirefox.CrisisTd
         private readonly ITowerAllEffectService effectService;
         
         private readonly ITowerModelService modelService;
+        private readonly ITowerAnimationService animationService;
 
         private readonly ILevelService levelService;
 
@@ -26,12 +27,13 @@ namespace Mgfirefox.CrisisTd
 
         [Inject]
         public TowerPresenter(ITowerView view, ITowerTransformService transformService,
-            ITowerAllEffectService effectService, ITowerModelService modelService, ILevelService levelService,
+            ITowerAllEffectService effectService, ITowerModelService modelService, ITowerAnimationService animationService, ILevelService levelService,
             ITowerActionFactory actionFactory, Scene scene) : base(view, scene)
         {
             this.transformService = transformService;
             this.effectService = effectService;
             this.modelService = modelService;
+            this.animationService = animationService;
             this.levelService = levelService;
             this.actionFactory = actionFactory;
         }
@@ -95,6 +97,7 @@ namespace Mgfirefox.CrisisTd
             View.Priority = priority;
 
             transformService.Initialize(data.TransformServiceData);
+            transformService.PivotPoint = View.PivotPoint;
 
             View.Position = transformService.Position;
             View.Orientation = transformService.Orientation;
@@ -104,6 +107,7 @@ namespace Mgfirefox.CrisisTd
             View.RangeEffect = effectService.RangeEffect;
             
             modelService.Initialize(data.ModelServiceData);
+            animationService.Initialize(data.AnimationServiceData);
 
             levelService.Initialize(data.LevelServiceData);
 
@@ -136,7 +140,8 @@ namespace Mgfirefox.CrisisTd
             DestroyActions();
 
             levelService.Destroy();
-            
+
+            animationService.Destroy();
             modelService.Destroy();
 
             effectService.Destroy();

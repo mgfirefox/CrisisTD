@@ -123,6 +123,7 @@ namespace Mgfirefox.CrisisTd
         public LevelServiceData LevelServiceData { get; set; } = new();
         
         public TowerModelServiceData ModelServiceData { get; set; } = new();
+        public TowerAnimationServiceData AnimationServiceData { get; set; } = new();
 
         public static Builder CreateBuilder()
         {

@@ -9,13 +9,15 @@ namespace Mgfirefox.CrisisTd
     {
         [Inject]
         public SingleTargetAttackAction(ISingleTargetAttackActionView view,
-            IEnemyTargetService targetService, ICooldownService cooldownService,
-            Scene scene) : base(view, targetService, cooldownService, scene)
+            IEnemyTargetService targetService, ICooldownService cooldownService, ITowerTransformService transformService, ITowerAnimationService animationService,
+            Scene scene) : base(view, targetService, cooldownService, transformService, animationService, scene)
         {
         }
 
         protected override void PerformAttack(IReadOnlyList<IEnemyView> targets)
         {
+            base.PerformAttack(targets);
+            
             IEnemyView target = targets[0];
             target.TakeDamage(Damage);
         }

@@ -7,6 +7,9 @@ namespace Mgfirefox.CrisisTd
         where TData : TransformServiceData
     {
         protected float Yaw { get; set; }
+        
+        public Vector3 PivotPoint { get; set; }
+        public Vector3 PivotPointPosition => Position + PivotPoint;
 
         public Vector3 Position { get; protected set; }
         public virtual Quaternion Orientation => Quaternion.Euler(0.0f, Yaw, 0.0f);

@@ -16,6 +16,7 @@ namespace Mgfirefox.CrisisTd
             builder.Register<TowerAllEffectService>(Lifetime.Singleton).AsImplementedInterfaces();
             
             builder.Register<TowerModelService>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<TowerAnimationService>(Lifetime.Singleton).AsImplementedInterfaces();
 
             builder.Register<LevelService>(Lifetime.Singleton).AsImplementedInterfaces();
 

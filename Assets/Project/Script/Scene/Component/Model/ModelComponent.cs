@@ -13,6 +13,16 @@ namespace Mgfirefox.CrisisTd
         [BoxGroup("Dependencies")]
         [Required]
         private MeshFolder meshFolder;
+        
+        [SerializeField]
+        [BoxGroup("Dependencies")]
+        [Required]
+        private AnimatorFolder animatorFolder;
+        
+        [SerializeField]
+        [BoxGroup("Dependencies")]
+        [Required]
+        private Transform pivotPoint;
 
         [SerializeField]
         [BoxGroup("Model")]
@@ -22,11 +32,6 @@ namespace Mgfirefox.CrisisTd
         [BoxGroup("Model")]
         [ReadOnly]
         private LayerMask collisionLayerMask;
-
-        [SerializeField]
-        [BoxGroup("Model")]
-        [ReadOnly]
-        private Vector3 pivotPoint;
 
         [SerializeField]
         [BoxGroup("Model")]
@@ -43,6 +48,8 @@ namespace Mgfirefox.CrisisTd
                 }
             }
         }
+        
+        public IAnimatorFolder AnimatorFolder => animatorFolder;
 
         public int Layer
         {
@@ -65,8 +72,18 @@ namespace Mgfirefox.CrisisTd
         }
         public LayerMask CollisionLayerMask => collisionLayerMask;
 
-        public Vector3 PivotPoint => pivotPoint;
-
+        public Vector3 PivotPoint
+        {
+            get
+            {
+                if (IsDestroyed)
+                {
+                    return Vector3.zero;
+                }
+                
+                return pivotPoint.localPosition;
+            }
+        }
         public bool IsHidden => isHidden;
 
         public void Show()
@@ -98,12 +115,14 @@ namespace Mgfirefox.CrisisTd
             Layer = gameObject.layer;
             
             meshFolder.Initialize();
-
-            pivotPoint = Transform.localPosition;
+            
+            animatorFolder.Initialize();
         }
 
         protected override void OnDestroying()
         {
+            animatorFolder.Destroy();
+            
             meshFolder.Destroy();
 
             colliderFolder.Destroy();
