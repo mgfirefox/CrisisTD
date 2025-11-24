@@ -38,11 +38,15 @@ namespace Mgfirefox.CrisisTd
                 {
                     return;
                 }
+                
+                AnimationService.SetBool(hasTargetBoolName, false);
 
                 ResetBurst();
 
                 return;
             }
+            
+            AnimationService.SetBool(hasTargetBoolName, true);
 
             PerformAttack(targets);
 
