@@ -52,6 +52,8 @@ MonoBehaviour:
   autoInjectGameObjects: []
   sceneSettings: {fileID: 11400000, guid: 0177e7b005aced142ae7eac3430bee51, type: 2}
   cameraView: {fileID: 2068798355109698813}
+  tracerPrefab: {fileID: 4810221804224670150, guid: 48b871c4760650f419897635c5e29a4a, type: 3}
+  explosionPrefab: {fileID: 1919362058621543658, guid: 1cbfaa430e4fec04cb547d950f7691b6, type: 3}
   baseUi: {fileID: 2538486524882843206}
   towerPlacementActionUi: {fileID: 2949551339735479760}
   towerInteractionActionUi: {fileID: 7863580495801187233}

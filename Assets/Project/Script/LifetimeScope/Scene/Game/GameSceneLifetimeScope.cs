@@ -17,7 +17,16 @@ namespace Mgfirefox.CrisisTd
         [BoxGroup("Dependencies")]
         [Required]
         private CameraView cameraView;
-
+        
+        [SerializeField]
+        [BoxGroup("Test Dependencies")]
+        [Required]
+        private Tracer tracerPrefab;
+        [SerializeField]
+        [BoxGroup("Test Dependencies")]
+        [Required]
+        private Explosion explosionPrefab;
+        
         [SerializeField]
         [BoxGroup("Ui")]
         [Required]
@@ -93,6 +102,8 @@ namespace Mgfirefox.CrisisTd
 
             RegisterUi(builder);
 
+            RegisterTest(builder);
+
             RegisterServices(builder);
             RegisterViews(builder);
             RegisterActions(builder);
@@ -123,6 +134,12 @@ namespace Mgfirefox.CrisisTd
             builder.RegisterComponent(baseUi).AsImplementedInterfaces();
             builder.RegisterComponent(towerPlacementActionUi).AsImplementedInterfaces();
             builder.RegisterComponent(towerInteractionActionUi).AsImplementedInterfaces();
+        }
+
+        private void RegisterTest(IContainerBuilder builder)
+        {
+            builder.RegisterInstance(tracerPrefab);
+            builder.RegisterInstance(explosionPrefab);
         }
 
         private void RegisterServices(IContainerBuilder builder)

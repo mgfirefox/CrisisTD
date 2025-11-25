@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 
 namespace Mgfirefox.CrisisTd
 {
@@ -9,6 +11,13 @@ namespace Mgfirefox.CrisisTd
         private readonly ITowerModelService modelService;
         
         private readonly IList<IAnimatorComponent> animators = new List<IAnimatorComponent>();
+
+        [Inject]
+        private TowerLifetimeScope lifetimeScope;
+        [Inject]
+        private Tracer tracerPrefab;
+        [Inject]
+        private Explosion explosionPrefab;
 
         [Inject]
         public TowerAnimationService(ITowerModelService modelService, Scene scene) : base(scene)
@@ -56,6 +65,19 @@ namespace Mgfirefox.CrisisTd
             {
                 animator.ActivateTrigger(name);
             }
+        }
+        
+        public void CreateTracer(Vector3 endPosition)
+        {
+            Tracer tracer = lifetimeScope.Container.Instantiate(tracerPrefab, animators[0].Transform.parent);
+            tracer.EndPosition = endPosition;
+        }
+        
+        public void CreateExplosion(Vector3 position, float radius)
+        {
+            Explosion explosion = lifetimeScope.Container.Instantiate(explosionPrefab, animators[0].Transform.parent);
+            explosion.Position = position;
+            explosion.Radius = radius;
         }
 
         protected override void OnDestroying()

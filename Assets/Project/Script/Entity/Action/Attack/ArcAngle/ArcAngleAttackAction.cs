@@ -64,6 +64,8 @@ namespace Mgfirefox.CrisisTd
                 {
                     arcAngleTarget.TakeDamage(Damage);
                 }
+                
+                AnimationService.CreateTracer(shotPosition + pelletTranslation);
 
                 Debug.DrawRay(shotPosition, pelletTranslation, Color.red, 1.0f);
             }

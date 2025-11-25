@@ -70,6 +70,8 @@ namespace Mgfirefox.CrisisTd
 
                 hitCount++;
             }
+            
+            AnimationService.CreateExplosion(areaPosition, OuterRadius);
 
             DebugUtility.DrawWireSphere(areaPosition, InnerRadius, Color.red, 0.5f);
             DebugUtility.DrawWireSphere(areaPosition, OuterRadius, Color.yellow, 0.5f);

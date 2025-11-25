@@ -19,6 +19,7 @@ namespace Mgfirefox.CrisisTd
             base.PerformAttack(targets);
             
             IEnemyView target = targets[0];
+            AnimationService.CreateTracer(target.Position + target.PivotPoint);
             target.TakeDamage(Damage);
         }
     }
