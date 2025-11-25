@@ -81,7 +81,7 @@ namespace Mgfirefox.CrisisTd
                     return Vector3.zero;
                 }
                 
-                return pivotPoint.localPosition;
+                return pivotPoint.localPosition * Transform.localScale.y;
             }
         }
         public bool IsHidden => isHidden;
