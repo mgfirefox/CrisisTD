@@ -26,26 +26,26 @@ namespace Mgfirefox.CrisisTd
 
             View.BurstCooldown = burstCooldownService.Cooldown;
 
-            if (!burstCooldownService.IsFinished)
-            {
-                return;
-            }
-
             IReadOnlyList<IEnemyView> targets = TargetService.Targets;
             if (targets.Count == 0)
             {
+                AnimationService.SetBool(hasTargetBoolName, false);
+
                 if (BurstShotCount == 0)
                 {
                     return;
                 }
-                
-                AnimationService.SetBool(hasTargetBoolName, false);
 
                 ResetBurst();
 
                 return;
             }
             
+            if (!burstCooldownService.IsFinished)
+            {
+                return;
+            }
+
             AnimationService.SetBool(hasTargetBoolName, true);
 
             PerformAttack(targets);
