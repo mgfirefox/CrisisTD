@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AreaAttackTestTower_M79Thumper_AnimatorController
+  m_Controller: {fileID: 9100000, guid: 8903fbe5fe2b7d84d87f5c5ffe8ed9d1, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 714ea6d15f210dd4987d3677e67180bc, type: 2}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: c7f894a2ce826ed489c04d006c259d6f, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 4bd6ebeba0c859247a8db6561ae94b26, type: 2}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: e08a1901d7228cf4ebbb76c7dcae7fdb, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: a4183144768b5d042bba92dda47ee04a, type: 2}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: 15cf793236bddcd4a9b65ed15f816b2e, type: 3}
