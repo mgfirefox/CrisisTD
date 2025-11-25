@@ -15,6 +15,9 @@ namespace Mgfirefox.CrisisTd
 
         new Vector3 Position { get; set; }
         new Quaternion Orientation { get; set; }
+        
+        Quaternion VisualOrientation { get; set; }
+        Quaternion ObstacleOrientation { get; set; }
 
         new Effect RangeEffect { get; set; }
 

@@ -18,6 +18,8 @@ namespace Mgfirefox.CrisisTd
         [BoxGroup("Transform")]
         [ReadOnly]
         private Quaternion orientation;
+        
+        private Transform visual;
 
         public Vector3 Position
         {
@@ -53,22 +55,42 @@ namespace Mgfirefox.CrisisTd
         public Vector3 Size
         {
             get => boxPhysicalHitbox.Size;
-            set => boxPhysicalHitbox.Size = value;
+            set
+            {
+                boxPhysicalHitbox.Size = value;
+                
+                visual.localScale = new Vector3(boxPhysicalHitbox.Length, visual.localScale.y, boxPhysicalHitbox.Width);
+            }
         }
         public float Length
         {
             get => boxPhysicalHitbox.Length;
-            set => boxPhysicalHitbox.Length = value;
+            set
+            {
+                boxPhysicalHitbox.Length = value;
+                
+                visual.localScale = new Vector3(boxPhysicalHitbox.Length, visual.localScale.y, boxPhysicalHitbox.Width);
+            }
         }
         public float Height
         {
             get => boxPhysicalHitbox.Height;
-            set => boxPhysicalHitbox.Height = value;
+            set
+            {
+                boxPhysicalHitbox.Height = value;
+                
+                visual.localScale = new Vector3(boxPhysicalHitbox.Length, visual.localScale.y, boxPhysicalHitbox.Width);
+            }
         }
         public float Width
         {
             get => boxPhysicalHitbox.Width;
-            set => boxPhysicalHitbox.Width = value;
+            set
+            {
+                boxPhysicalHitbox.Width = value;
+                
+                visual.localScale = new Vector3(boxPhysicalHitbox.Length, visual.localScale.y, boxPhysicalHitbox.Width);
+            }
         }
 
         public Vector3 GetClosestPosition(Vector3 position)
@@ -107,6 +129,11 @@ namespace Mgfirefox.CrisisTd
             base.OnInitialized();
 
             boxPhysicalHitbox.Initialize();
+            
+            visual = ModelFolder.Children[0].MeshFolder.Children[0].Transform;
+            visual.localPosition = new Vector3(0.0f, Constant.epsilon, 0.0f);
+            visual.rotation = Quaternion.identity;
+            visual.localScale = new Vector3(0.0f, Constant.epsilon, 0.0f);
         }
 
         protected override void OnDestroying()

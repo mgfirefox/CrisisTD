@@ -48,6 +48,9 @@ namespace Mgfirefox.CrisisTd
                 }
             }
         }
+
+        public IMeshFolder MeshFolder => meshFolder;
+        public IColliderFolder ColliderFolder => colliderFolder;
         
         public IAnimatorFolder AnimatorFolder => animatorFolder;
 

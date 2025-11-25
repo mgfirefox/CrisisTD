@@ -18,6 +18,8 @@ namespace Mgfirefox.CrisisTd
         [BoxGroup("Transform")]
         [ReadOnly]
         private Quaternion orientation;
+        
+        private Transform obstacleVisual;
 
         public IRangeFolder RangeFolder => rangeFolder;
 
@@ -50,6 +52,11 @@ namespace Mgfirefox.CrisisTd
 
                 Transform.rotation = orientation;
             }
+        }
+        
+        public Vector3 ObstacleSize
+        {
+            set => obstacleVisual.localScale = value;
         }
 
         protected override IUnitySceneObject GetChildParent(IUnitySceneObject child)
@@ -99,6 +106,10 @@ namespace Mgfirefox.CrisisTd
             orientation = Transform.rotation;
 
             rangeFolder.Initialize();
+            
+            obstacleVisual = ModelFolder.Children[0].MeshFolder.Children[0].Transform;
+            obstacleVisual.localPosition = new Vector3(0.0f, Constant.epsilon, 0.0f);
+            obstacleVisual.localScale = new Vector3(0.0f, Constant.epsilon, 0.0f);
         }
 
         protected override void OnDestroying()

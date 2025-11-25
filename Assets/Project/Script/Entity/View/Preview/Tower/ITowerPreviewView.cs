@@ -8,5 +8,7 @@ namespace Mgfirefox.CrisisTd
 
         new Vector3 Position { get; set; }
         new Quaternion Orientation { get; set; }
+
+        Vector3 ObstacleSize { set; }
     }
 }

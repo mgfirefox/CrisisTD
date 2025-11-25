@@ -106,8 +106,10 @@ namespace Mgfirefox.CrisisTd
                 LoadoutItem loadoutItem = loadoutService.GetItem(SelectedIndex);
 
                 if (towerService.TrySpawn(loadoutItem.TowerId, placingTowerPreviewView.Position,
-                        placingTowerPreviewView.Orientation, out ITowerView tower))
+                        Quaternion.identity, out ITowerView tower))
                 {
+                    tower.ObstacleOrientation = placingTowerPreviewView.Orientation;
+                    
                     Action towerDestroyAction = () => OnPlacedTowerDestroying(tower);
 
                     tower.Destroying += towerDestroyAction;
@@ -152,6 +154,7 @@ namespace Mgfirefox.CrisisTd
 
             if (towerPreviewFactory.TryCreate(loadoutItem.TowerId, out placingTowerPreviewView))
             {
+                placingTowerPreviewView.ObstacleSize = new Vector3(Constant.towerObstacleLength,  Constant.epsilon, Constant.towerObstacleWidth);
                 placingTowerPreviewView.Hide();
             }
             else
@@ -348,7 +351,7 @@ namespace Mgfirefox.CrisisTd
                 {
                     float length;
                     float width;
-                    if (HasPlacingTowerPreviewSameYawStep(placedTower.Orientation))
+                    if (HasPlacingTowerPreviewSameYawStep(placedTower.ObstacleOrientation))
                     {
                         length = GetSizeParameter(Constant.towerObstacleLength,
                             Constant.towerObstacleLength);
@@ -364,7 +367,7 @@ namespace Mgfirefox.CrisisTd
                     }
 
                     towerObstacle.Position = placedTower.Position;
-                    towerObstacle.Orientation = placedTower.Orientation;
+                    towerObstacle.Orientation = placedTower.ObstacleOrientation;
                     towerObstacle.Size = new Vector3(length, Constant.towerObstacleHeight, width);
 
                     towerObstacles[placedTower] = towerObstacle;

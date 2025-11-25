@@ -67,7 +67,7 @@ namespace Mgfirefox.CrisisTd
 
             TransformService.RotateTo(target);
             
-            TowerView.Orientation = TransformService.Orientation;
+            TowerView.VisualOrientation = TransformService.Orientation;
             
             AnimationService.ActivateTrigger(attackTriggerName);
         }

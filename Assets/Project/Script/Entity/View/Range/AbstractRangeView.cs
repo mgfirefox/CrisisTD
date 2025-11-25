@@ -11,7 +11,18 @@ namespace Mgfirefox.CrisisTd
         [ReadOnly]
         private float radius;
 
-        public virtual float Radius { get => radius; set => radius = value; }
+        private Transform visual;
+
+        public virtual float Radius
+        {
+            get => radius;
+            set
+            {
+                radius = value;
+                
+                visual.localScale = new Vector3(radius, visual.localScale.y, radius);
+            }
+        }
 
         public void OnDrawGizmos()
         {
@@ -37,6 +48,15 @@ namespace Mgfirefox.CrisisTd
 
             Gizmos.color = oldColor;
             Gizmos.matrix = oldMatrix;
+        }
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+            
+            visual = ModelFolder.Children[0].MeshFolder.Children[0].Transform;
+            visual.localPosition = new Vector3(0.0f, 2 * Constant.epsilon, 0.0f);
+            visual.localScale = new Vector3(0.0f, Constant.epsilon, 0.0f);
         }
     }
 

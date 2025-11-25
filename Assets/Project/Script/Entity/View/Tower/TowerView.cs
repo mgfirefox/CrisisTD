@@ -34,6 +34,15 @@ namespace Mgfirefox.CrisisTd
         [BoxGroup("Transform")]
         [ReadOnly]
         private Quaternion orientation;
+        
+        [SerializeField]
+        [BoxGroup("Transform")]
+        [ReadOnly]
+        private Quaternion visualOrientation;
+        [SerializeField]
+        [BoxGroup("Transform")]
+        [ReadOnly]
+        private Quaternion obstacleOrientation;
 
         [SerializeField]
         [BoxGroup("Effect")]
@@ -118,6 +127,27 @@ namespace Mgfirefox.CrisisTd
 
                 orientation = Transform.rotation;
             }
+        }
+
+        public Quaternion VisualOrientation
+        {
+            get => visualOrientation;
+            set
+            {
+                visualOrientation = value;
+
+                if (IsDestroyed)
+                {
+                    return;
+                }
+
+                Model.Transform.rotation = visualOrientation;
+            }
+        }
+        public Quaternion ObstacleOrientation
+        {
+            get => obstacleOrientation;
+            set => obstacleOrientation = value;
         }
 
         protected override IUnitySceneObject GetChildParent(IUnitySceneObject child)
