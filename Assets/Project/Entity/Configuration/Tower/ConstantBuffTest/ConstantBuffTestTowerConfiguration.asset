@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ebb605b99f64d89961d8373fd2002b4, type: 3}
   m_Name: ConstantBuffTestTowerConfiguration
   m_EditorClassIdentifier: 
-  lifetimeScopePrefab: {fileID: 6818799203605293115, guid: 87ba8e40cfdc830409dd4cafd483f123, type: 3}
+  lifetimeScopePrefab: {fileID: 3985478285951204055, guid: 6be1f81cab9a7394d98626e25fb24c85, type: 3}
   dataConfiguration: {fileID: 11400000, guid: ab8d9ffe871d8404b8524af913892f26, type: 2}
   modelPrefabs:
     m_keys:

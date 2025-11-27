@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ebb605b99f64d89961d8373fd2002b4, type: 3}
   m_Name: BurstAttackTestTowerConfiguration
   m_EditorClassIdentifier: 
-  lifetimeScopePrefab: {fileID: 5460296232127619149, guid: 9d0ae6508c580764bb0023b0baba3c80, type: 3}
+  lifetimeScopePrefab: {fileID: 3985478285951204055, guid: 6be1f81cab9a7394d98626e25fb24c85, type: 3}
   dataConfiguration: {fileID: 11400000, guid: 08e3b14fec33c464681faddb443a3f73, type: 2}
   modelPrefabs:
     m_keys:
