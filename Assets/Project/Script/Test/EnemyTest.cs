@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using VContainer;
 
 namespace Mgfirefox.CrisisTd
@@ -21,6 +22,12 @@ namespace Mgfirefox.CrisisTd
 
         private const int maxEnemyCount = 10;
         private const float maxCooldown = 0.5f;
+
+        private readonly IList<EnemyId> idList = new List<EnemyId>
+        {
+            EnemyId.TestWalk, EnemyId.TestRun,
+        };
+        private int index;
 
         private bool isFinished;
 
@@ -49,7 +56,17 @@ namespace Mgfirefox.CrisisTd
         {
             if (isFinished)
             {
-                return;
+                if (index == idList.Count - 1)
+                {
+                    return;
+                }
+
+                index++;
+
+                isFinished = false;
+
+                count = 0;
+                cooldown = maxCooldown;
             }
 
             float deltaTime = timeService.DeltaTime;
@@ -70,7 +87,7 @@ namespace Mgfirefox.CrisisTd
 
             cooldown = maxCooldown;
 
-            enemyService.TrySpawn(mapService.EnemySpawnPose, out IEnemyView _);
+            enemyService.TrySpawn(idList[index], mapService.EnemySpawnPose, out IEnemyView _);
         }
 
         public void OnSceneFinished()

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -7,39 +8,53 @@ namespace Mgfirefox.CrisisTd
 {
     public class EnemyFactory : AbstractFactory, IEnemyFactory
     {
-        private readonly EnemyConfiguration configuration;
+        private readonly IReadOnlyDictionary<EnemyId, EnemyConfiguration> configurations;
 
         [Inject]
-        public EnemyFactory(EnemyConfiguration configuration, LifetimeScope parentLifetimeScope) :
+        public EnemyFactory(IReadOnlyDictionary<EnemyId, EnemyConfiguration> configurations, LifetimeScope parentLifetimeScope) :
             base(parentLifetimeScope)
         {
-            this.configuration = configuration;
+            this.configurations = configurations;
         }
 
-        public IEnemyView Create(Vector3 position, Quaternion orientation)
+        public IEnemyView Create(EnemyId id, Vector3 position, Quaternion orientation)
         {
-            EnemyLifetimeScope lifetimeScope =
-                ParentLifetimeScope.CreateChildFromPrefabRespectSettings(configuration
-                    .LifetimeScopePrefab);
-            IObjectResolver lifetimeScopeContainer = lifetimeScope.Container;
+            if (!EnemyIdValidator.TryValidate(id))
+            {
+                throw new InvalidArgumentException(nameof(id), id.ToString());
+            }
+            
+            if (configurations.TryGetValue(id, out EnemyConfiguration configuration))
+            {
+                EnemyLifetimeScope lifetimeScope =
+                    ParentLifetimeScope.CreateChildFromPrefabRespectSettings(configuration
+                        .LifetimeScopePrefab);
+                IObjectResolver lifetimeScopeContainer = lifetimeScope.Container;
 
-            var view = lifetimeScopeContainer.Resolve<IEnemyView>();
+                var view = lifetimeScopeContainer.Resolve<IEnemyView>();
 
-            EnemyData data = EnemyData.CreateBuilder()
-                .FromConfiguration(configuration.DataConfiguration).WithPosition(position)
-                .WithOrientation(orientation).Build();
+                IModelComponent model =
+                    CreateModel(configuration.ModelPrefab, lifetimeScopeContainer, view);
 
-            var presenter = lifetimeScopeContainer.Resolve<IEnemyPresenter>();
-            presenter.Initialize(data);
+                EnemyData data = EnemyData.CreateBuilder()
+                    .FromConfiguration(configuration.DataConfiguration).WithId(id)
+                    .WithPosition(position).WithOrientation(orientation).Build();
 
-            return view;
+                var presenter = lifetimeScopeContainer.Resolve<IEnemyPresenter>();
+                presenter.Initialize(data);
+
+                return view;
+            }
+            
+            throw new ConfigurationNotFoundException(id.ToString(),
+                typeof(EnemyConfiguration).ToString());
         }
 
-        public bool TryCreate(Vector3 position, Quaternion orientation, out IEnemyView view)
+        public bool TryCreate(EnemyId id, Vector3 position, Quaternion orientation, out IEnemyView view)
         {
             try
             {
-                view = Create(position, orientation);
+                view = Create(id, position, orientation);
 
                 return true;
             }
@@ -54,6 +69,16 @@ namespace Mgfirefox.CrisisTd
             view = null;
 
             return false;
+        }
+        
+        private IModelComponent CreateModel(ModelComponent prefab,
+            IObjectResolver lifetimeScopeContainer, IEnemyView view)
+        {
+            IModelComponent model = lifetimeScopeContainer.Instantiate(prefab);
+                
+            view.AddChild(model);
+
+            return model;
         }
     }
 }

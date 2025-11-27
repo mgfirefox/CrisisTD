@@ -10,7 +10,7 @@ namespace Mgfirefox.CrisisTd
 
             builder.Register<EnemyTransformService>(Lifetime.Singleton).AsImplementedInterfaces();
 
-            builder.Register<HealthService>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<ArmoredHealthService>(Lifetime.Singleton).AsImplementedInterfaces();
         }
     }
 }

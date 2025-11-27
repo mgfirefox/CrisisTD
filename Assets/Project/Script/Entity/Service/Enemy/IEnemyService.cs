@@ -8,10 +8,10 @@ namespace Mgfirefox.CrisisTd
         IReadOnlyList<IEnemyView> Enemies { get; }
         int Count { get; }
 
-        IEnemyView Spawn(Vector3 position, Quaternion orientation);
-        IEnemyView Spawn(Pose pose);
-        bool TrySpawn(Vector3 position, Quaternion orientation, out IEnemyView view);
-        bool TrySpawn(Pose pose, out IEnemyView view);
+        IEnemyView Spawn(EnemyId id, Vector3 position, Quaternion orientation);
+        IEnemyView Spawn(EnemyId id, Pose pose);
+        bool TrySpawn(EnemyId id, Vector3 position, Quaternion orientation, out IEnemyView view);
+        bool TrySpawn(EnemyId id, Pose pose, out IEnemyView view);
 
         void DespawnAll();
     }

@@ -42,6 +42,15 @@ namespace Mgfirefox.CrisisTd
         [BoxGroup("Health")]
         [ReadOnly]
         private float health;
+        
+        [SerializeField]
+        [BoxGroup("ArmoredHealth")]
+        [ReadOnly]
+        private float shield;
+        [SerializeField]
+        [BoxGroup("ArmoredHealth")]
+        [ReadOnly]
+        private float armor;
 
         [SerializeField]
         [BoxGroup("Health")]
@@ -115,15 +124,18 @@ namespace Mgfirefox.CrisisTd
 
         public float MaxHealth { get => maxHealth; set => maxHealth = value; }
         public float Health { get => health; set => health = value; }
+        
+        public float Shield { get => shield; set => shield = value; }
+        public float Armor { get => armor; set => armor = value; }
 
         public bool IsDied { get => isDied; set => isDied = value; }
 
-        public event Action<float> DamageTaken;
+        public event Action<float, float> DamageTaken;
         public event Action Died;
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, float armorPiercing)
         {
-            DamageTaken?.Invoke(damage);
+            DamageTaken?.Invoke(damage, armorPiercing);
         }
 
         public void Die()

@@ -73,8 +73,7 @@ namespace Mgfirefox.CrisisTd
 
         [SerializeField]
         [BoxGroup("Enemy")]
-        [Required]
-        private EnemyConfiguration enemyConfiguration;
+        private EnemyConfigurationDictionary enemyConfigurations = new();
 
         [SerializeField]
         [BoxGroup("Base")]
@@ -295,7 +294,7 @@ namespace Mgfirefox.CrisisTd
 
         private void RegisterEnemy(IContainerBuilder builder)
         {
-            builder.RegisterInstance(enemyConfiguration);
+            builder.RegisterDictionaryAsReadOnly(enemyConfigurations);
 
             builder.Register<EnemyService>(Lifetime.Singleton).AsImplementedInterfaces();
 

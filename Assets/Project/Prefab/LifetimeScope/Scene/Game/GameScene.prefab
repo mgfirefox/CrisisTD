@@ -81,7 +81,11 @@ MonoBehaviour:
     m_keys: 64000000
     m_values:
     - {fileID: 2597202081189763605, guid: 8e6aefdb1c2e3ea4b8b1de03b45350d8, type: 3}
-  enemyConfiguration: {fileID: 11400000, guid: 3de4280e4adddf34c8ed6d074f08f0d2, type: 2}
+  enemyConfigurations:
+    m_keys: 64000000c8000000
+    m_values:
+    - {fileID: 11400000, guid: 3de4280e4adddf34c8ed6d074f08f0d2, type: 2}
+    - {fileID: 11400000, guid: c740fa8d40d52f64bad67e5a4728beab, type: 2}
   baseConfiguration: {fileID: 11400000, guid: 7881999d9c70bc5428579b5b8c58b25b, type: 2}
   towerActionLifetimeScopePrefabs:
     m_keys: 64000000c8000000

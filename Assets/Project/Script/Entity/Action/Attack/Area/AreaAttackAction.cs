@@ -52,7 +52,7 @@ namespace Mgfirefox.CrisisTd
                     Vector3Utility.GetSqrDistance(areaPosition, areaTarget.Position);
                 if (sqrDistance.IsLessThanOrEqualApproximately(sqrInnerRadius, epsilon))
                 {
-                    areaTarget.TakeDamage(Damage);
+                    areaTarget.TakeDamage(Damage, ArmorPiercing);
 
                     hitCount++;
 
@@ -66,7 +66,7 @@ namespace Mgfirefox.CrisisTd
                 float damageMultiplier = Mathf.InverseLerp(sqrOuterRadius,
                     sqrInnerRadius, sqrDistance);
 
-                areaTarget.TakeDamage(Damage * damageMultiplier);
+                areaTarget.TakeDamage(Damage * damageMultiplier, ArmorPiercing);
 
                 hitCount++;
             }

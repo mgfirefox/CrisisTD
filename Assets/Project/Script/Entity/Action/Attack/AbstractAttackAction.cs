@@ -23,6 +23,7 @@ namespace Mgfirefox.CrisisTd
         protected ICooldownService CooldownService { get; }
 
         public float Damage { get; private set; }
+        public float ArmorPiercing { get; private set; }
 
         protected AbstractAttackAction(TIView view, IEnemyTargetService targetService,
             ICooldownService cooldownService, ITowerTransformService transformService, ITowerAnimationService animationService, Scene scene) : base(view, scene)
@@ -77,8 +78,10 @@ namespace Mgfirefox.CrisisTd
             base.OnInitialized(data);
 
             Damage = data.Damage;
+            ArmorPiercing = data.ArmorPiercing;
 
             View.Damage = Damage;
+            View.ArmorPiercing = data.ArmorPiercing;
 
             CooldownService.Initialize(data.CooldownServiceData);
 

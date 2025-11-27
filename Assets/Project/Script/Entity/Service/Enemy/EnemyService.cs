@@ -22,11 +22,11 @@ namespace Mgfirefox.CrisisTd
             this.factory = factory;
         }
 
-        public IEnemyView Spawn(Vector3 position, Quaternion orientation)
+        public IEnemyView Spawn(EnemyId id, Vector3 position, Quaternion orientation)
         {
             try
             {
-                IEnemyView enemy = factory.Create(position, orientation);
+                IEnemyView enemy = factory.Create(id, position, orientation);
 
                 Action enemyDestroyingAction = () => OnEnemyDestroying(enemy);
 
@@ -48,16 +48,16 @@ namespace Mgfirefox.CrisisTd
             }
         }
 
-        public IEnemyView Spawn(Pose pose)
+        public IEnemyView Spawn(EnemyId id, Pose pose)
         {
-            return Spawn(pose.position, pose.rotation);
+            return Spawn(id, pose.position, pose.rotation);
         }
 
-        public bool TrySpawn(Vector3 position, Quaternion orientation, out IEnemyView view)
+        public bool TrySpawn(EnemyId id, Vector3 position, Quaternion orientation, out IEnemyView view)
         {
             try
             {
-                view = Spawn(position, orientation);
+                view = Spawn(id, position, orientation);
 
                 return true;
             }
@@ -74,9 +74,9 @@ namespace Mgfirefox.CrisisTd
             return false;
         }
 
-        public bool TrySpawn(Pose pose, out IEnemyView view)
+        public bool TrySpawn(EnemyId id, Pose pose, out IEnemyView view)
         {
-            return TrySpawn(pose.position, pose.rotation, out view);
+            return TrySpawn(id, pose.position, pose.rotation, out view);
         }
 
         public void DespawnAll()

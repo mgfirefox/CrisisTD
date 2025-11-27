@@ -15,6 +15,10 @@ namespace Mgfirefox.CrisisTd
         [SerializeField]
         [BoxGroup("Dependencies")]
         [Required]
+        private TextMeshProUGUI armorPiercingText;
+        [SerializeField]
+        [BoxGroup("Dependencies")]
+        [Required]
         private TextMeshProUGUI fireRateText;
 
         public virtual TIView View
@@ -22,6 +26,7 @@ namespace Mgfirefox.CrisisTd
             set
             {
                 damageText.text = value.Damage.ToString(CultureInfo.InvariantCulture);
+                armorPiercingText.text = value.ArmorPiercing.ToString(CultureInfo.InvariantCulture);
                 fireRateText.text = value.MaxCooldown.ToString(CultureInfo.InvariantCulture);
             }
         }

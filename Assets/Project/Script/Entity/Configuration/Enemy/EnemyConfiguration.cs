@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Mgfirefox.CrisisTd
@@ -6,5 +8,10 @@ namespace Mgfirefox.CrisisTd
     public class EnemyConfiguration : EntityConfiguration<EnemyPresenter, EnemyView,
         EnemyLifetimeScope, EnemyDataConfiguration>
     {
+        [SerializeField]
+        [BoxGroup("Enemy")]
+        private ModelComponent modelPrefab;
+        
+        public ModelComponent ModelPrefab => modelPrefab;
     }
 }

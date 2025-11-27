@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 546d0f34c73a4d279dfedf9292dfb633, type: 3}
-  m_Name: EnemyConfiguration
+  m_Name: TestWalkEnemyConfiguration
   m_EditorClassIdentifier: 
   lifetimeScopePrefab: {fileID: 3673500092779379957, guid: 045002dbbc2a3b142bfdc99152e842de, type: 3}
   dataConfiguration: {fileID: 11400000, guid: e89058893c48ec447bff79d268def040, type: 2}
+  modelPrefab: {fileID: 5660243352956906559, guid: 56c09ee609941d04281426f10a7fb0aa, type: 3}

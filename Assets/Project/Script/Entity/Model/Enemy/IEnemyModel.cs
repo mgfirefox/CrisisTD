@@ -1,6 +1,6 @@
 namespace Mgfirefox.CrisisTd
 {
-    public interface IEnemyModel : IModel, IEnemyTransformModel, IHealthModel
+    public interface IEnemyModel : IModel, IEnemyTransformModel, IArmoredHealthModel
     {
     }
 }

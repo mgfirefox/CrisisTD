@@ -9,11 +9,11 @@ namespace Mgfirefox.CrisisTd
 
         private readonly IEnemyTransformService transformService;
 
-        private readonly IHealthService healthService;
+        private readonly IArmoredHealthService healthService;
 
         [Inject]
         public EnemyPresenter(IEnemyView view, IEnemyTransformService transformService,
-            IHealthService healthService, IBaseService baseService, Scene scene) : base(view, scene)
+            IArmoredHealthService healthService, IBaseService baseService, Scene scene) : base(view, scene)
         {
             this.transformService = transformService;
             this.healthService = healthService;
@@ -72,10 +72,12 @@ namespace Mgfirefox.CrisisTd
             View.MovementSpeed = transformService.MovementSpeed;
             View.WaypointIndex = transformService.WaypointIndex;
 
-            healthService.Initialize(data.HealthServiceData);
+            healthService.Initialize(data.ArmoredHealthServiceData);
 
             View.MaxHealth = healthService.MaxHealth;
             View.Health = healthService.Health;
+            View.Shield = healthService.Shield;
+            View.Armor = healthService.Armor;
         }
 
         protected override void OnDestroying()
@@ -99,11 +101,12 @@ namespace Mgfirefox.CrisisTd
             Destroy();
         }
 
-        private void OnDamageTaken(float damage)
+        private void OnDamageTaken(float damage, float armorPiercing)
         {
-            healthService.TakeDamage(damage);
+            healthService.TakeDamage(damage, armorPiercing);
 
             View.Health = healthService.Health;
+            View.Shield = healthService.Shield;
         }
 
         private void OnDied()

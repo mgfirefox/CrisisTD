@@ -79,7 +79,7 @@ namespace Mgfirefox.CrisisTd
 
             IEnemyView target = targets[0];
             AnimationService.CreateTracer(target.Position + target.PivotPoint);
-            target.TakeDamage(Damage);
+            target.TakeDamage(Damage, ArmorPiercing);
 
             BurstShotCount++;
 

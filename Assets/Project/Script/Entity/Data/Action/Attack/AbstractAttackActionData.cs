@@ -5,6 +5,7 @@ namespace Mgfirefox.CrisisTd
         public abstract AttackActionType Type { get; }
 
         public float Damage { get; set; }
+        public float ArmorPiercing { get; set; }
 
         public CooldownServiceData CooldownServiceData { get; set; } = new();
     }

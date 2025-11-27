@@ -18,13 +18,16 @@ namespace Mgfirefox.CrisisTd
 
         new float MaxHealth { get; set; }
         new float Health { get; set; }
+        
+        new float Shield { get; set; }
+        new float Armor { get; set; }
 
         new bool IsDied { get; set; }
 
-        event Action<float> DamageTaken;
+        event Action<float, float> DamageTaken;
         event Action Died;
 
-        void TakeDamage(float damage);
+        void TakeDamage(float damage, float armorPiercing);
         void Die();
     }
 }

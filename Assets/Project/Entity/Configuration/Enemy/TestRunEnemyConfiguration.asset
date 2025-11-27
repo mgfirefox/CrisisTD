@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 546d0f34c73a4d279dfedf9292dfb633, type: 3}
+  m_Name: TestRunEnemyConfiguration
+  m_EditorClassIdentifier: 
+  lifetimeScopePrefab: {fileID: 3673500092779379957, guid: 045002dbbc2a3b142bfdc99152e842de, type: 3}
+  dataConfiguration: {fileID: 11400000, guid: 762cb0636a6dea649a2da1e05926a06d, type: 2}
+  modelPrefab: {fileID: 5660243352956906559, guid: 26587c682c7d24b4d82bd4bec68a22af, type: 3}

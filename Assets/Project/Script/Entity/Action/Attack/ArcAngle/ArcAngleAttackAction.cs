@@ -62,7 +62,7 @@ namespace Mgfirefox.CrisisTd
                     .Take(MaxPelletHitCount).ToList();
                 foreach (IEnemyView arcAngleTarget in arcAngleTargets)
                 {
-                    arcAngleTarget.TakeDamage(Damage);
+                    arcAngleTarget.TakeDamage(Damage, ArmorPiercing);
                 }
                 
                 AnimationService.CreateTracer(shotPosition + pelletTranslation);

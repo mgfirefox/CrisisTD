@@ -86,6 +86,7 @@ namespace Mgfirefox.CrisisTd
             }
 
             data.Damage = configuration.Damage;
+            data.ArmorPiercing = configuration.ArmorPiercing;
             data.CooldownServiceData.MaxCooldown = configuration.FireRate;
 
             return data;

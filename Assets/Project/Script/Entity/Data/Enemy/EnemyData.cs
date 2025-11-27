@@ -16,7 +16,14 @@ namespace Mgfirefox.CrisisTd
             public Builder FromConfiguration(EnemyDataConfiguration configuration)
             {
                 return WithMaxMovementSpeed(configuration.MovementSpeed)
-                    .WithMaxHealth(configuration.Health).WithHealth(configuration.Health);
+                    .WithMaxHealth(configuration.Health).WithHealth(configuration.Health).WithShield(configuration.Shield).WithArmor(configuration.Armor);
+            }
+            
+            public Builder WithId(EnemyId id)
+            {
+                data.Id = id;
+
+                return this;
             }
 
             public Builder WithPosition(Vector3 position)
@@ -49,22 +56,38 @@ namespace Mgfirefox.CrisisTd
 
             public Builder WithMaxHealth(float maxHealth)
             {
-                data.HealthServiceData.MaxHealth = maxHealth;
+                data.ArmoredHealthServiceData.MaxHealth = maxHealth;
 
                 return this;
             }
 
             public Builder WithHealth(float health)
             {
-                data.HealthServiceData.Health = health;
+                data.ArmoredHealthServiceData.Health = health;
+
+                return this;
+            }
+            
+            public Builder WithShield(float shield)
+            {
+                data.ArmoredHealthServiceData.Shield = shield;
+
+                return this;
+            }
+
+            public Builder WithArmor(float armor)
+            {
+                data.ArmoredHealthServiceData.Armor = armor;
 
                 return this;
             }
         }
+        
+        public EnemyId Id { get; set; } = EnemyId.Undefined;
 
         public EnemyTransformServiceData TransformServiceData { get; set; } = new();
 
-        public HealthServiceData HealthServiceData { get; set; } = new();
+        public ArmoredHealthServiceData ArmoredHealthServiceData { get; set; } = new();
 
         public static Builder CreateBuilder()
         {
