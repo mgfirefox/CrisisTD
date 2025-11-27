@@ -20,7 +20,9 @@ namespace Mgfirefox.CrisisTd
             {
                 radius = value;
                 
-                visual.localScale = new Vector3(radius, visual.localScale.y, radius);
+                float diameter = 2 * value;
+                
+                visual.localScale = new Vector3(diameter, visual.localScale.y, diameter);
             }
         }
 
