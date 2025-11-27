@@ -145,9 +145,20 @@ namespace Mgfirefox.CrisisTd
             if (Parent == null)
             {
             }
-            else if (Parent.TryGetComponent(out IUnitySceneObject sceneObject))
+            else
             {
-                sceneObject.TryRemoveChild(this);
+                IUnitySceneObject[] sceneObjects = Parent.GetComponents<IUnitySceneObject>();
+                if (sceneObjects.Length != 0)
+                {
+                    if (sceneObjects.Length > 1)
+                    {
+                        sceneObjects[1].TryRemoveChild(this);
+                    }
+                    else
+                    {
+                        sceneObjects[0].TryRemoveChild(this);
+                    }
+                }
             }
 
             Destroy(gameObject);
