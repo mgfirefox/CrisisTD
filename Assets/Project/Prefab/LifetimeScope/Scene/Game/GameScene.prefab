@@ -57,6 +57,7 @@ MonoBehaviour:
   baseUi: {fileID: 2538486524882843206}
   towerPlacementActionUi: {fileID: 2949551339735479760}
   towerInteractionActionUi: {fileID: 7863580495801187233}
+  economyServiceUi: {fileID: 3555787736297217311}
   rangeViewPrefabs:
     m_keys: 64000000c8000000
     m_values:
@@ -251,6 +252,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3434f6b531e54bcd99d124253ecf0462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3555787736297217311 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7445768551652085893, guid: 115b5baa7821b014181aa72eb0d96a22, type: 3}
+  m_PrefabInstance: {fileID: 6200362772515048858}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540549ff63c54d75b14b53461024f282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &7863580495801187233 stripped

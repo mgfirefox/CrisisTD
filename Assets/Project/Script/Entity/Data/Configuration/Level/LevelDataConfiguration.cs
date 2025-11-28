@@ -12,7 +12,13 @@ namespace Mgfirefox.CrisisTd
         [BoxGroup("Level")]
         private List<AbstractTowerActionDataConfiguration> towerActionDataConfigurations = new();
 
+        [SerializeField]
+        [BoxGroup("Level")]
+        private float upgradeCost;
+
         public IList<AbstractTowerActionDataConfiguration> TowerActionDataConfigurations =>
             towerActionDataConfigurations.ToList();
+        
+        public float UpgradeCost => upgradeCost;
     }
 }

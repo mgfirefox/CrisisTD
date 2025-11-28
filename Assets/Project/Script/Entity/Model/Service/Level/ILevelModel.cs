@@ -1,4 +1,6 @@
-﻿namespace Mgfirefox.CrisisTd
+﻿using System.Collections.Generic;
+
+namespace Mgfirefox.CrisisTd
 {
     public interface ILevelModel : IModel
     {
@@ -6,5 +8,7 @@
         int MaxFirstBranchIndex { get; }
         int MaxSecondBranchIndex { get; }
         BranchLevel Level { get; }
+        
+        IReadOnlyList<NextBranchLevel> NextLevels { get; }
     }
 }

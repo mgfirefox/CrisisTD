@@ -39,6 +39,10 @@ namespace Mgfirefox.CrisisTd
         [BoxGroup("Ui")]
         [Required]
         private TowerInteractionActionUi towerInteractionActionUi;
+        [SerializeField]
+        [BoxGroup("Ui")]
+        [Required]
+        private EconomyServiceUi economyServiceUi;
 
         [SerializeField]
         [BoxGroup("Views")]
@@ -133,6 +137,7 @@ namespace Mgfirefox.CrisisTd
             builder.RegisterComponent(baseUi).AsImplementedInterfaces();
             builder.RegisterComponent(towerPlacementActionUi).AsImplementedInterfaces();
             builder.RegisterComponent(towerInteractionActionUi).AsImplementedInterfaces();
+            builder.RegisterComponent(economyServiceUi).AsImplementedInterfaces();
         }
 
         private void RegisterTest(IContainerBuilder builder)
@@ -151,6 +156,8 @@ namespace Mgfirefox.CrisisTd
             builder.Register<TimeService>(Lifetime.Singleton).AsImplementedInterfaces();
 
             builder.Register<CameraService>(Lifetime.Singleton).AsImplementedInterfaces();
+            
+            builder.Register<EconomyService>(Lifetime.Singleton).AsImplementedInterfaces();
         }
 
         private void RegisterViews(IContainerBuilder builder)

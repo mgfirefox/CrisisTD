@@ -8,6 +8,7 @@ namespace Mgfirefox.CrisisTd
     public class LevelItem : ICloneable
     {
         public BranchLevel Level { get; set; } = new();
+        public float UpgradeCost { get; set; }
         public IList<AbstractTowerActionData> ActionDataList { get; set; } =
             new List<AbstractTowerActionData>();
 
@@ -15,7 +16,8 @@ namespace Mgfirefox.CrisisTd
         {
             var levelItem = new LevelItem
             {
-                Level = Level,
+                Level = Level.Clone() as BranchLevel,
+                UpgradeCost = UpgradeCost,
                 ActionDataList = ActionDataList.ToList(),
             };
 

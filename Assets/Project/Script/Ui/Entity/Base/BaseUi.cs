@@ -42,8 +42,8 @@ namespace Mgfirefox.CrisisTd
 
             image.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, imageSize);
 
-            healthText.text = health.ToString(CultureInfo.InvariantCulture);
-            maxHealthText.text = maxHealth.ToString(CultureInfo.InvariantCulture);
+            healthText.text = Mathf.CeilToInt(health).ToString(CultureInfo.InvariantCulture);
+            maxHealthText.text = Mathf.CeilToInt(maxHealth).ToString(CultureInfo.InvariantCulture);
         }
     }
 }

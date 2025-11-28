@@ -36,5 +36,7 @@ namespace Mgfirefox.CrisisTd
 
         public const float towerInteractionMaxDistance = 100.0f;
         public static LayerMask TowerSelectionLayerMask { get; } = LayerMask.GetMask("Tower");
+
+        public const int towerSellingRatioDenominator = 3;
     }
 }

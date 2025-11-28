@@ -9,11 +9,15 @@ namespace Mgfirefox.CrisisTd
     {
         private readonly IDictionary<BranchLevel, LevelItem> items =
             new Dictionary<BranchLevel, LevelItem>();
+        
+        private readonly IList<NextBranchLevel> nextLevels = new List<NextBranchLevel>();
 
         public int MaxZeroBranchIndex { get; private set; }
         public int MaxFirstBranchIndex { get; private set; }
         public int MaxSecondBranchIndex { get; private set; }
         public BranchLevel Level { get; private set; } = new();
+
+        public IReadOnlyList<NextBranchLevel> NextLevels => nextLevels.AsReadOnly();
 
         public event Action<LevelItem> Changed;
 
@@ -26,24 +30,42 @@ namespace Mgfirefox.CrisisTd
         {
             if (Level.Type == BranchType.Zero)
             {
-                if (MaxZeroBranchIndex == -1)
+                if (MaxZeroBranchIndex < 0)
                 {
                     return;
                 }
 
                 if (Level.Index < MaxZeroBranchIndex)
                 {
-                    UpgradeBranch();
+                    Level.Index++;
+
+                    nextLevels.Clear();
+                    if (Level.Index < MaxZeroBranchIndex)
+                    {
+                        AddNextLevel();
+                    }
+                    else
+                    {
+                        AddNextLevels();
+                    }
+
+                    InvokeChanged();
 
                     return;
                 }
 
-                if (MaxFirstBranchIndex == -1)
+                if (MaxFirstBranchIndex < 0)
                 {
                     return;
                 }
 
                 Level = new BranchLevel(BranchType.First);
+
+                nextLevels.Clear();
+                if (Level.Index < MaxFirstBranchIndex)
+                {
+                    AddNextLevel();
+                }
 
                 InvokeChanged();
 
@@ -59,31 +81,57 @@ namespace Mgfirefox.CrisisTd
                 return;
             }
 
-            UpgradeBranch();
+            Level.Index++;
+            
+            nextLevels.Clear();
+            if (Level.Index < MaxFirstBranchIndex)
+            {
+                AddNextLevel();
+            }
+
+            InvokeChanged();
         }
 
         public void UpgradeSecondBranch()
         {
             if (Level.Type == BranchType.Zero)
             {
-                if (MaxZeroBranchIndex == -1)
+                if (MaxZeroBranchIndex < 0)
                 {
                     return;
                 }
 
                 if (Level.Index < MaxZeroBranchIndex)
                 {
-                    UpgradeBranch();
+                    Level.Index++;
+
+                    nextLevels.Clear();
+                    if (Level.Index < MaxZeroBranchIndex)
+                    {
+                        AddNextLevel();
+                    }
+                    else
+                    {
+                        AddNextLevels();
+                    }
+                    
+                    InvokeChanged();
 
                     return;
                 }
 
-                if (MaxSecondBranchIndex == -1)
+                if (MaxSecondBranchIndex < 0)
                 {
                     return;
                 }
 
                 Level = new BranchLevel(BranchType.Second);
+                
+                nextLevels.Clear();
+                if (Level.Index < MaxSecondBranchIndex)
+                {
+                    AddNextLevel();
+                }
 
                 InvokeChanged();
 
@@ -99,7 +147,15 @@ namespace Mgfirefox.CrisisTd
                 return;
             }
 
-            UpgradeBranch();
+            Level.Index++;
+            
+            nextLevels.Clear();
+            if (Level.Index < MaxSecondBranchIndex)
+            {
+                AddNextLevel();
+            }
+
+            InvokeChanged();
         }
 
         public LevelItem Get(BranchLevel level)
@@ -111,17 +167,63 @@ namespace Mgfirefox.CrisisTd
 
             return new LevelItem();
         }
-
-        private void UpgradeBranch()
+        
+        private void AddNextLevel()
         {
-            Level.Index++;
+            var nextLevel = new NextBranchLevel(Level.Type)
+            {
+                Index = Level.Index + 1,
+            };
 
-            InvokeChanged();
+            var level = new BranchLevel(nextLevel.Type)
+            {
+                Index = nextLevel.Index,
+            };
+            
+            nextLevel.UpgradeCost = items[level].UpgradeCost;
+
+            nextLevels.Add(nextLevel);
+        }
+        
+        private void AddNextLevels()
+        {
+            var nextLevel = new NextBranchLevel(BranchType.First);
+            if (nextLevel.Index <= MaxFirstBranchIndex)
+            {
+                var level = new BranchLevel(nextLevel.Type)
+                {
+                    Index = nextLevel.Index,
+                };
+            
+                nextLevel.UpgradeCost = items[level].UpgradeCost;
+                
+                nextLevels.Add(nextLevel);
+            }
+
+            nextLevel = new NextBranchLevel(BranchType.Second);
+            if (nextLevel.Index <= MaxSecondBranchIndex)
+            {
+                var level = new BranchLevel(nextLevel.Type)
+                {
+                    Index = nextLevel.Index,
+                };
+            
+                nextLevel.UpgradeCost = items[level].UpgradeCost;
+                
+                nextLevels.Add(nextLevel);
+            }
         }
 
         private void InvokeChanged()
         {
             LevelItem item = Get(Level);
+
+            Changed?.Invoke(item.Clone() as LevelItem);
+        }
+        
+        private void InvokeChanged(BranchLevel level)
+        {
+            LevelItem item = Get(level);
 
             Changed?.Invoke(item.Clone() as LevelItem);
         }
@@ -136,13 +238,7 @@ namespace Mgfirefox.CrisisTd
 
             InitializeItems(data.Items);
 
-            Level = (BranchLevel)data.Level.Clone();
-            if (!items.ContainsKey(Level))
-            {
-                Level = new BranchLevel();
-            }
-
-            InvokeChanged();
+            InitializeLevel(data.Level);
         }
 
         private void InitializeItems(IDictionary<BranchLevel, LevelItem> items)
@@ -220,6 +316,77 @@ namespace Mgfirefox.CrisisTd
                 MaxSecondBranchIndex = level.Index - 1;
 
                 break;
+            }
+        }
+
+        private void InitializeLevel(BranchLevel level)
+        {
+            Level = (BranchLevel)level.Clone();
+            if (!items.ContainsKey(Level))
+            {
+                Level = new BranchLevel();
+            }
+
+            switch (Level.Type)
+            {
+                case BranchType.Zero:
+                    if (Level.Index < MaxZeroBranchIndex)
+                    {
+                        AddNextLevel();
+                    }
+                    else
+                    {
+                        AddNextLevels();
+                    }
+                    
+                    for (var tempLevel = new BranchLevel();
+                         tempLevel.Index <= Level.Index;
+                         tempLevel.Index++)
+                    {
+                        InvokeChanged(tempLevel);
+                    }
+                break;
+                case BranchType.First:
+                    if (Level.Index < MaxFirstBranchIndex)
+                    {
+                        AddNextLevel();
+                    }
+                    
+                    for (var tempLevel = new BranchLevel();
+                         tempLevel.Index <= MaxZeroBranchIndex;
+                         tempLevel.Index++)
+                    {
+                        InvokeChanged(tempLevel);
+                    }
+                    for (var tempLevel = new BranchLevel(BranchType.First);
+                         tempLevel.Index <= Level.Index;
+                         tempLevel.Index++)
+                    {
+                        InvokeChanged(tempLevel);
+                    }
+                break;
+                case BranchType.Second:
+                    if (Level.Index < MaxSecondBranchIndex)
+                    {
+                        AddNextLevel();
+                    }
+                    
+                    for (var tempLevel = new BranchLevel();
+                         tempLevel.Index <= MaxZeroBranchIndex;
+                         tempLevel.Index++)
+                    {
+                        InvokeChanged(tempLevel);
+                    }
+                    for (var tempLevel = new BranchLevel(BranchType.Second);
+                         tempLevel.Index <= Level.Index;
+                         tempLevel.Index++)
+                    {
+                        InvokeChanged(tempLevel);
+                    }
+                break;
+                case BranchType.Undefined:
+                default:
+                    return;
             }
         }
 

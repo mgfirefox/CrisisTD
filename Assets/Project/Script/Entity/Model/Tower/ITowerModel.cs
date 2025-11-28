@@ -7,5 +7,7 @@ namespace Mgfirefox.CrisisTd
         TowerType Type { get; }
 
         TargetPriority Priority { get; }
+        
+        float TotalCost { get; }
     }
 }

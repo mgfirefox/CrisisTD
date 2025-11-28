@@ -43,6 +43,7 @@ namespace Mgfirefox.CrisisTd
                     var levelData = new LevelItem
                     {
                         Level = level,
+                        UpgradeCost = levelDataConfiguration.UpgradeCost,
                     };
                     
                     foreach (AbstractTowerActionDataConfiguration actionDataConfiguration in

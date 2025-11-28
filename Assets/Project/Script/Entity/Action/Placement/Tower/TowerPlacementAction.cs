@@ -24,6 +24,8 @@ namespace Mgfirefox.CrisisTd
         private readonly IBasicRayView rayView;
 
         private readonly ILoadoutService loadoutService;
+        
+        private readonly IEconomyService economyService;
 
         private ITowerPreviewView placingTowerPreviewView;
         private int placingTowerPreviewViewYaw;
@@ -75,7 +77,7 @@ namespace Mgfirefox.CrisisTd
         public TowerPlacementAction(ITowerPlacementActionView view, ITowerPlacementActionUi ui,
             ITowerService towerService, IMapService mapService, ILoadoutService loadoutService,
             IBasicRayView rayView, ICameraService cameraService,
-            ITowerPreviewFactory towerPreviewFactory,
+            ITowerPreviewFactory towerPreviewFactory, IEconomyService economyService,
             ITowerObstacleViewFactory towerObstacleViewFactory, IRotationService rotationService,
             Scene scene) : base(view, ui, scene)
         {
@@ -87,6 +89,7 @@ namespace Mgfirefox.CrisisTd
             this.towerPreviewFactory = towerPreviewFactory;
             this.towerObstacleViewFactory = towerObstacleViewFactory;
             this.rotationService = rotationService;
+            this.economyService = economyService;
         }
 
         public override void Perform()
@@ -101,37 +104,47 @@ namespace Mgfirefox.CrisisTd
                 return;
             }
 
-            if (!IsLimitReached)
+            if (IsLimitReached)
             {
-                LoadoutItem loadoutItem = loadoutService.GetItem(SelectedIndex);
-
-                if (towerService.TrySpawn(loadoutItem.TowerId, placingTowerPreviewView.Position,
-                        Quaternion.identity, out ITowerView tower))
-                {
-                    tower.ObstacleOrientation = placingTowerPreviewView.Orientation;
-                    
-                    Action towerDestroyAction = () => OnPlacedTowerDestroying(tower);
-
-                    tower.Destroying += towerDestroyAction;
-
-                    placedTowers.Add(tower);
-                    placedTowerDestroyingActions[tower] = towerDestroyAction;
-
-                    Count++;
-
-                    View.Count = Count;
-                    View.IsLimitReached = IsLimitReached;
-
-                    Ui.Count = Count;
-
-                    Deselect();
-
-                    return;
-                }
-
-                // TODO: Change Error
-                Debug.LogError("Failed to spawn tower.");
+                return;
             }
+            
+            float epsilon = Scene.Settings.MathSettings.Epsilon;
+                
+            LoadoutItem loadoutItem = loadoutService.GetItem(SelectedIndex);
+            TowerId id = loadoutItem.TowerId;
+
+            if (!economyService.TryPlaceTower(id, epsilon))
+            {
+                return;
+            }
+            
+            if (towerService.TrySpawn(id, placingTowerPreviewView.Position, Quaternion.identity,
+                    out ITowerView tower))
+            {
+                tower.ObstacleOrientation = placingTowerPreviewView.Orientation;
+
+                Action towerDestroyAction = () => OnPlacedTowerDestroying(tower);
+
+                tower.Destroying += towerDestroyAction;
+
+                placedTowers.Add(tower);
+                placedTowerDestroyingActions[tower] = towerDestroyAction;
+
+                Count++;
+
+                View.Count = Count;
+                View.IsLimitReached = IsLimitReached;
+
+                Ui.Count = Count;
+
+                Deselect();
+
+                return;
+            }
+
+            // TODO: Change Error
+            Debug.LogError("Failed to spawn tower.");
         }
 
         public void Select(int index)

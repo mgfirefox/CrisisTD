@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using VContainer;
 
@@ -24,6 +25,8 @@ namespace Mgfirefox.CrisisTd
         private readonly IList<ITowerAction> actions = new List<ITowerAction>();
 
         private TargetPriority priority;
+
+        private float totalCost;
 
         [Inject]
         public TowerPresenter(ITowerView view, ITowerTransformService transformService,
@@ -115,6 +118,9 @@ namespace Mgfirefox.CrisisTd
             View.MaxFirstBranchIndex = levelService.MaxFirstBranchIndex;
             View.MaxSecondBranchIndex = levelService.MaxSecondBranchIndex;
 
+            View.NextLevels.Clear();
+            View.NextLevels.AddRange(levelService.NextLevels);
+
             HideInteraction();
         }
 
@@ -175,7 +181,14 @@ namespace Mgfirefox.CrisisTd
             DestroyActions();
             InitializeActions(item.ActionDataList);
 
+            totalCost += item.UpgradeCost;
+            
+            View.TotalCost = totalCost;
+
             View.Level = levelService.Level;
+            
+            View.NextLevels.Clear();
+            View.NextLevels.AddRange(levelService.NextLevels);
 
             effectService.Reapply();
         }

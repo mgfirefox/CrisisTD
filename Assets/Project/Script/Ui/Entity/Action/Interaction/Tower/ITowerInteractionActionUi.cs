@@ -9,5 +9,7 @@ namespace Mgfirefox.CrisisTd
         event Action SingleBranchUpgradeButtonClicked;
         event Action FirstBranchUpgradeButtonClicked;
         event Action SecondBranchUpgradeButtonClicked;
+        
+        event Action SellButtonClicked;
     }
 }

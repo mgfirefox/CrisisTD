@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mgfirefox.CrisisTd
@@ -12,6 +13,8 @@ namespace Mgfirefox.CrisisTd
         new TowerType Type { get; set; }
 
         new TargetPriority Priority { get; set; }
+        
+        new float TotalCost { get; set; }
 
         new Vector3 Position { get; set; }
         new Quaternion Orientation { get; set; }
@@ -25,6 +28,8 @@ namespace Mgfirefox.CrisisTd
         new int MaxFirstBranchIndex { get; set; }
         new int MaxSecondBranchIndex { get; set; }
         new BranchLevel Level { get; set; }
+        
+        new IList<NextBranchLevel> NextLevels { get; }
 
         event Action<Effect, ITowerView> EffectApplied;
 

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerActionDataConfigurations:
   - {fileID: 11400000, guid: abfc4c482a72046409e47f39c6722d64, type: 2}
+  upgradeCost: 400

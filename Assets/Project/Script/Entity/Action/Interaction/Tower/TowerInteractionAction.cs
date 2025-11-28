@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using VContainer;
 
@@ -8,6 +9,8 @@ namespace Mgfirefox.CrisisTd
         AbstractUiAction<TowerInteractionActionData, ITowerInteractionActionView,
             ITowerInteractionActionUi>, ITowerInteractionAction
     {
+        private readonly IEconomyService economyService;
+        
         private readonly ICameraView camera;
 
         private readonly ITowerTargetRayView rayView;
@@ -17,10 +20,11 @@ namespace Mgfirefox.CrisisTd
         public bool IsInteracting => interactingTower != null;
 
         [Inject]
-        public TowerInteractionAction(ITowerInteractionActionView view,
+        public TowerInteractionAction(ITowerInteractionActionView view, IEconomyService economyService,
             ITowerInteractionActionUi ui, ITowerTargetRayView rayView, ICameraService cameraService,
             Scene scene) : base(view, ui, scene)
         {
+            this.economyService = economyService;
             this.rayView = rayView;
             camera = cameraService.MainCamera;
         }
@@ -33,6 +37,8 @@ namespace Mgfirefox.CrisisTd
 
             Ui.FirstBranchUpgradeButtonClicked += UpgradeFirstBranch;
             Ui.SecondBranchUpgradeButtonClicked += UpgradeSecondBranch;
+
+            Ui.SellButtonClicked += Sell;
         }
 
         public override void OnSceneFinished()
@@ -43,6 +49,8 @@ namespace Mgfirefox.CrisisTd
 
             Ui.FirstBranchUpgradeButtonClicked -= UpgradeFirstBranch;
             Ui.SecondBranchUpgradeButtonClicked -= UpgradeSecondBranch;
+            
+            Ui.SellButtonClicked -= Sell;
         }
 
         public override void Perform()
@@ -77,6 +85,25 @@ namespace Mgfirefox.CrisisTd
             {
                 return;
             }
+            
+            float epsilon = Scene.Settings.MathSettings.Epsilon;
+
+            IList<NextBranchLevel> nextLevels = interactingTower.NextLevels;
+            if (nextLevels.Count == 0)
+            {
+                return;
+            }
+            
+            NextBranchLevel nextLevel = nextLevels[0];
+            if (nextLevel.Type is not (BranchType.Zero or BranchType.First))
+            {
+                return;
+            }
+
+            if (!economyService.TryUpgradeTower(interactingTower, nextLevel, epsilon))
+            {
+                return;
+            }
 
             interactingTower.UpgradeFirstBranch();
 
@@ -86,6 +113,32 @@ namespace Mgfirefox.CrisisTd
         public void UpgradeSecondBranch()
         {
             if (!IsInteracting)
+            {
+                return;
+            }
+            
+            float epsilon = Scene.Settings.MathSettings.Epsilon;
+
+            IList<NextBranchLevel> nextLevels = interactingTower.NextLevels;
+            
+            NextBranchLevel nextLevel;
+            switch (nextLevels.Count)
+            {
+                case 0:
+                    return;
+                case 1:
+                    nextLevel = nextLevels[0];
+                break;
+                default:
+                    nextLevel = nextLevels[1];
+                break;
+            }
+            if (nextLevel.Type is not (BranchType.Zero or BranchType.Second))
+            {
+                return;
+            }
+
+            if (!economyService.TryUpgradeTower(interactingTower, nextLevel, epsilon))
             {
                 return;
             }
@@ -101,6 +154,8 @@ namespace Mgfirefox.CrisisTd
             {
                 return;
             }
+            
+            economyService.SellTower(interactingTower);
 
             interactingTower.Destroy();
             interactingTower = null;
@@ -131,6 +186,8 @@ namespace Mgfirefox.CrisisTd
             {
                 throw new InvalidArgumentException();
             }
+            
+            float epsilon = Scene.Settings.MathSettings.Epsilon;
 
             switch (interactingTower.Level.Type)
             {

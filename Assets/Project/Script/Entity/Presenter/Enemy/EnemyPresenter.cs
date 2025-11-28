@@ -6,17 +6,20 @@ namespace Mgfirefox.CrisisTd
         ISceneTickedListener
     {
         private readonly IBaseView @base;
+        
+        private IEconomyService economyService;
 
         private readonly IEnemyTransformService transformService;
 
         private readonly IArmoredHealthService healthService;
 
         [Inject]
-        public EnemyPresenter(IEnemyView view, IEnemyTransformService transformService,
+        public EnemyPresenter(IEnemyView view, IEnemyTransformService transformService, IEconomyService economyService,
             IArmoredHealthService healthService, IBaseService baseService, Scene scene) : base(view, scene)
         {
             this.transformService = transformService;
             this.healthService = healthService;
+            this.economyService = economyService;
             @base = baseService.Get(0);
         }
 
@@ -111,6 +114,8 @@ namespace Mgfirefox.CrisisTd
 
         private void OnDied()
         {
+            economyService.KillEnemy(View);
+            
             healthService.Die();
 
             View.Health = healthService.Health;

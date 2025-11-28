@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -25,6 +26,11 @@ namespace Mgfirefox.CrisisTd
         [BoxGroup("Tower")]
         [ReadOnly]
         private TargetPriority priority;
+
+        [SerializeField]
+        [BoxGroup("Tower")]
+        [ReadOnly]
+        private float totalCost;
 
         [SerializeField]
         [BoxGroup("Transform")]
@@ -65,6 +71,11 @@ namespace Mgfirefox.CrisisTd
         [BoxGroup("Level")]
         [ReadOnly]
         private BranchLevel level;
+        
+        [SerializeField]
+        [BoxGroup("Level")]
+        [ReadOnly]
+        private List<NextBranchLevel> nextLevels = new();
 
         public ITowerActionFolder ActionFolder => actionFolder;
 
@@ -73,6 +84,8 @@ namespace Mgfirefox.CrisisTd
         public TowerType Type { get => type; set => type = value; }
 
         public TargetPriority Priority { get => priority; set => priority = value; }
+
+        public float TotalCost { get => totalCost; set => totalCost = value; }
 
         public Vector3 Position
         {
@@ -178,6 +191,9 @@ namespace Mgfirefox.CrisisTd
             set => maxSecondBranchIndex = value;
         }
         public BranchLevel Level { get => level; set => level = value; }
+
+        IReadOnlyList<NextBranchLevel> ILevelModel.NextLevels => nextLevels.AsReadOnly();
+        public IList<NextBranchLevel> NextLevels => nextLevels;
 
         public event Action<Effect, ITowerView> EffectApplied;
 
